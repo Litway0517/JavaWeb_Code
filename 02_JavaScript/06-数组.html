@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS数组  重点</title>
+
+    <!--
+
+
+    -->
+
+    <script>
+
+        var arr = [];           // 定义了一个空数组
+        alert("数组最初长度" + arr.length);      // 长度为0
+
+        arr[0] = 20;
+        alert("第0个元素的值" + arr[0]);          // 20
+
+        // javascript语言的数组长度, 只要通过数组下标复制, 最大的下标值, 就会自动扩充为数组的长度
+        arr[2] = "abc";
+        alert("第三个元素的值" + arr[2]);          // abc
+        alert("数组长度为" + arr.length);
+
+        alert("未定义时的第二个元素值" + arr[1]);          // undefined
+
+        alert("仅仅是读取数据不会更改数组长度: 这里长度还是" + arr[9]);
+
+        // 数组遍历
+        for (var i = 0; i < arr.length; i++) {
+            alert(arr[i]);
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>

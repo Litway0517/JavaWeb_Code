@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!--
+        什么是表单?
+        表单就是html 页面中,用来收集用户信息的所有元素集合.然后把这些信息发送给服务器.
+    -->
+
+    <!--
+        需求1:创建一个个人信息注册的表单界面。包含用户名，密码，确认密码。性别（单选），兴趣爱好（多选），国籍（下
+            拉列表）。
+        隐藏域，自我评价（多行文本域）。重置，提交。
+
+        form标签      表单
+            input type=type      是文本输入框         value设置文本框默认值
+            input type=password  是密码输入框
+            input type=radio     是单选框(单选)       name属性能够进行分组    checked=check表示默认选中
+            input type=checkbox  是复选框(多选)       checked=check默认选中
+            input type=reset     是重置按钮          value="" 能够修改按钮的文字
+            input type=submit    是提交按钮          value="" 能够修改按钮的文字
+            input type=button    是按钮             value="" 能够修改按钮的文字
+            input type=file      是文件上传域
+            input type=hidden    是隐藏域           当我们需要发送这些数据时能够使用, 但是用户不需要参与, 看不见. 点击提交时, 这些数据会一起提交
+
+            select  是下拉框
+            option  是选项     selected="selected"设置默认选中
+
+            textarea    多行文本输入域     起始标签和结束标签中间位默认值
+                rows属性  设置可以输入文本的高度
+                cols属性  设置可以输入文本的宽度
+
+    -->
+
+<form>
+    用户名称: <input type="text" value="默认值选项"/><br>
+    用户密码: <input type="password"/><br>
+    确认密码: <input type="password"/><br>
+    性   别: <input type="radio" name="sex" checked="checked"/>男<input type="radio" name="sex"/>女<br/>
+    兴趣爱好: <input type="checkbox" checked="checked"/>Java<input type="checkbox"/>JavaScript<input type="checkbox"/>C++<br/>
+    国   籍: <select>
+                <option>---选择国籍---</option>
+                <option selected="selected">中国</option>
+                <option>美国</option>
+                <option>小日本</option>
+            </select><br/>
+    自我评价: <textarea rows="10" cols="20">这里填写默认值</textarea><br/>
+
+    重   置: <input type="reset" value="重 置"/><br/>
+    提   交: <input type="submit" value="提 交"/>
+    按   钮: <input type="button" value="这里设置按钮名称"/><br/>
+    文件上传: <input type="file"/>
+    隐藏域:   <input type="hidden"/>
+
+</form>
+<br>
+<br>
+<hr>
+<br>
+<br>
+    <form>
+        <hr>
+        <h1 align="center">用户注册</h1>
+        <table align="center">
+            <tr>
+                <td>用户名称: </td>
+                <td>
+                    <label>
+                        <input type="text" value="默认值选项"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>用户密码: </td>
+                <td>
+                    <label>
+                        <input type="password"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>确认密码:</td>
+                <td>
+                    <label>
+                        <input type="password"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>确认密码: </td>
+                <td>
+                    <label>
+                        <input type="password"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>性   别: </td>
+                <td>
+                    <label>
+                        <input type="radio" name="sex" checked="checked"/>男
+                    </label>
+                    <label>
+                        <input type="radio" name="sex"/>女
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>兴趣爱好: </td>
+                <td>
+                    <label>
+                        <input type="checkbox" checked="checked"/>
+                    </label>Java
+                    <label>
+                        <input type="checkbox"/>JavaScript
+                    </label>
+                    <label>
+                        <input type="checkbox"/>C++
+                    </label>
+                    <label>
+                        <input type="checkbox"/>Python
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>国   籍: </td>
+                <td><label>
+                        <select>
+                            <option>---选择国籍---</option>
+                            <option selected="selected">中国</option>
+                            <option>美国</option>
+                            <option>小日本</option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>自我评价: </td>
+                <td><label>
+                        <textarea rows="10" cols="20">这里填写默认值</textarea>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>重   置: </td>
+                <td><input type="reset" value="重 置"/></td>
+            </tr>
+            <tr>
+                <td>提   交: </td>
+                <td><input type="submit" value="提 交"/></td>
+            </tr>
+            <tr>
+                <td>文件上传: </td>
+                <td><input type="file"/></td>
+            </tr>
+            <tr>
+                <td>隐藏域  :</td>
+                <td><input type="hidden"/></td>
+            </tr>
+        </table>
+    </form>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS函数中的隐藏参数 仅在function函数中</title>
+
+    <!--
+        function函数中有一个隐藏变量, 这个变量还可以变成一个数组.
+            当function函数中只有一个参数时, 那么这个arguments就是这个传入的参数
+            当function函数有多个参数时, arguments就变成了一个数组, 存储传入的所有参数
+    -->
+
+    <script>
+
+        function func() {
+            alert(arguments.length);
+            alert("无参函数被执行");
+
+            // 输出隐藏参数的内容
+            for (var i = 0; i < arguments.length; i++) {
+                alert(arguments[i]);
+            }
+
+        }
+
+        func(10, "abc", true);
+
+        /*
+            需求: 编写一个函数, 用于计算所所有参数的和并返回
+         */
+
+        function sum(num1, num2) {
+            // 这里的sum必须赋值0, 原因后面再讨论
+            var sum = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                if (typeof (arguments[i]) == "number") {
+                    sum += arguments[i];
+                }
+            }
+            return sum;
+        }
+
+        alert(sum(1, 2, 3, 4, 5, 6, 7, 8, 9, "abc"));
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

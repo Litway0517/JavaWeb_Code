@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS函数不允许重载测试</title>
+
+
+    <!--
+
+    -->
+
+    <script>
+
+        // 无参函数
+        function func() {
+            alert("无参函数被执行");
+        }
+
+        // 有参函数
+        function func(a, b) {
+            alert("有参函数被执行");
+        }
+
+        func();
+
+        function sum(a, b) {
+            alert("sum有参函数被执行");
+        }
+
+        function sum() {
+            alert("sum无参函数被执行");
+        }
+
+        sum(10, 20);
+
+        /*
+            对于func函数来说, 会一直执行func(a, b)这个, 因为有参的func在下面
+            对于sum函数来说, 会一直执行sum()无参函数, 因为sum()在下面, 覆盖了上面的sum(a, b)
+         */
+
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS 或括号形式的自定义对象</title>
+
+    <!--
+        对象的定义：
+            var 变量名 = { // 空对象
+                属性名：值, // 定义一个属性
+                属性名：值, // 定义一个属性
+                函数名：function(){} // 定义一个函数
+            };
+    -->
+
+    <script>
+        var obj = {
+            name: "国哥",
+            age: 18,
+            func: function () {
+                alert("姓名:" + obj.name + "\n" +  "年龄:" + obj.age);
+            }
+        };
+
+
+        /*
+            对象的访问：
+                变量名.属性 / 函数名();
+         */
+
+        alert("姓名:" + obj.name + "\n" +  "年龄:" + obj.age);
+
+        obj.func();
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

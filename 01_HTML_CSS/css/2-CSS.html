@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS使用</title>
+
+    <!--
+        style标签专门用来定义CSS样式代码
+    -->
+    <style type="text/css">
+
+        /*
+            CSS的注释是这样的
+         */
+
+        div{
+            /*
+                使本网页的所有div标签都是用下面的样式
+            */
+            border: red 1px solid;
+        }
+        span{
+            border: red 1px solid;
+        }
+    </style>
+</head>
+<body>
+
+    <!--
+        这种使用head中的style标签来定义样式的缺点是 -> 只能将样式应用于本网页, 而不能应用于其他网页
+        不能再多个页面复用
+        页面多的时候维护起来不方便
+    -->
+
+    <!--
+        需求 1：分别定义两个 div、span 标签，分别修改每个 div 标签的样式为：边框 1 个像素，实线，红色。
+    -->
+
+    <div>div 标签 1</div>
+    <div>div 标签 2</div>
+    <span>span 标签 1</span>
+    <span>span 标签 2</span>
+
+
+    <!--
+
+        这样导致
+            代码没什么复用性可言
+            可读性非常差
+            如果标签多, 代码量将会很多, 庞大复杂, 不易维护
+
+    -->
+
+</body>
+</html>

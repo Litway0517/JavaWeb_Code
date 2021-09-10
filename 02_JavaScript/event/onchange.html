@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS onchange事件</title>
+
+    <script type="text/javascript">
+        // onchange静态注册事件
+        function onchangeEvent() {
+            alert("女神改变了");
+        }
+
+        // onchange动态注册事件
+        window.onload = function () {
+            var elementById = document.getElementById("#select1");
+            elementById.onchange = function () {
+                alert("男神改变了");
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+    <!--onchange静态注册事件-->
+    请选择你的女神:
+    <select onchange="onchangeEvent()">
+        <option>--女神--</option>
+        <option>芳芳</option>
+        <option>环环</option>
+        <option>娘娘</option>
+    </select>
+    <br/>
+    <hr>
+
+    请选择你的男神:
+    <select id="#select1">
+        <option>--男神--</option>
+        <option>国哥</option>
+        <option>华仔</option>
+        <option>富城</option>
+    </select>
+
+</body>
+</html>

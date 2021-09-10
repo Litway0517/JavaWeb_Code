@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS onsubmit事件</title>
+
+    <script type="text/javascript">
+
+        // onsubmit静态注册事件
+        function onsubmitEvent() {
+            alert("静态注册 -> 表单被提交了-----发现表单不合法(需要阻止提交)");
+            return false;
+        }
+
+        // onsubmit动态注册事件
+        window.onload = function () {
+            var obj = document.getElementById("#in1");
+            obj.onsubmit = function () {
+                alert("动态注册 -> 表单被提交了-----发现表单不合法(需要阻止提交)");
+                return false;
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <form action="http://localhost:8080" method="get" onsubmit="return onsubmitEvent()">    <!--注意这里的return别少了, 返回的是函数-->
+        <table>
+            <input type="submit" value="静态注册">
+        </table>
+    </form>
+    <br/>
+    <hr>
+
+    <form action="http://localhost:8080" method="get" id="#in1">
+        <table>
+            <input type="submit" value="动态注册">
+        </table>
+    </form>
+
+</body>
+</html>

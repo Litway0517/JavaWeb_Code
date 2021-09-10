@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS onblur失去焦点</title>
+
+    <script type="text/javascript">
+
+
+        // 静态注册, 输入框失去焦点的情况
+        function onblurFunc() {
+            // console是javascript提供的 控制台对象, 专门用来向浏览器的控制台打印输出, 用于测试使用.
+            // log函数是打印方法
+            console.log("onblur静态注册方法被调用");
+        }
+
+
+        // 动态注册
+        window.onblur = function () {
+            var elementById = document.getElementById("#input2");
+            elementById.onblur = function () {
+                console.log("onblur动态注册方法被调用");
+            }
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <td>用户名: </td>
+            <td><input type="text" onblur="onblurFunc()"></td>
+        </tr><br/>
+        <tr>
+            <td>密 码: </td>
+            <td><input type="text" id="#input2"/></td>
+        </tr>
+    </table>
+
+</body>
+</html>

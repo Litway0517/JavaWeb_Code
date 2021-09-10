@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS onload事件</title>
+
+    <!--
+
+
+    -->
+
+    <script>
+
+        function onloadFunc() {
+            alert("静态注册onload事件, 需要执行的代码直接放在本函数中. ");
+
+        }
+
+    </script>
+
+</head>
+
+    <!--
+        静态注册事件, 是浏览器解析完页面之后, 会自动触发的事件, 注意要在body标签中
+    -->
+<body onload="onloadFunc();">
+
+</body>
+</html>

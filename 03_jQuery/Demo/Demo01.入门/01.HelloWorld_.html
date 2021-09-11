@@ -5,13 +5,12 @@
     <title>Insert title here</title>
 
 	<!--
-		引入jQuery文件
+		引入jQuery文件 -> 必须引入
 	-->
 	<script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
 	<script type="text/javascript">
 
 		window.onload = function () {
-
 			// 原始绑定
 			// var btnObj = document.getElementById("btnId");
 			// btnObj.onclick = function () {
@@ -20,7 +19,8 @@
 
 			alert($);
 		}
-		
+
+		// 使用jQuery绑定
 		$(function () {		// 表示页面加载完成, 相当于window.onload = function () {}
 			var $btnId = $("#btnId");			// jQuery的变量命名习惯以$打头		按id查询标签对象
 			$btnId.click(function () {			// 绑定单击事件

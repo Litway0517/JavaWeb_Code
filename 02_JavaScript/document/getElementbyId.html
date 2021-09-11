@@ -17,15 +17,27 @@
             console.log(elementById.type + "\n" + elementById.id);
 
             var username = elementById.value;
+            // 从头到尾匹配字符串 是否包含5-12个字母数字下划线中的一种
             var patt = /^\w{5,12}$/;
             /*
                 patt变量是一个正则表达式
                 test方法用于测试目标, 若合法则返回true, 不合法就返回false
              */
+
+            var spanObj = document.getElementById("#span01");
+            console.log(spanObj.innerHTML);
+            // innerText不仅能够读取, 还能够赋值
+
             if (patt.test(username)) {
-                alert("用户名合法");
+                // alert("用户名合法");
+                // spanObj.innerHTML = "用户名合法!";
+                spanObj.innerHTML = "<img src=\"right.png\" width=\"24\" height=\"24\"/>";
+
             } else {
-                alert("用户名不合法");
+                // alert("用户名不合法");
+                // spanObj.innerHTML = "用户名不合法!";
+                spanObj.innerHTML = "<img src=\"wrong.png\" width=\"24\" height=\"24\"/>!";
+
             }
 
         }
@@ -36,6 +48,9 @@
 </head>
 <body>
     用户名: <input type="text" id="username" value=""/>
+    <span id="#span01" style="color: red;">
+
+    </span>
     <button onclick="onclickBtn()">校验</button>
 
 </body>

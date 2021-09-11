@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+
+
+    /*
+        注意, 大部分代码我们需要放在  页面加载完成之后执行的代码体中 -> 即window.onload  或者  $(function () {});
+     */
+    $(function () {
+        // $功能1 -> 相当于window.onload自动加载功能
+        alert("页面加载完成之后, 自动调用");
+
+
+        // $功能2 -> 创建标签功能
+        $("    <div>" +
+            "        <span>div-span1</span>" +
+            "        <span>div-span2</span>" +
+            "    </div>").appendTo("body");
+
+
+        // $功能3 -> 查询功能, 就是选择器功能
+        var $btn1 = $("#btn1");
+        alert($btn1);
+        var $btn2 = $("btn2");
+        alert($btn2);
+        var $btn3 = $(".btn3");
+        alert($btn3);
+
+        // 直接按照标签名称查询
+        var $buttonArr = $("button");
+        alert($buttonArr.length);           // 3
+
+
+        // 传入参数为DOM对象时, 会转变为jQuery对象
+        var btnObj = document.getElementById("btn1");
+        alert(btnObj)
+        alert( $(btnObj) );     // 这里传入的是jQuery对象       返回 Object Object
+    });
+
+
+	//核心函数的4个作用
+	//传入参数为[函数]时：在文档加载完成后执行这个函数
+	//传入参数为[HTML字符串]时：根据这个字符串创建元素节点对象
+	//传入参数为[选择器字符串]时：根据这个字符串查找元素节点对象
+	//传入参数为[DOM对象]时：将DOM对象包装为jQuery对象返回
+
+</script>
+</head>
+<body>
+    <div>
+        <span>div-span1</span>
+        <span>div-span2</span>
+    </div>
+
+    <button id="btn1">按钮1</button>
+    <button name="btn2">按钮2</button>
+    <button class="btn3">按钮3</button>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建div标签并添加到页面</title>
+
+    <script type="text/javascript">
+
+        /*
+            需求: 使用js代码来创建html标签, 并显示在页面上
+            标签的内容是 -> <div>国哥好帅</div>
+         */
+
+
+
+        window.onload = function () {
+            var divObj = document.createElement("div");     // 在内存中是<div></div>
+            // alert(divObj);
+
+            divObj.innerHTML = "国哥好帅";
+
+            // 直接放在script标签执行, 会按照顺序执行, 那么会出现null
+            // 需要在页面加载完成之后再用
+            var divElement = document.body.appendChild(divObj);
+
+            // document文档中 文本实质上也是一个节点
+            // 下面一样能添加界定啊
+            var textNodeObj = document.createTextNode("国哥好帅2");
+            var divObj2 = document.createElement("div");
+            divObj2.appendChild(textNodeObj);
+            document.body.appendChild(divObj2);
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+
+
+</body>
+</html>

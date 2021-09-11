@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS RegExp部分</title>
+
+    <script type="text/javascript">
+
+        // 表示字符串中, 是否含有字母e
+        var patt1 = new RegExp("e");
+        var str = "abcd";
+        console.log(patt1.test(str));
+
+        // 测试字符串中是否包含字符 a或b或c
+        var patt2 = new RegExp("[abc]");
+        let str2 = "1234";
+        console.log(patt2.test(str2));
+
+        // 测试字符串中是否包含a-z
+        var patt3 = new RegExp("[a-z]");
+        var str3 = "{{{";
+        console.log(patt3.test(str3));
+
+        // 测试字符串中是否包含大写字母A-Z
+        var patt4 = new RegExp("[A-Z]");
+        var str4 = "{{{";
+        console.log(patt4.test(str4));
+
+        // 测试字符串中是否包含数字
+        var patt5 = new RegExp("[0-9]");
+
+        // 测试字符串是否至少包含一个字符a
+        var patt6 = new RegExp("a+");
+        var str6 = "123aa";     // true
+        console.log("6测试字符串中是否至少包含一个a  " + patt6.test(str6));
+
+        // 测试字符串是否包含 0个或者多个a
+        var patt7 = new RegExp("a*");
+        var str7 = "1233";      // true
+        console.log("7测试字符串是否包含 0个或者多个a  " + patt7.test(str7));
+
+        // 测试字符串是否包含 0个或1个s
+        var patt8 = new RegExp("s?");
+        var str8 = "123ssss";   // true
+        console.log("8测试字符串是否包含 0个或1个s  " + patt8.test(str8));
+
+        // 测试字符串是否包 连续x个P   P{x}
+        var patt9 = new RegExp("P{3}");
+        var str9 = "123PP";     // false
+        console.log("9测试字符串是否包 连续x个P   P{x}  " + patt9.test(str9));
+
+        // 测试字符串是否包含 连续的至少3个n 至多10个n  n{3,10}       超越10个n也不会报错, 因为是包含至少3个n的条件已经满足了
+        var patt10 = new RegExp("n{3,10}");
+        var str10 = "123nnnnn";
+        console.log("10测试字符串是否包含 连续的至少3个n 至多10个n  n{3,10}   " + patt10.test(str10));
+
+        // 测试字符串是否包含 至少x个n  n{x,}
+        var patt11 = new RegExp("n{3,}");
+        var str11 = "123nnn";
+        console.log("11测试字符串是否包含 至少3个n  n{3,}   " + patt11.test(str11));
+
+        // 匹配字符串是否 以a结尾 -> a$       ($是匹配字符串的最后一个字符)
+        var patt12 = new RegExp("l$");
+        var str12 = "1351313l";
+        console.log("12匹配字符串是否 以l结尾 -> l$       ($是匹配结尾字符)   " + patt12.test(str12));
+
+        // 匹配字符串是否 以s打头 -> ^s       (^是匹配字符串的第一个字符)
+        var patt13 = new RegExp("^s");
+        var str13 = "s46465";
+        console.log("13匹配字符串是否 以s打头 -> ^s       (^是匹配字符串的第一个字符)   " + patt13.test(str13));
+
+
+        /*
+            最大匹配的用法:
+                RegExp: "a{1,5}"            // 只要字符串中包含1个a就是true, 可以超过5个
+                RegExp: "^a{1,5}$"          // 要求字符串从头到尾必须包含1至5个a, 超过5个a则位false
+         */
+        var patt01 = new RegExp("a{1,5}");
+        var str01 = "1235a"             // true
+        var str02 = "1235aa"            // true
+        var str03 = "1235aaaaaaaaa"     // true
+
+
+        var patt02 = new RegExp("^a{1,5}$");        // 被^和$框起来的RE表示, 从头到尾进行匹配
+        var str04 = "123a";             // true
+        var str05 = "123aa";            // true
+        var str06 = "123aaa";           // true
+        var str07 = "123aaaa";          // true
+        var str08 = "123aaaaa";         // true
+        var str09 = "123aaaaaa";        // false
+
+        // 匹配字符串 是否包含字母, 数字, 下划线中的一种, 且长度为5-12(从头到尾匹配)
+        var patt03 = new RegExp("^\w{5,12}$")
+
+
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

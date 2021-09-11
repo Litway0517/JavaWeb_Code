@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS TagNam获取DOM对象</title>
+
+    <script>
+
+        alert(document.getElementById("reverse"));      // null 因为浏览器从上向下执行代码, 下面的标签还未创建出来, 因此返回null
+
+        // 当个页面加载完毕之后, 就会执行window.onload函数, 因此
+        window.onload = function () {
+            alert(document.getElementById("reverse"));  // 这样不会错
+        }
+
+        // 全选
+        function checkAll() {
+            // 通过标签名查询
+            var inputArr = document.getElementsByTagName("input");
+            // inputArr仍然是一个DOM数组
+            // 里面的每一个元素是DOM对象
+            // 标签的顺序和整个html从上到下的顺序一样
+            // 只不过通过了标签名(TagName)来查询
+
+            for (let i = 0; i < inputArr.length; i++) {
+                inputArr[i].checked = true;
+            }
+        }
+        </script>
+
+</head>
+<body>
+
+    兴趣爱好:
+    <input type="checkbox"  value="cpp">C++
+    <input type="checkbox"  value="Java">Java
+    <input type="checkbox"  value="JavaScript">JavaScript
+    <br/>
+    <button onclick="checkAll()">全选</button>
+    <button id="reverse" onclick="checkAll()">反选</button>
+
+
+</body>
+</html>

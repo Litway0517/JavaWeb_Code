@@ -34,6 +34,19 @@
 		});
 
 
+		/*
+			jQuery对象和DOM对象相互转化
+		 */
+		// 输出DOM对象
+		console.log(document.getElementById("testDiv"));
+
+		// DOM对象转变为jQuery对象
+		console.log( $(document.getElementById("testDiv")) );
+
+		// jQuery对象转换为DOM对象
+		console.log( $(document.getElementById("testDiv"))[0] );
+
+
 
 	});
 

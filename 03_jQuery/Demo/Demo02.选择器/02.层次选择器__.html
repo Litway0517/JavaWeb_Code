@@ -29,22 +29,22 @@
 		<script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				//1.选择 body 内的所有 div 元素 
+				//1.选择 body 内的所有 div 元素 -> 所有body内的div元素, 不论级别
 				$("#btn1").click(function(){
 					$("body div").css("background", "#bbffaa");
 				});
 
-				//2.在 body 内, 选择div子元素  
+				//2.在 body 内, 选择div子元素  -> 这里不包括body内的孙子级别的div元素
 				$("#btn2").click(function(){
 					$("body > div").css("background", "#bbffaa");
 				});
 
-				//3.选择 id 为 one 的下一个 div 元素
+				//3.选择 id 为 one 的下一个 div 元素 -> 查找id为one的紧接着后面的div标签
 				$("#btn3").click(function(){
 					$("#one+div").css("background", "#bbffaa");
 				});
 
-				//4.选择 id 为 two 的元素后面的所有 div 兄弟元素
+				//4.选择 id 为 two 的元素后面的所有 div 兄弟元素 -> 兄弟元素就是同级关系的元素
 				$("#btn4").click(function(){
 					$("#two~div").css("background", "#bbffaa");
 				});
@@ -53,18 +53,20 @@
 	</head>
 	<body>	
 	
-<!-- 	<div>
-		<h1>层级选择器:根据元素的层级关系选择元素</h1>
-		ancestor descendant  ：
-		parent > child 		   ：
-		prev + next 		   ：
-		prev ~ siblings 	   ：
-	</div>	 -->
+		<!-- 	<div>
+					<h1>层级选择器:根据元素的层级关系选择元素</h1>
+					ancestor descendant  ：
+					parent > child 		   ：
+					prev + next 		   ：
+					prev ~ siblings 	   ：
+				</div>
+		-->
 		<input type="button" value="选择 body 内的所有 div 元素" id="btn1" />
 		<input type="button" value="在 body 内, 选择div子元素" id="btn2" />
 		<input type="button" value="选择 id 为 one 的下一个 div 元素" id="btn3" />
 		<input type="button" value="选择 id 为 two 的元素后面的所有 div 兄弟元素" id="btn4" />
 		<br><br>
+
 		<div class="one" id="one">
 			id 为 one,class 为 one 的div
 			<div class="mini">class为mini</div>
@@ -86,6 +88,9 @@
 			<div class="mini">class为mini</div>
 			<div class="mini" title="tesst">class为mini,title为tesst</div>
 		</div>
+		<!--
+			display就是一个和background差不多的参数而已, 设置为none即不显示.
+		-->
 		<div style="display:none;" class="none">style的display为"none"的div</div>
 		<div class="hide">class为"hide"的div</div>
 		<div>

@@ -28,11 +28,12 @@
 		</style>
 		<script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
 		<script type="text/javascript">
-			
-			$(function () {				// 这个$(function() {}) 的全写是 -> $(document).ready(function){})
+
+			// 这个$(function() {}) 的完整形式是 -> $(document).ready(function){})
+			$(function () {
 
 				//1.选择 id 为 one 的元素 "background-color","#bbffaa"
-				$("#btn1").click(function () {		// 这里绑定的目标是btn1按钮, 不是one
+				$("#btn1").click(function () {				// 这里绑定的目标是btn1按钮, 不是one
 					alert( $("#one") );
 					// css函数设置选中的jQuery对象的背景颜色为#bbffaa
 					$("#one").css("background-color", "#bbffaa");

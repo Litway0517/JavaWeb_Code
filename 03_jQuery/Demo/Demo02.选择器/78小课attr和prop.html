@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>78小课 attr和prop函数</title>
+
+    <script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+
+            // attr()函数
+            /*
+                传入一个参数, 表示获得这个标签的该属性名对应的属性值
+                传入两个参数, 表示, 对该标签的该属性名设置相应的属性值
+             */
+
+            // 获取第一个checkbox的name值
+            console.log($("input:checkbox").first().attr(("name")));
+            // 设置第一个checkbox的name值为abc
+            $("input:checkbox").first().attr("name", "abc");        // F12查看
+
+            // 但是, 下面的checkbox没有checked属性, checked属性表示选或未选中状态. 那么使用attr会返回undefined
+            alert($("input:checkbox").first().attr("checked"));     // undefined
+            // 而官方认为, undefined是个错误, 因此提供了prop()函数
+
+            alert($("input:checkbox").first().prop("checked"));     // false
+
+            // 选中情况是true
+            alert($("input:checkbox").eq(1).prop("checked"));       // true
+
+            // 设置最后一个复选框为选中状态
+            $("input:checkbox").last().prop("checked", true);       // 设置成选中, 注意格式
+
+            // 自建属性名和属性值
+            $("input:checkbox").last().attr("abc", "abcValue");     // 自定abc属性为abcValue
+            // 输出
+            alert($("input:checkbox").last().attr("abc"));
+
+
+
+
+        });
+
+
+
+    </script>
+
+</head>
+<body>
+    <br/>
+    多选：
+    <input name="checkbox" type="checkbox" value="checkbox1" />checkbox1
+    <input name="checkbox" type="checkbox" value="checkbox2" checked="checked"/>checkbox2
+    <input name="checkbox" type="checkbox" value="checkbox3" />checkbox3
+    <br/>
+
+</body>
+</html>

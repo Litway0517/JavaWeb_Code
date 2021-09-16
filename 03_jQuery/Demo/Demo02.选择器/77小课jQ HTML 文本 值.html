@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>77小课 html text val三个函数</title>
+
+    <script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            // html()函数, 不传入参数, 则获取标签中的内容, 传入参数, 则是重新赋值.
+            alert($("div").html());     // 获取
+            $("#div1").html("<hr><h1>我是div中的标题1</h1>");
+
+            // text() 不传参数是获取, 传了参数是设置
+            alert($("div").text());     // <span></span>  这个是标签, 这个不是文本
+            $("#div2").text("<hr><h1>h1标题</h1>");
+
+
+            // val()是操作表单的值, 注意, 是表单.
+            $("button").click(function() {
+                // alert($("input").val());         // 获取输入框中的值
+                $("input").val("超级程序员");            // 设置输入框中的值
+            })
+
+
+        });
+
+
+    </script>
+
+</head>
+<body>
+
+    <div id="div1">我是div标签 <span>我是div标签中的span标签</span></div>
+    <div id="div2">我是div标签 <span>我是div标签中的span标签</span></div>
+
+    <hr>
+
+    <input type="text" name="username" id="username">
+    <button>操作输入框</button>
+
+
+</body>
+</html>

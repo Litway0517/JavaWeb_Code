@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素筛选方法 练习(根据手册)</title>
+
+    <script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
+
+    <script type="text/javascript">
+
+        // 页面加载完成之后会自动加载下面的函数内容
+        $(document).ready(function () {
+
+            // eq(index | -index)  -> 获取第N个元素
+            // document.write($("div").eq(1));
+            console.log("1-eq()索引函数" + "\n" + $("div").eq(1)[0]);             // div1
+            console.log($("div").eq(-2)[0]);       // 倒数第二个div  div-span3
+
+            // first()
+            console.log("2-first()函数" + "\n" + $("div").first());
+
+            // last()
+            console.log("3-last()函数" + "\n" + $("div").last());
+
+            // hasClass()检查当前的元素是否含有某个特定的类，如果有，则返回true。 这其实就是 is("." + class)。
+            // 获取拥有class属性值为cls的div标签   待查
+            console.log("4-hasClass()函数" + "\n" + $("div").hasClass("cls")[0]);
+
+            // filter(expr|obj|ele|fn), 筛选出与指定表达式匹配的元素集合。
+            // 获取拥有属性值为cls的div标签
+            console.log("5-filter()" + "\n" + $("div").filter(".cls")[0]);
+
+            // is(expr|obj|ele|fn)
+            // $("div").filter(".cls").last().is("div") -> 判断这个表达式是否为true
+            console.log("6-is()" + "\n" + $("div").filter(".cls").last().is("div"));
+
+            // has()保留包含特定后代的元素，去掉那些不含有指定后代的元素。
+            // 获取包含span标签的div标签 -> 包含指定元素的元素
+            console.log("7-has()" + "\n" + $("div").has("span").first()[0]);
+
+            // not(expr|ele|fn)删除与指定表达式匹配的元素
+            // 获取id值不为d1的div标签
+            console.log("8-not()" + "\n" + $("div").not("#d1").length);
+
+            // children([expr])取得一个包含匹配的元素集合中每一个元素的所有子元素的元素集合。
+            // 获取class属性值为ds的div标签的孩子标签(这里只输出第一个)
+            console.log("9-children()" + "\n" + $("div").filter(".ds").children()[0].innerText);
+
+            // find(expr|obj|ele)搜索所有与指定表达式匹配的元素。这个函数是找出正在处理的元素的后代元素的好方法。
+            // 找出现在正在处理的元素 的 后代元素  的好方法
+            console.log("10-find()" + "\n" + $("div").filter("#divs").find("p")[0].innerHTML);
+
+            // next([expr])取得一个包含匹配的元素集合中每一个元素紧邻的后面同辈元素的元素集合。
+            /*
+                实际上就是为了查找给出的当前元素, 的写一个同辈级别的指定元素
+                例如:
+                    需要查找p标签后紧跟着的同辈标签(仅限一个)
+                    next函数不添加限制
+                    不加限制条件的意思就是说 -> 直接查找p标签后面的紧跟着的一个同辈级别的标签
+             */
+            console.log("11-next()不添加限制" + "\n" + $("p").next()[0].innerText + "\n" + $("p").next()[1].innerText +
+                        "\n" + $("p").next()[2].innerText); // 查询紧跟在p标签后面的一个同辈标签(next函数未加限制条件)
+
+            /*
+                next函数添加限制的情况
+                    $("p").next(".welcome")
+                    意思是 -> 查找p标签紧跟着的后面的标签且后面这个标签的class属性值为welcome
+             */
+            console.log("11-next()添加限制" + "\n" + $("p").next(".welcome").length);
+
+            // nextAll([expr])查找当前元素之后所有的同辈元素。
+            /*
+                注意核心函数$查询得到额东西, 都是jQuery对象, 即DOM数组, 要用索引把具体的DOM对象取出来
+             */
+            console.log("12-nextAll()" + "\n" + $("div").filter("#div4")[0]);
+            console.log("12-nextAll()" + "\n" + $("div").filter("#div4").nextAll().length);
+
+            // nextUntil([exp|ele][,fil])查找当前元素之后所有的同辈元素，直到遇到匹配的那个元素为止。
+            // 核心函数$能够直接查指定标签, 别忘了
+            $('#term-2').nextUntil('dt').css('background-color', 'red');
+
+            // parent([expr])取得一个包含着所有匹配元素的唯一父元素的元素集合。
+            /*
+                此函数返回的是父元素, 并不是查到的子元素
+                例如:
+                    id属性值为p1的p标签的父元素, 将返回的是整个div标签
+                    <div id="divs">
+                        <p id="p1">div-p</p>
+                        <span>div-span3</span>
+                        <span>div-span3.1</span>
+                    </div>
+             */
+            console.log("14-parent()" + "\n" + $("#p1").parent()[0].innerHTML);
+
+            // prev([expr])取得一个包含匹配的元素集合中每一个元素紧邻的前一个同辈元素的元素集合。
+            // 可以用一个可选的表达式进行筛选。只有紧邻的同辈元素会被匹配到，而不是前面所有的同辈元素。
+            console.log("15-prev()" + "\n" + $("div").has("span").prev(".ds")[0].innerText);    // 结果: <div class="ds"><span>div-span1</span></div>
+
+            // siblings([expr])     s别少了
+            // 获取id值为p1的兄弟节点
+            var $siblingsArr = $("#p1").siblings();
+            $siblingsArr.each(function () {
+                // this实际上就是这个数组中的每个元素
+                console.log("16-siblings()" + "\n" + this.innerText);
+            });
+
+            // add(expr|ele|html|obj[,con])把与表达式匹配的元素添加到jQuery对象中。这个函数可以用于连接分别与两个表达式匹配的元素结果集。
+            /*
+                最后结果是一个jQuery数组, 里面均是DOM对象. 这和上面的几种查询都是一样的
+                    add(exp), exp表达式能用来查询符合规则的标签, 然后添加到结果集合中.
+                    可以有多个add, 最后返回的结果是多样的. 不过, 结果的顺序始终是按照HTML文件的标签顺序出现的.
+             */
+            var $addArr = $("dt").filter("#term-3").add("#dd-8");
+            $addArr.each(function() {
+                console.log("17-add()" + "\n" + this.innerText);
+            });
+
+
+            /*
+                还有几个函数没有看
+             */
+
+
+        });
+
+
+    </script>
+
+</head>
+<body>
+
+    <div class="cls">div1</div>
+    <div class="cls">div2</div>
+    <div id="d1">div3</div>
+    <div>div4</div>
+
+    <br/>
+
+    <div class="ds"><span>div-span1</span></div>
+    <div><span>div-span2</span></div>
+    <div id="divs">
+        <p id="p1">div-p</p>
+        <span>div-span3</span>
+        <span>div-span3.1</span>
+    </div>
+    <div id="div4"><span>div-span4</span></div>
+
+
+    <p>Hello</p>
+    <p class="welcome">Hello Again</p>
+
+    <div class="welcome">
+        <span>And Again</span>
+    </div>
+
+    <dl>
+        <dt>term 1</dt>
+        <dd>definition 1-a</dd>
+        <dd>definition 1-b</dd>
+        <dd>definition 1-c</dd>
+        <dd>definition 1-d</dd>
+
+        <dt id="term-2">term 2</dt>
+        <dd>definition 2-a</dd>
+        <dd>definition 2-b</dd>
+        <dd>definition 2-c</dd>
+
+        <dt id="term-3">term 3</dt>
+        <dd id="dd-8">definition 3-a</dd>
+        <dd>definition 3-b</dd>
+    </dl>
+
+</body>
+</html>

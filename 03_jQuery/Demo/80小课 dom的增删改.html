@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>80小课 dom的增删改</title>
+
+    <script type="text/javascript" src="script/jquery-1.7.2.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+
+
+            // dom的增加
+            /*
+                把"<h1>h1标题</h1>"作为 div最后一个标签 添加到div标签中
+             */
+            $("<h1>h1标题</h1>").appendTo("div");
+
+            // prependTo
+            /*
+                把"<h1>h1标题</h1>"作为 div第一个标签 添加到div标签中
+             */
+            $("<h2>h2标题</h2>").prependTo("div");
+
+            /*
+                注意, appendTo函数和prependTo函数的参数都能够传入  选择器, 也能是核心函数的查询结果.
+                a.appendTo(b), 是把a作为最后一个子标签插入到b标签. 即, a是b标签的最后一个子标签.
+                a.prependTo(b), 是把a作为第一个子标签插入到b标签, a标签是b标签的第一个子标签.
+             */
+
+
+            /*
+                a.insertAfter(b) -> 把a标签作为b标签的平级插入到b标签的后面
+                a.insertBefore(b) -> 把a标签作为b的平级标签擦汗儒道b标签的前面
+             */
+            $("<span>after做为div标签的平级标签插入到div标签后后后后后后后后</span>").insertAfter("div");
+            $("<span>before做为div标签的平级标签插入到div标签前前前前前前前前</span>").insertBefore("div");
+
+            /*
+                a.replaceWith(b) -> 用b换a
+                a.replaceAll(b) -> 所有b标签都用a替换
+             */
+            $(".div").replaceWith("<p>用p标签换div标签</p>");
+
+            $("<span>原来这里是p标签, 都对应替换成span</span>").replaceAll("p")
+
+
+            /*
+                a.remove()      把a标签整体删除
+                b.empty()       把a标签中的内容删除, 标签还在, 为空
+             */
+            // $("#h1").remove();
+            $("#h1").empty();
+
+
+
+        });
+
+
+
+    </script>
+
+</head>
+<body>
+    <br/>
+    多选：
+    <input name="checkbox" type="checkbox" value="checkbox1" />checkbox1
+    <input name="checkbox" type="checkbox" value="checkbox2" checked="checked"/>checkbox2
+    <input name="checkbox" type="checkbox" value="checkbox3" />checkbox3
+    <br/>
+    <hr>
+    <div><span>1234: 原来的第一个元素</span></div>
+    <div><span>1234: 原来的第一个元素</span></div>
+
+    <hr>
+    <div class="div">div1</div>
+    <div class="div">div2</div>
+
+    <hr>
+    <p>p标签1</p>
+    <p>p标签2</p>
+    <p>p标签3</p>
+
+    <hr>
+    <h1 id="h1">h1标题</h1>
+
+
+
+</body>
+</html>

@@ -10,10 +10,11 @@
 
 		// 全选功能
 		$("#checkedAllBtn").click(function() {
+			// 这里面查询到的, 是一个jQuery对象, 可以直接对该对象使用prop一次性设置所有数组内的DOM对象的属性值
 			$("input:checkbox").prop("checked", true);
 		});
 
-		// 全部选共呢个
+		// 全部选中功能
 		$("#checkedNoBtn").click(function() {
 			$("input:checkbox").prop("checked", false);
 		});
@@ -50,10 +51,11 @@
 			});
 		});
 
-		// 全选/全部选 功能
+		// 全选/全不选 功能
 		$("#checkedAllBox").click(function() {
 
 			// 在事件function函数中, 有一个this对象, 这个this对象就是当前正在操作的DOM对象
+			// 此时的this就是checkedAllBox这个对象哦
 			alert(this.checked);		// 这句话挺重要
 
 			// 下面的几个复选框狂的内容应该和上面的  全选/全不选 这个按钮的选择状态一样才正确

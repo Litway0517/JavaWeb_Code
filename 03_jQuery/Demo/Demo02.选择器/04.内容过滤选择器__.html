@@ -43,6 +43,8 @@
 				:parent
 			*/
 			$(document).ready(function(){
+
+
 				//1.选择 含有文本 'di' 的 div 元素
 				// $("#btn1")这是核心函数查询到的id为btn1的DOM对象, 然后颁订了click函数
 				$("#btn1").click(function(){
@@ -50,16 +52,19 @@
 					$("div:contains('di')").css("background", "#bbffaa");
 				});
 
+
 				//2.选择不包含子元素(或者文本元素) 的 div 空元素
 				$("#btn2").click(function(){
 					$("div:empty").css("background", "#bbffaa");
 				});
+
 
 				//3.选择含有 class 为 mini 元素的 div 元素
 				$("#btn3").click(function(){
 					// 这个和举得例子不太一样 -> 例子是: 包含p标签的div标签, 但是这个说的是, 含有class值为mini的div元素
 					$("div:has(.mini)").css("background", "#bbffaa");
 				});
+
 
 				//4.选择含有子元素(或者文本元素)的div元素
 				$("#btn4").click(function(){

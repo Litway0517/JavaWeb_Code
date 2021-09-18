@@ -9,8 +9,24 @@
 
 		$(function() {
 
+            // 增加一个delete函数, 用来复用删除操作
+            var deleteFunc = function () {
+                var $trObj = $(this).parent().parent();      // 这就是行对象
+                var name = $trObj.find("td:first").text();
+
+                if (confirm("你确定要删除[" + name + "]嘛? ")) {
+                    $trObj.remove();
+                }
+
+                return false;
+            };
+
+
 			// 先做添加按钮
 			$("#addEmpButton").click(function() {
+                /*
+                    针对添加的新行, 需要补绑定删除函数. 而绑定的代码形式很重要.
+                 */
 
 				var name = $("#empName").val();
 				var email = $("#email").val();
@@ -23,32 +39,87 @@
 							"</tr>");
 
 				$trObj.appendTo($("#employeeTable"));
+
+                // 给新添加的行绑上事件$reObj这个jq对象, 就是添加的新行, 查此行的a标签, 使用find方法
+                // $trObj.find("a").click(function() {
+                //     var $trObj = $(this).parent().parent();      // 这就是行对象
+                //     var name = $trObj.find("td:first").text();
+                //
+                //     if (confirm("你确定要删除[" + name + "]嘛? ")) {
+                //         $trObj.remove();
+                //     }
+                //
+                //     return false;
+                // });
+
+                // 封装成函数
+                // alert("删除操作的func" + this);
+                // deleteFunc();
+
+
+                // 同样, 下面是代码复用的正确写法
+                $trObj.find("a").click(deleteFunc);
+
 			});
 
 
-			// 删除标签
-			$("a").click(function () {
 
-				// 在function函数中, 有一个this对象, 就是正在操作的对象, 指的是浏览器正在操作的对象, 这个this能够确定点的是哪个delete
+            /*
+                对于最初的三条记录, 能够删除, 但是如果再添加的记录就不能删除.
+                因为对于新的a标签, 并没有绑定到下面的函数上去.
 
-				var trObj = $(this).parent().parent();
+                当页面加载完成之后, 就会执行下面的$("a").click(function () {...}函数
+                而上面的$("#addEmpButton").click(function() {}添加按钮的函数, 是点击才会执行.
+             */
 
-				/*
-					confirm()函数, 用于确认, 给出的参数是什么就会弹出什么
-					用户点击确认, 则返回true
-					点击取消, 则返回false
-				 */
-				confirm("国哥是不是很帅");
-				// alert(confirm("观察点击确认和取消打印的是什么"));
-				if (confirm("你确定要删除嘛? ")) {
-					trObj.remove();
-				}
+			// 删除事件
+			// $("a").click(function () {
+
+			// 	// 在function函数中, 有一个this对象, 就是正在操作的对象, 指的是浏览器正在操作的对象, 这个this能够确定点的是哪个delete
+            //     // alert(this);         // 这里的this就是点击delete时候的DOM对象
+			// 	var $trObj = $(this).parent().parent();      // 这就是行对象
+            //     var name = $trObj.find("td:first").text();
+            //
+			// 	/*
+			// 		confirm()函数, 用于确认, 给出的参数是什么就会弹出什么
+			// 		confirm()是一个确认操作弹窗
+			// 		用户点击确认, 则返回true
+			// 		点击取消, 则返回false
+			// 	 */
+			// 	// confirm("国哥是不是很帅");
+            //
+            //
+			// 	// alert(confirm("观察点击确认和取消打印的是什么"));
+            //     /*
+            //         alert(confirm("观察点击确认和取消打印的是什么"))这行代码也比较重要, 测试出来点击确认和取消的结果
+            //         另外, 在删除的时候, 应该提醒一下用户, 究竟是删除的哪行
+            //      */
+			// 	if (confirm("你确定要删除[" + name + "]嘛? ")) {
+			// 		$trObj.remove();
+			// 	}
+            //
+			// 	// return false 可以组织元素的默认行为  -> 前面的onsubmit表单提交也讲过一次.
+			// 	return false;
+
+                // 上面所有的代码封装成函数
+                // alert("事件响应的func" + this);
+                // deleteFunc();
+
+                /*
+                    因为, deleteFunc()函数和 事件响应的function函数不是同一个, 因此会出现错误.
+                    所以, 当a标签被点击时, 我们直接传入deleteFunc()函数不就行了吗?
+                        注意, deleteFunc()函数是有返回值的, 传给click时, 不要带有括号, 那样的意思是,
+                        把deleteFunc函数的返回值传给click, 自然会产生错误.
+                 */
 
 
+			// })
 
-				// return false 可以组织元素的默认行为  -> 前面的onsubmit表单提交也讲过一次.
-				return false;
-			})
+
+            /*
+                通过代码复用的方式, 实现删除操作的正确写法是下面的
+             */
+            $("a").click( deleteFunc );      // 不加括号
 
 		})
 	

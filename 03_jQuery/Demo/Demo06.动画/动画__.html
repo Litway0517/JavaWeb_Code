@@ -42,8 +42,8 @@
 			/*
 				添加一个回调函数, 剩的下面每次都写
 			 */
-			function backFunc(name) {
-				alert("回调函数 -> " + name + "函数执行完毕");
+			function backFunc(x) {
+				alert("回调函数 -> " + x + "函数执行完毕");
 			};
 
 
@@ -58,7 +58,7 @@
 			//隐藏  hide()
 			$("#btn2").click(function(){
 				// 不知为什么, 一旦封装成函数, 就会先执行函数, 在进行隐藏
-				// $div1.hide(1000, backFunc("hide()"));
+				// $div1.hide(1000, backFunc('hide()'));
 				$div1.hide(1000, function () {
 					alert("回调函数 -> hide()函数执行完毕");
 				});

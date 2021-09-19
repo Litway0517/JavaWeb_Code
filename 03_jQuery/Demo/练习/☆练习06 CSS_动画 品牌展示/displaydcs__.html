@@ -123,8 +123,12 @@
 					$div.removeClass();
 					$div.addClass("showmore");
 
-					// 去掉高亮 -> 添加的时候也需要去掉, 不然他还会在的
+					// 去掉高亮 -> 当添加的完时候也需要去掉, 不然有些本身就是上面的品牌, 点击了精简之后, 他仍是高亮
 					$("li:contains('明基')").removeClass("promoted");
+					$("li:contains('爱国者')").removeClass("promoted");
+					$("li:contains('佳能')").removeClass("promoted");
+					$("li:contains('三星')").removeClass("promoted");
+
 
 
 				} else {
@@ -137,8 +141,10 @@
 
 					// 添加高亮
 					$("li:contains('明基')").addClass("promoted");
+					$("li:contains('爱国者')").addClass("promoted");
+					$("li:contains('佳能')").addClass("promoted");
+					$("li:contains('三星')").addClass("promoted");
 				}
-
 
 
 				// 不希望跳转, 则return false

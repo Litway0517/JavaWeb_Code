@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>品牌展示练习</title>
+
+	<!--
+		下面的style里面有写好的css样式, 一旦有了写好的样式, 是前端美术设计写的, 我们就不要再去标签里面的style属性设置了.
+		因为人家写好的就是直接给我们调用的, 用css就可以了.
+
+	-->
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-size: 12px;
+			text-align: center;
+		}
+
+		a {
+			color: #04D;
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: #F50;
+			text-decoration: underline;
+		}
+
+		.SubCategoryBox {
+			width: 600px;
+			margin: 0 auto;
+			text-align: center;
+			margin-top: 40px;
+		}
+
+		.SubCategoryBox ul {
+			list-style: none;
+		}
+
+		.SubCategoryBox ul li {
+			display: block;
+			float: left;
+			width: 200px;
+			line-height: 20px;
+		}
+
+		.showmore , .showless{
+			clear: both;
+			text-align: center;
+			padding-top: 10px;
+		}
+
+		.showmore a , .showless a{
+			display: block;
+			width: 120px;
+			margin: 0 auto;
+			line-height: 24px;
+			border: 1px solid #AAA;
+		}
+
+		/*
+			.showmore a span的意思, 用这个样式的人, 他要有一个后代叫做a标签, 而且a标签的后代要有span标签
+			某个标签必须有后代a标签和span标签才可以, 即使span标签是a标签的孙子级标签也可以, 儿子级就更可以了.
+			缺少元素组合, 是用不了这个样式的
+			不要私自修改标签, 否则核能样式看不到
+		*/
+		.showmore a span {
+			padding-left: 15px;
+			background: url(img/down.gif) no-repeat 0 0;
+		}
+
+		.showless a span {
+			padding-left: 15px;
+			background: url(img/up.gif) no-repeat 0 0;
+		}
+
+		.promoted a {
+			color: #F50;
+		}
+	</style>
+	<script type="text/javascript" src="script/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+		$(function() {
+
+			// 隐藏卡西欧后面的品牌, 但是要保留 -> 其他品牌相机  这个按钮
+			// 这是基本初始状态
+			$("li:gt(5):not(:last)").hide();
+
+
+			// 给功能按钮绑定单击事件, 注意需要查到那个a标签, 是div 下的 div 下的 a, 不是上面的a
+			$("div div a").click(function () {
+				// 这里面测试一下, 过滤出来的元素是不是想要的
+				// alert(this);
+
+				// 拿到需要操作的品牌
+				var $li = $("li:gt(5):not(:last)");
+
+				// 让某些品牌显示或者隐藏
+				$li.toggle();
+
+
+				/*
+					简单分析
+						品牌隐藏状态  -> 按钮的文本, 1- 显示全部品牌, 角标向下
+						品牌显示状态  -> 按钮的文本, 2- 显示精简品牌, 角标向上
+				 */
+				// 因为在设置按钮的文本时, 是根据品牌的状态来设置的, 所以先获取状态
+				// 先拿到要操作的span和div标签
+				var $span = $("div div a span");
+				var $div = $("div div");
+
+				// is(:hidden)是用来判断现在这个元素是否是隐藏OR显示状态
+				if ($li.is(":hidden")) {
+					// 品牌隐藏状态  -> 按钮的文本, 1- 显示全部品牌, 角标向下 -> showmore
+					$span.text("显示全部品牌");
+
+					// 直接addClass()函数来实现 -> 但是注意本身就有class了, 所以先删除, 再添加
+					// 注意是对a标签添加属性, 不是上面的span
+					$div.removeClass();
+					$div.addClass("showmore");
+
+					// 去掉高亮 -> 添加的时候也需要去掉, 不然他还会在的
+					$("li:contains('明基')").removeClass("promoted");
+
+
+				} else {
+					// 品牌显示状态  -> 按钮的文本, 2- 显示精简品牌, 角标向上 -> showless
+					$span.text("显示精简品牌");
+
+					// 和上面一样
+					$div.removeClass();
+					$div.addClass("showless");
+
+					// 添加高亮
+					$("li:contains('明基')").addClass("promoted");
+				}
+
+
+
+				// 不希望跳转, 则return false
+				return false;
+			});
+
+
+
+		});
+	</script>
+</head>
+<body>
+	<div class="SubCategoryBox">
+		<ul>
+			<li><a href="#">佳能</a><i>(30440) </i></li>
+			<li><a href="#">索尼</a><i>(27220) </i></li>
+			<li><a href="#">三星</a><i>(20808) </i></li>
+			<li><a href="#">尼康</a><i>(17821) </i></li>
+			<li><a href="#">松下</a><i>(12289) </i></li>
+			<li><a href="#">卡西欧</a><i>(8242) </i></li>
+			<li><a href="#">富士</a><i>(14894) </i></li>
+			<li><a href="#">柯达</a><i>(9520) </i></li>
+			<li><a href="#">宾得</a><i>(2195) </i></li>
+			<li><a href="#">理光</a><i>(4114) </i></li>
+			<li><a href="#">奥林巴斯</a><i>(12205) </i></li>
+			<li><a href="#">明基</a><i>(1466) </i></li>
+			<li><a href="#">爱国者</a><i>(3091) </i></li>
+			<li><a href="#">其它品牌相机</a><i>(7275) </i></li>
+		</ul>
+		<div class="showmore">
+<!--
+			<a href="more.html"><p><span>显示全部品牌</span></p></a>
+			这行标签, 也能够识别出来css样式
+-->
+			<a href="more.html"><span>显示全部品牌</span></a>
+		</div>
+	</div>
+</body>
+</html>
+

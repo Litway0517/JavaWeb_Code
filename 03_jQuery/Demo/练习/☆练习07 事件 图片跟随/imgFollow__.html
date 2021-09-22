@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		body {
+			text-align: center;
+		}
+		#small {
+			margin-top: 150px;
+		}
+		#showBig {
+			position: absolute;
+			display: none;
+			}
+	</style>
+	<script type="text/javascript" src="script/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+
+		// 页面加载完成核心函数
+		$(function(){
+			$("#small").bind('mouseover mouseout mousemove', function (event) {
+				if (event.type == "mouseover") {
+					$("#showBig").show();
+				} else if (event.type == "mouseout") {
+					$("#showBig").hide();
+				} else if (event.type == "mousemove") {
+					// console.log(event);
+					$("#showBig").offset({
+						left: event.pageX + 10,
+						top: event.pageY + 10
+						/*
+							pageX: 是鼠标当前的横轴值
+							pageY: 是鼠标当前的纵轴值
+							offset({})函数是用来设置图片在浏览器中的位置的.
+							偏移量均+10是为了, 避免鼠标和放大的图片太近, 致使浏览器判定此时鼠标离开了原来的图片, 因而可能会出现闪屏.
+							这里面+10, 或者+5很重要
+						 */
+					});
+				}
+			})
+		});
+
+
+	</script>
+</head>
+<body>
+
+	<img id="small" src="img/small.jpg" />
+	
+	<div id="showBig">
+		<img src="img/big.jpg">
+	</div>
+
+</body>
+</html>

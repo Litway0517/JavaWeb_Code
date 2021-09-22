@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Untitled Document</title>
+		<link href="css/style.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="../../script/jquery-1.7.2.js"></script>
+		<script type="text/javascript">
+
+
+			/*
+				1.通常绑定事件的方式
+				2.jQuery提供的绑定方式：bind()函数
+				3.合并“鼠标移入”和“鼠标移出”事件
+				4.合并单击事件
+				5.切换元素可见状态
+				6.只绑定一次
+			 */
+
+
+			$(function(){
+
+				$("h5").click(function() {			// click传入函数是指绑定函数, 具体执行内容就是函数中的代码
+					alert("h5单击事件  click(单纯使用click绑定)");
+				});
+
+				$("button").click(function() {
+					$("h5").click();				// click后面加上(), 直接触发这个函数.
+				});
+
+
+				// mouseover鼠标移入
+				$("h5").mouseover(function() {
+					console.log("鼠标移进来了");
+				});
+
+				// mouseout鼠标移出
+				$("h5").mouseout(function() {
+					console.log("鼠标移出去了");
+				});
+
+
+				// bind绑定事件
+				$("#h31").bind("click", function() {			// click是事件名称, function是出发时间后函数执行的具体内容
+					console.log("h3标签被点击了");
+				});
+
+				// bind绑定多个事件
+				$("#h32").bind("click mouseover mouseout", function() {
+					console.log("h3标题绑定了三个事件, 一旦有一个出发则会执行本行代码");
+				});
+
+
+				// one函数
+				$("#h33").one("click mouseover mouseout", function() {
+					console.log("h3标题绑定了click mouseover mouseout事件, 但是只会相应对应事件一次(一旦有一个出发则会执行本行代码)");
+				});
+
+
+				// unbind()函数, 解除之前绑定过的事件
+				$("#h32").unbind("click mouseover");			// 现在只有鼠标移出有效果, 注意针对的是h3-2
+				/*
+					参数可以只有一个click, 则解除click事件
+					参数可以有多个, 空格隔开, 则解除多个
+					不写参数则全部解除.
+				 */
+
+
+				// 添加标签
+				$('<div id="panel"><h5 class="head">什么是jQuery?</h5>').appendTo( $('#panel') );
+
+				// 上面新添加出来的div标签, 当点击时事件发生不会有回应, 因为是动态添加进来的. 未绑定click响应函数
+				// 但是使用live函数绑定就不一样了, 即使是新创建的标签仍然会有作用
+
+				// live函数
+				$("h5").live('click', function() {
+					alert('h5标签绑定了click事件, 使用live函数绑定');
+				})
+
+
+
+			});
+		
+		</script>
+	</head>
+	<body>
+		<div id="panel">
+			<h5 class="head">什么是jQuery?</h5>
+			<div class="content">
+				jQuery是继Prototype之后又一个优秀的JavaScript库，它是一个由 John Resig 创建于2006年1月的开源项目。jQuery凭借简洁的语法和跨平台的兼容性，极大地简化了JavaScript开发人员遍历HTML文档、操作DOM、处理事件、执行动画和开发Ajax。它独特而又优雅的代码风格改变了JavaScript程序员的设计思路和编写程序的方式。
+			</div>
+			<button>按钮</button>
+		</div>
+
+		<br><hr>
+		<h3 id="h31"><b>这里是h3-1标题</b></h3>
+
+		<br><hr>
+		<h3 id="h32"><b>这里是h3-2标题</b></h3>
+
+		<br><hr>
+		<h3 id="h33"><b>这里是h3-3标题</b></h3>
+
+	</body>
+
+</html>

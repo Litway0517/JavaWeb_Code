@@ -18,5 +18,15 @@
         <author>沙老师</author>
         <price>9.9</price>
     </book>
+    <book>
+        <name>大小写符号需要使用转义. 大写: &gt; 小写: &lt;</name>
+        <author>如果有很多小写大写符号需要转义, 可以使用CDATA标记, 如下</author>
+        <price>
+            <![CDATA[
+                这里就是放置特殊字符的, >>>>>>>>>>>>>>><<<<<<<<<<<<<<, xml不会解析.
+            ]]>
+
+        </price>
+    </book>
 
 </books>

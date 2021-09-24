@@ -80,9 +80,6 @@ public class Dom4jTest {
                 System.out.println("构造新的Book对象: " + new Book(sn, nameText, Double.parseDouble(priceText), authorText));
 
 
-
-
-
             }
 
 

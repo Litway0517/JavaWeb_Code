@@ -11,18 +11,18 @@ public class Dom4jTest {
     @Test
     public void test1() {
 
-        // 首先, 创建一个SaxReader对象
+        // 首先, 创建一个SaxReader对象输入流, 去读取XML文件
         SAXReader saxReader = new SAXReader();
         // 读取源文件, 并生成document对象
-        Document doc = null;
+        Document document = null;
         try {
-            doc = saxReader.read("src/books.xml");
+            document = saxReader.read("src/books.xml");
         } catch (DocumentException e) {
             e.printStackTrace();
         }
 
         // 输出
-        System.out.println(doc);
+        System.out.println(document);
 
 
     }

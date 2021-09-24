@@ -56,7 +56,7 @@ public class Dom4jTest {
                 // asXML() : 把标签对象转换为标签字符串
 //                System.out.println(book.asXML());
 
-                // 获取子标签的子标签也是一样, 使用element函数
+                // 获取子标签的子标签也是使用element函数
                 Element nameElement = book.element("name");
                 System.out.println(nameElement.asXML());
 

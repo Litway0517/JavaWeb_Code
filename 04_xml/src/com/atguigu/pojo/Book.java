@@ -12,7 +12,7 @@ public class Book {
 
     private String sn;
     private String name;
-    private BigDecimal price;
+    private Double price;
     private String author;
 
 
@@ -21,7 +21,7 @@ public class Book {
     }
 
     // 含参 -> 构造方法
-    public Book(String sn, String name, BigDecimal price, String author) {
+    public Book(String sn, String name, Double price, String author) {
         this.sn = sn;
         this.name = name;
         this.price = price;
@@ -44,11 +44,11 @@ public class Book {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

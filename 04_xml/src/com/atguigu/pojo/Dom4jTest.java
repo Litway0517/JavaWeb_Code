@@ -77,6 +77,7 @@ public class Dom4jTest {
                 String sn = book.attributeValue("sn");
 
                 // 创建一个Book对象(构造方法)
+                // 直接输出是因为冲洗呃呃Book的toString方法
                 System.out.println("构造新的Book对象: " + new Book(sn, nameText, Double.parseDouble(priceText), authorText));
 
 

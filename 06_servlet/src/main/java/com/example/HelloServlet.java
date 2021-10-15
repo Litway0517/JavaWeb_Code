@@ -1,4 +1,4 @@
-package com.example.servlet;
+package com.example;
 
 import java.io.*;
 import javax.servlet.http.*;

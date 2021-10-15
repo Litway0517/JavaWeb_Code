@@ -51,7 +51,7 @@
 
 
     <!--
-        为HelloServlet2配置
+        为HelloServlet2配置文件信息
     -->
     <servlet>
         <servlet-name>HelloServlet2</servlet-name>

@@ -1,4 +1,4 @@
-package com.atguigu;
+package com.atguigu.servlet;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

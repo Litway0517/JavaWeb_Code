@@ -5,6 +5,7 @@
          version="4.0">
 
 
+
     <!--
         servlet标签用来给Tomcat服务器配置servlet程序的
         没什么问题, 这个逻辑很清晰
@@ -20,6 +21,20 @@
             全名就是说要把资源路径, 包的路径, 等等都写出来
         -->
         <servlet-class>com.atguigu.servlet.HelloServlet</servlet-class>
+
+        <!-- 键值对能够配很多对  从名字也能猜出来, 其实就是和HelloServlet中的init方法对应的 -->
+        <init-param>
+            <!-- username对应的值是root -->
+            <param-name>username</param-name>
+            <param-value>root</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:mysql://localhost:3306/test</param-value>
+        </init-param>
+
+
     </servlet>
 
     <!--
@@ -50,6 +65,8 @@
 
 
 
+
+
     <!--
         为HelloServlet2配置文件信息
     -->
@@ -60,6 +77,32 @@
     <servlet-mapping>
         <servlet-name>HelloServlet2</servlet-name>
         <url-pattern>/hello2</url-pattern>
+    </servlet-mapping>
+
+
+    <!--
+       为HelloServlet3配置信息
+   -->
+    <servlet>
+        <servlet-name>HelloServlet3</servlet-name>
+        <servlet-class>com.atguigu.servlet.HelloServlet3</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloServlet3</servlet-name>
+        <url-pattern>/hello3</url-pattern>
+    </servlet-mapping>
+
+
+    <!--
+        为HelloServlet4配置信息
+    -->
+    <servlet>
+        <servlet-name>HelloServlet4</servlet-name>
+        <servlet-class>com.atguigu.servlet.HelloServlet4</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloServlet4</servlet-name>
+        <url-pattern>/hello4</url-pattern>
     </servlet-mapping>
 
 

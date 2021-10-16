@@ -40,10 +40,12 @@ public class HelloServlet2 implements Servlet {
         if ("GET".equals(method)) {
 //            System.out.println("处理客户端get请求");
 
+            // 要做的事情封装到方法
             doGet();
         } else if ("POST".equals(method)) {
 //            System.out.println("处理客户端post请求");
 
+            // 要做的事情封装到方法
             doPost();
         }
 

@@ -24,7 +24,18 @@ public class HelloServlet implements Servlet {
      */
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
+
         System.out.println("2 -> 构造器体内的方法执行完毕之后, 第二步会执行init代码块中的内容");
+
+        // 1 -> 获取servlet的别名servlet-name
+        System.out.println("servlet程序的别名是 -> " + servletConfig.getServletName());
+
+        // 2 -> 获取初始化参数init-param
+        System.out.println("初始化username的值是 -> " + servletConfig.getInitParameter("username"));
+        System.out.println("初始化url的值是 -> " + servletConfig.getInitParameter("url"));
+
+        // 3 -> 获取servletContext
+        System.out.println(servletConfig.getServletContext());
     }
 
     @Override
@@ -41,8 +52,7 @@ public class HelloServlet implements Servlet {
      */
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-        System.out.println("HelloServlet中的service被执行了");
-        System.out.println("3 -> 紧着这第三步执行的是service代码块中的内容");
+        System.out.println("3 -> 紧着这第三步执行的是service代码块中的内容" + "HelloServlet中的service被执行了");
     }
 
     @Override

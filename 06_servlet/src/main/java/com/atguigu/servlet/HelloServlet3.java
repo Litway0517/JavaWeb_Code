@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 你好servlet3
+ *
+ * @author DELL
+ * @date 2021/10/17
+ */
 public class HelloServlet3 extends HttpServlet {
 
     @Override

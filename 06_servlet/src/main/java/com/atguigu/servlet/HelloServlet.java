@@ -27,6 +27,11 @@ public class HelloServlet implements Servlet {
 
         System.out.println("2 -> 构造器体内的方法执行完毕之后, 第二步会执行init代码块中的内容");
 
+        /*
+            <init-param>标签是单独为每一个servlet程序配置的信息, 因此<inti-param>标签需要在<servlet>标签的里面
+
+            不同的servlet程序的init-param标签是不一样的, 这个是显然的.
+         */
         // 1 -> 获取servlet的别名servlet-name
         System.out.println("servlet1程序的别名是 -> " + servletConfig.getServletName());
 

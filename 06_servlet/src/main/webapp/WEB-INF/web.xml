@@ -5,6 +5,25 @@
          version="4.0">
 
 
+    <!--
+        context-param标签是配置在最外层的, 就是说是在<web-app>下面的
+        context-param本身也是键值对, 不过从它的层次来看, 显然这个键值对是属于整个web工程的, 而不是具体到某一个servlet程序的
+        context-param可以配置多组
+    -->
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>/contextServlet</param-value>
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>123</param-value>
+    </context-param>
+
+
 
     <!--
         servlet标签用来给Tomcat服务器配置servlet程序的
@@ -78,7 +97,6 @@
             <param-name>路由地址</param-name>
             <param-value>/hello2</param-value>
         </init-param>
-
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloServlet2</servlet-name>
@@ -109,6 +127,17 @@
     <servlet-mapping>
         <servlet-name>HelloServlet4</servlet-name>
         <url-pattern>/hello4</url-pattern>
+    </servlet-mapping>
+
+
+    <!--  为ContextServlet写的配置文件  -->
+    <servlet>
+        <servlet-name>ContextServlet</servlet-name>
+        <servlet-class>com.atguigu.servlet.ContextServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContextServlet</servlet-name>
+        <url-pattern>/contextServlet</url-pattern>
     </servlet-mapping>
 
 

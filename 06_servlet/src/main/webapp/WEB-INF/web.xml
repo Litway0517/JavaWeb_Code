@@ -73,6 +73,12 @@
     <servlet>
         <servlet-name>HelloServlet2</servlet-name>
         <servlet-class>com.atguigu.servlet.HelloServlet2</servlet-class>
+
+        <init-param>
+            <param-name>路由地址</param-name>
+            <param-value>/hello2</param-value>
+        </init-param>
+
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloServlet2</servlet-name>

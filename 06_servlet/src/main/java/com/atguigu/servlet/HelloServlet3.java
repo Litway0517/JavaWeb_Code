@@ -15,7 +15,7 @@ public class HelloServlet3 extends HttpServlet {
 
         ServletConfig servletConfig = getServletConfig();
         System.out.println(servletConfig);
-        System.out.println("有执行到这条语句嘛？ ");
+        System.out.println("有执行到这条语句嘛？ -> bug已经修复了 哦耶~~");
 
     }
 

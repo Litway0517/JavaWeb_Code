@@ -141,5 +141,28 @@
     </servlet-mapping>
 
 
+    <!--  为ContextServlet2添加配置信息  -->
+    <servlet>
+        <servlet-name>ContextServlet2</servlet-name>
+        <servlet-class>com.atguigu.servlet.ContextServlet2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContextServlet2</servlet-name>
+        <url-pattern>/contextServlet2</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--  为ContextServlet3添加配置信息  -->
+    <servlet>
+        <servlet-name>ContextServlet3</servlet-name>
+        <servlet-class>com.atguigu.servlet.ContextServlet3</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContextServlet3</servlet-name>
+        <url-pattern>/contextServlet3</url-pattern>
+    </servlet-mapping>
+
+
 
 </web-app>

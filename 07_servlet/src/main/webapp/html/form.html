@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form表单提交数据测试</title>
+</head>
+<body>
+
+    <hr>
+    <h3><b>form表单提交数据测试</b></h3>
+    <br><br>
+
+    <form action="http://localhost:8091/07_servlet/parameterServlet" method="get">
+        <table align="center">
+            <tr>
+                <td>用户名:</td>
+                <td colspan="3"><input type="text" name="username" id="#user"></td>
+            </tr>
+            <tr>
+                <td>密 码:</td>
+                <td colspan="3"><input type="password" name="password" id="#pwd"></td>
+            </tr>
+            <tr>
+                <td>兴趣爱好:</td>
+                <td><input type="checkbox" name="hobby" value="cpp">C++</td>
+                <td><input type="checkbox" name="hobby" value="java">Java</td>
+                <td><input type="checkbox" name="hobby" value="js">JavaScript</td>
+            </tr>
+
+            <tr>
+                <td align="center" colspan="4"><input type="submit" value="提交"></td>
+            </tr>
+
+
+        </table>
+    </form>
+</body>
+</html>

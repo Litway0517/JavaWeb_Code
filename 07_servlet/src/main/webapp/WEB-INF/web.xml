@@ -28,4 +28,26 @@
         <servlet-name>ParameterServlet</servlet-name>
         <url-pattern>/parameterServlet</url-pattern>
     </servlet-mapping>
+
+    <!--  为Servlet1配置xml信息  -->
+    <servlet>
+        <servlet-name>Servlet1</servlet-name>
+        <servlet-class>com.atguigu.servlet.Servlet1</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet1</servlet-name>
+        <url-pattern>/servlet1</url-pattern>
+    </servlet-mapping>
+
+
+    <!--  为Servlet2配置xml信息  -->
+    <servlet>
+        <servlet-name>Servlet2</servlet-name>
+        <servlet-class>com.atguigu.servlet.Servlet2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet2</servlet-name>
+        <url-pattern>/servlet2</url-pattern>
+    </servlet-mapping>
+
 </web-app>

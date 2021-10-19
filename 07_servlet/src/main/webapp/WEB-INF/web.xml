@@ -16,4 +16,16 @@
         <servlet-name>RequestAPIServlet</servlet-name>
         <url-pattern>/requestApiServlet</url-pattern>
     </servlet-mapping>
+
+
+
+    <!-- 为ParameterServlet配置信息 -->
+    <servlet>
+        <servlet-name>ParameterServlet</servlet-name>
+        <servlet-class>com.atguigu.servlet.ParameterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ParameterServlet</servlet-name>
+        <url-pattern>/parameterServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

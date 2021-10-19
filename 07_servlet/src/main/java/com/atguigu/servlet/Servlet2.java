@@ -20,7 +20,7 @@ public class Servlet2 extends HttpServlet {
             servlet2(柜台2)获取自己的业务所需要的数据
          */
         String username = request.getParameter("username");
-        System.out.println("servlet2(柜台2)检查请求报文是否有携带业务需要的数据 -> " + username);
+        System.out.println("servlet2(柜台2) 检查请求报文是否有携带业务需要的数据 -> " + username);
 
 
         // 检查请求是否有servlet1(柜台1)的章 -> 这里是通过域变量来确定的

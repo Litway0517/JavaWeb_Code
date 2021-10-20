@@ -23,6 +23,25 @@ public class ResponseIOServlet extends HttpServlet {
          */
 
 
+        // 虽然设置了服务器的字符集, 但是客户端的字符集是 -> ISO-8859-1(不支持中文哦~)
+//        System.out.println(response.getCharacterEncoding());
+        response.setCharacterEncoding("UTF-8");
+
+        // 通过响应头设置浏览器的字符集
+        response.setHeader("Content-Type", "text/html; charset=UTF-8");
+
+
+        /*
+            第二种方式, 解决中文乱码的问题
+                这种方式, 即设置了服务器的字符集也设置了客户端浏览器的字符集.
+
+                不过, 这个API必须要在  获取流  对象之前使用, 否则无效哦
+         */
+        response.setContentType("text/html; charset=UTF-8");
+
+        // 查看一下是否设置完成
+        System.out.println("客户端端字符集 -> " + response.getCharacterEncoding());
+
 
 
 

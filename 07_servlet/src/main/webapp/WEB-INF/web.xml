@@ -62,4 +62,14 @@
         <url-pattern>/forwardC</url-pattern>
     </servlet-mapping>
 
+    <!--  为ResponseIOServlet配置xml信息  -->
+    <servlet>
+        <servlet-name>ResponseIOServlet</servlet-name>
+        <servlet-class>com.atguigu.servlet.ResponseIOServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResponseIOServlet</servlet-name>
+        <url-pattern>/responseIOServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

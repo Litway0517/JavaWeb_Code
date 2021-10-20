@@ -50,4 +50,16 @@
         <url-pattern>/servlet2</url-pattern>
     </servlet-mapping>
 
+
+
+    <!--  为ForwardC配置xml信息  -->
+    <servlet>
+        <servlet-name>ForwardC</servlet-name>
+        <servlet-class>com.atguigu.servlet.ForwardC</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForwardC</servlet-name>
+        <url-pattern>/forwardC</url-pattern>
+    </servlet-mapping>
+
 </web-app>

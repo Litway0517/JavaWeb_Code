@@ -22,7 +22,8 @@ public class ForwardC extends HttpServlet {
 
         // 获取路由地址 -> 记住是以斜杠/ 打头
         /*
-            这个requestDispatcher.forward方法, 不光能够将请求转发到目的地址就是getRequestDispatcher中的地址, 还能跳转
+            这个requestDispatcher.forward方法, 不光能够将请求转发到目的地址就是getRequestDispatcher中的地址,
+                还能加载路径中的资源
          */
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/test/dispatcher/c.html");
         // forward

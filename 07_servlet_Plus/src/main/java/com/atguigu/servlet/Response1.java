@@ -30,14 +30,14 @@ public class Response1 extends HttpServlet {
         /*
             这里面其实符合逻辑, 既然已经重定向了, 那么在告诉浏览器"本地址已经被重定向的时候, 就应该顺带把信息之也发送回去"
          */
-//        response.setHeader("Location", "http://localhost:8091/07_servlet/response2");
+//        response.setHeader("Location", "http://localhost:8091/07_servlet_Plus/response2");
 
 
 
         /*
             重定向的第二种方式 -> 响应报文调用sendDirect(path)
          */
-        response.sendRedirect("http://localhost:8091/07_servlet/response2");
+        response.sendRedirect("http://localhost:8091/07_servlet_Plus/response2");
 
 
     }

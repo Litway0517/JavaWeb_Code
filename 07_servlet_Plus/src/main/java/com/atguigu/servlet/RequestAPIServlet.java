@@ -32,10 +32,10 @@ public class RequestAPIServlet extends HttpServlet {
             x. getRequestDispatcher() 获取请求转发对象
          */
 
-        // /07_servlet/requestApiServlet
+        // /07_servlet_Plus/requestApiServlet
         System.out.println("获取请求的资源的路径 -> " + req.getRequestURI());
 
-        //  http://localhost:8091/07_servlet/requestApiServlet
+        //  http://localhost:8091/07_servlet_Plus/requestApiServlet
         System.out.println("获取请求的统一资源定位符(绝对路径) -> " + req.getRequestURL());
 
         /*

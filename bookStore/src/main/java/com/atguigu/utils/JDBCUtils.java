@@ -4,6 +4,9 @@ package com.atguigu.utils;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import javax.sql.DataSource;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -39,8 +42,13 @@ public class JDBCUtils {
             // 创建prop对象
             Properties prop = new Properties();
             // 读取配置文件
-            InputStream fr = ClassLoader.getSystemClassLoader().getResourceAsStream("jdbc.properties");
-            prop.load(fr);
+            /*
+                这里面踩了一个坑， 踩了一天，
+                因为， 不同的加载器的路径是不一样的。 反正挺乱的， 需要加强一下。
+                最终properties文件是放在resources下面才解决的bug
+             */
+            InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("jdbc.properties");
+            prop.load(inputStream);
 
             dataSource = DruidDataSourceFactory.createDataSource(prop);
         } catch (Exception e) {

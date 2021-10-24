@@ -9,7 +9,7 @@ public interface UserService {
      * 注册用户
      * @param user JavaBean对象 -> User类型
      */
-    public void registerUser(String user);
+    public void registerUser(User user);
 
 
     /**

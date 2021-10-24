@@ -29,7 +29,7 @@ public interface UserDao {
      * 保存用户信息到数据库
      *
      * @param user 前端传进来的JavaBean对象
-     * @return 影响表的记录的数目
+     * @return 影响表的记录的数目. 返回-1表示失败.
      */
     public int saveUser(User user);
 

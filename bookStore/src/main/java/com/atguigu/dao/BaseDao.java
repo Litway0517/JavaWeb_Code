@@ -36,7 +36,7 @@ public abstract class BaseDao {
      *
      * conn一般不放在方法的参数中, 否则调用这个方法之前就需要创建一个conn, 这样, 创建conn的这行代码就没有被封装起来, 耦合性就高了一丢丢
      */
-    public int update(String sql, Object ...args) {
+    public int updateForOne(String sql, Object ...args) {
         Connection conn = JDBCUtils.getConnection();
 
         try {

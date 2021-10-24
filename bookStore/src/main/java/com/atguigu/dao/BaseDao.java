@@ -60,6 +60,9 @@ public abstract class BaseDao {
      * @return 返回的结果集合, 针对本方法是一个对象. 返回空表示查询失败
      */
     public <T> T queryForOne(Class<T> type, String sql, Object ...args) {
+        /*
+            Class<T> 就是获取T对象的Class对象, 这个Class就是反射里面那个Class
+         */
         Connection conn = JDBCUtils.getConnection();
         BeanHandler<T> beanHandler = new BeanHandler<>(type);
 

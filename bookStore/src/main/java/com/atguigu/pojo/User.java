@@ -8,7 +8,7 @@ package com.atguigu.pojo;
  * @author DELL
  * @date 2021/10/22
  */
-public class user {
+public class User {
 
     /**
      * id
@@ -33,7 +33,7 @@ public class user {
     /**
      * 用户
      */
-    public user() {
+    public User() {
     }
 
     /**
@@ -44,7 +44,7 @@ public class user {
      * @param password 密码
      * @param email    电子邮件
      */
-    public user(int id, String username, String password, String email) {
+    public User(int id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;

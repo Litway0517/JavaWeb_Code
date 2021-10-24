@@ -60,9 +60,19 @@ public class JDBCUtils {
         每次调用这个方法, 仅仅是从数据库连接池中拿一个连接使用.
         而不是像之前的方法, 每次都创建一个数据池, 再从数据池中拿一个连接(这种方式更慢)
      */
-    public static Connection getConnection() throws Exception {
+
+    /**
+     * 获取一个数据库中连接池的连接
+     * @return 如果返回null表示过去连接失败
+     */
+    public static Connection getConnection(){
         // 获取一个连接
-        return dataSource.getConnection();
+        try {
+            return dataSource.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /*

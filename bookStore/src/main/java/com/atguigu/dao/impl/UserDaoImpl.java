@@ -4,6 +4,13 @@ import com.atguigu.dao.BaseDao;
 import com.atguigu.dao.UserDao;
 import com.atguigu.pojo.User;
 
+
+/**
+ * 用户刀impl
+ *
+ * @author DELL
+ * @date 2021/10/24
+ */
 public class UserDaoImpl extends BaseDao implements UserDao {
 
 

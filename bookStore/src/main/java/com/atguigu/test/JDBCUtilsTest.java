@@ -6,6 +6,13 @@ import org.junit.Test;
 
 import java.sql.Connection;
 
+
+/**
+ * jdbcutils测试
+ *
+ * @author DELL
+ * @date 2021/10/24
+ */
 public class JDBCUtilsTest {
 
     @Test

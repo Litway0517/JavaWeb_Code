@@ -2,6 +2,14 @@ package com.atguigu.dao;
 
 import com.atguigu.pojo.User;
 
+
+
+/**
+ * 用户刀
+ *
+ * @author DELL
+ * @date 2021/10/24
+ */
 public interface UserDao {
 
 

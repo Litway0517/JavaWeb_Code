@@ -5,10 +5,19 @@ import com.atguigu.pojo.User;
 import org.junit.Test;
 
 
+/**
+ * 用户刀测试
+ *
+ * @author DELL
+ * @date 2021/10/24
+ */
 public class UserDaoTest {
 
     public UserDaoImpl userDao = new UserDaoImpl();
 
+    /**
+     * 查询用户的名字
+     */
     @Test
     public void queryUserByName() {
         User admin = userDao.queryUserByName("admin");
@@ -24,6 +33,9 @@ public class UserDaoTest {
 
     }
 
+    /**
+     * 查询的名字和密码
+     */
     @Test
     public void queryByNameAndPassword() {
         User user = userDao.queryByNameAndPassword("admin", "admin");
@@ -36,6 +48,9 @@ public class UserDaoTest {
         }
     }
 
+    /**
+     * 保存用户
+     */
     @Test
     public void saveUser() {
         /*

@@ -40,7 +40,7 @@ public abstract class BaseDao {
         Connection conn = JDBCUtils.getConnection();
 
         try {
-            queryRunner.update(conn, sql, args);
+            return queryRunner.update(conn, sql, args);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

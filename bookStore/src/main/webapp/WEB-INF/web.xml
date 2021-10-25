@@ -19,6 +19,16 @@
         <url-pattern>/registerServlet</url-pattern>
     </servlet-mapping>
 
+<!--    为LoginServlet程序配置xml信息  -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.atguigu.web.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
+    </servlet-mapping>
+
 
 
 

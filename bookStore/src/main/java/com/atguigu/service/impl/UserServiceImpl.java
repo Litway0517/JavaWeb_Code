@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
      * 用户登录
      *
      * @param user 前端用户登录传递过来的JavaBean对象
-     * @return u返回ser对象. 若有值返回则成功. 若null, 则失败.
+     * @return 返回user对象. 若有值返回则成功. 若null, 则失败.
      */
     @Override
     public User login(User user) {

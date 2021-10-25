@@ -43,8 +43,15 @@ public class JDBCUtils {
                 这里面踩了一个坑， 踩了一天，
                 因为， 不同的加载器的路径是不一样的。 反正挺乱的， 需要加强一下。
                 最终properties文件是放在resources下面才解决的bug
+
+                TODO: 这里面还要说一下, 因为上次使用JDBCUtils.class加载配置文件的时候, 出了Bug, 后来把jdbc.properties放在了resource目录下解决问题的
+                      原因是2021的IDEA和视频的IDEA不是一个版本, IDEA重构了工程文件的目录类型, 导致了把properties文件放在src/main/java下不能正常读取
+
+                TODO: 当部署到服务器上的时候又出现了Bug -> 因为上次改用了ClassLoader. 而应该JDBCUtils.class.getClassLoader加载器
+                      这样就不会有Bug了
              */
-            InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("jdbc.properties");
+            // InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("jdbc.properties");
+            InputStream inputStream = JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
             prop.load(inputStream);
 
             dataSource = DruidDataSourceFactory.createDataSource(prop);

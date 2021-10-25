@@ -48,15 +48,15 @@ public class UserServiceImpl implements UserService {
      * @param username 用户名
      * @return 若false, 则表中不存在该用户, 可注册.
      * 若true, 则表中存在该用户 -> 不能再使用该用户名注册.
+     * 用户存在 -> true -> 不可用
+     * 用户不存在 -> false -> 可用
      */
     @Override
     public boolean existsUsername(String username) {
         User user = userDao.queryUserByName(username);
         if (user == null) {
-            System.out.println("该用户不存在, 可以注册!");
             return false;
         }
-        System.out.println("该用户已存在, 请更换用户名!");
         return true;
     }
 }

@@ -15,7 +15,7 @@
          autoFlush="true"
          buffer="8kb"
 
-         errorPage="/error500.jsp"
+         errorPage="/pages/error500.jsp"
 
          language="java" %>
 <html>

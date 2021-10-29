@@ -29,7 +29,16 @@
     <%@ include file="/include/footer.jsp"%>
 
 
-    <jsp:include page="/include/footer.jsp"></jsp:include>
+<%--
+    1- 动态包含, 会把包含的页面也翻译为
+    2- 动态包含底层代码使用如下代码去调用被包含的 jsp 页面执行输出。
+        JspRuntimeLibrary.include(request, response, "/include/footer.jsp", out, false);
+    3-
+--%>
+    <jsp:include page="/include/footer.jsp">
+        <jsp:param name="username" value="bbj" />
+        <jsp:param name="pasword" value="root" />
+    </jsp:include>
 
 
 

@@ -17,5 +17,9 @@
     页脚信息_new  <br/>
     页脚信息_new  <br/>
 
+    <hr>
+    <%=request.getParameter("username")%>
+
+
 </body>
 </html>

@@ -12,24 +12,27 @@
 </head>
 <body>
 
-    <h2>四大域对象</h2>
-    <hr>
-    <%
-        // 向四个域中保存对象
-        pageContext.setAttribute("key", "pageContext");
-        request.setAttribute("key", "request");
-        session.setAttribute("key", "session");
-        application.setAttribute("key", "application");
-    %>
-    <br/><br/>
-    pageContext域中是否有值 -> <%=pageContext.getAttribute("key")%><br/>
-    request -> <%=request.getAttribute("key")%><br/>
-    session -> <%=session.getAttribute("key")%><br/>
-    application -> <%=application.getAttribute("key")%><br/>
+<%--    <h2>四大域对象</h2>--%>
+<%--    <hr>--%>
+<%--    <%--%>
+<%--        // 向四个域中保存对象--%>
+<%--        pageContext.setAttribute("key", "pageContext");--%>
+<%--        request.setAttribute("key", "request");--%>
+<%--        session.setAttribute("key", "session");--%>
+<%--        application.setAttribute("key", "application");--%>
+<%--    %>--%>
+<%--    <br/><br/>--%>
+<%--    pageContext域中是否有值 -> <%=pageContext.getAttribute("key")%><br/>--%>
+<%--    request -> <%=request.getAttribute("key")%><br/>--%>
+<%--    session -> <%=session.getAttribute("key")%><br/>--%>
+<%--    application -> <%=application.getAttribute("key")%><br/>--%>
 
-    <%
-        request.getRequestDispatcher("/pages/scope2.jsp").forward(request, response);
-    %>
+<%--    <%--%>
+<%--        request.getRequestDispatcher("/pages/scope2.jsp").forward(request, response);--%>
+<%--    %>--%>
+
+<%--    第二种 将请求转发的方式, 和上面的效果一样--%>
+    <jsp:forward page="/pages/scope2.jsp"></jsp:forward>
 
 
 </body>

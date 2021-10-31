@@ -40,6 +40,10 @@
     </table>
 
 
+<%--    增加一跳转标签 -> 用来测试--%>
+    <jsp:forward page="/test/test2.jsp"></jsp:forward>
+
+
 
 
 

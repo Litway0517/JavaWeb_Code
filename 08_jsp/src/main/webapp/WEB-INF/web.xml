@@ -17,6 +17,17 @@
     </servlet-mapping>
 
 
+<!--    为SearchStudentServlet配置xml信息  -->
+    <servlet>
+        <servlet-name>SearchStudentServlet</servlet-name>
+        <servlet-class>com.atguigu.servlet.SearchStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchStudentServlet</servlet-name>
+        <url-pattern>/searchStudentServlet</url-pattern>
+    </servlet-mapping>
+
+
 
 
 

@@ -28,6 +28,11 @@
     </servlet-mapping>
 
 
+<!--    为MyServletContextListenerImpl配置xml信息  -->
+    <listener>
+        <listener-class>com.atguigu.listener.MyServletContextListenerImpl</listener-class>
+    </listener>
+
 
 
 

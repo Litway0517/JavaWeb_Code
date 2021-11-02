@@ -14,6 +14,7 @@
 
 
     <%
+        // 这里是给各个域设置值, 而调用的时候是, pageScope, requestScope, sessionScope, applicationScope
         pageContext.setAttribute("key1", "pageContext1");
         pageContext.setAttribute("key2", "pageContext2");
         request.setAttribute("key2", "request");

@@ -41,6 +41,8 @@
     5. 获取请求的方法 -> ${ pageContext.request.method } <br/>
     6. 获取远程客户端的ip -> ${ pageContext.request.remoteHost } <br/>
     7. 获取会话的id -> ${ pageContext.session.id } <br/>
+    <br/>
+    上面写的pageContext.request.scheme这些东西, 最后直接是scheme, 实际上就是getScheme(), Bean对象的getter/setter方法原理
 
 
 

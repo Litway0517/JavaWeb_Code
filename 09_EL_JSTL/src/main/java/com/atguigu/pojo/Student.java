@@ -33,6 +33,11 @@ public class Student {
      */
     private String phone;
 
+    /**
+     * 好吧
+     */
+    private boolean ok;
+
 
     /**
      * 学生
@@ -48,13 +53,15 @@ public class Student {
      * @param password 密码
      * @param age      年龄
      * @param phone    电话
+     * @param ok       好吧
      */
-    public Student(Integer stuId, String username, String password, Integer age, String phone) {
+    public Student(Integer stuId, String username, String password, Integer age, String phone, boolean ok) {
         this.stuId = stuId;
         this.username = username;
         this.password = password;
         this.age = age;
         this.phone = phone;
+        this.ok = ok;
     }
 
     /**
@@ -147,14 +154,22 @@ public class Student {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "stuId=" + stuId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                ", phone='" + phone + '\'' +
-                '}';
+    /**
+     * 是可以的
+     *
+     * @return boolean
+     */
+    public boolean isOk() {
+        return ok;
+    }
+
+    /**
+     * 设置好了
+     *
+     * @param ok 好吧
+     */
+    public void setOk(boolean ok) {
+        this.ok = ok;
     }
 }
+

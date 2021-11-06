@@ -1,0 +1,124 @@
+package com.atguigu.pojo;
+
+/**
+ * 学生
+ *
+ * @author DELL
+ * @date 2021/11/06
+ */
+public class Student {
+
+    /**
+     * 斯图id
+     */
+    private Integer stuId;
+
+    /**
+     * 用户名
+     */
+    private String username;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 年龄
+     */
+    private Integer age;
+
+
+    /**
+     * 学生
+     */
+    public Student() {
+    }
+
+    /**
+     * 学生
+     *
+     * @param stuId    斯图id
+     * @param username 用户名
+     * @param password 密码
+     * @param age      年龄
+     */
+    public Student(Integer stuId, String username, String password, Integer age) {
+        this.stuId = stuId;
+        this.username = username;
+        this.password = password;
+        this.age = age;
+    }
+
+    /**
+     * 得到stu id
+     *
+     * @return {@code Integer}
+     */
+    public Integer getStuId() {
+        return stuId;
+    }
+
+    /**
+     * 斯图设置id
+     *
+     * @param stuId 斯图id
+     */
+    public void setStuId(Integer stuId) {
+        this.stuId = stuId;
+    }
+
+    /**
+     * 获得用户名
+     *
+     * @return {@code String}
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * 设置用户名
+     *
+     * @param username 用户名
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * 得到密码
+     *
+     * @return {@code String}
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * 设置密码
+     *
+     * @param password 密码
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * 让年龄
+     *
+     * @return {@code Integer}
+     */
+    public Integer getAge() {
+        return age;
+    }
+
+    /**
+     * 设定年龄
+     *
+     * @param age 年龄
+     */
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+}

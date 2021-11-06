@@ -1,4 +1,7 @@
 <%@ page import="java.util.HashMap" %>
+<%@ page import="com.atguigu.pojo.Student" %>
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="java.util.Collection" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -11,6 +14,21 @@
 <html>
 <head>
     <title>forEach标签</title>
+
+<%--    添加样式--%>
+    <style type="text/css">
+
+        table{
+            width: 700px;
+            color: red;
+            border-collapse: collapse;
+        }
+        td, th{
+            border: yellowgreen 1px;
+        }
+
+    </style>
+
 </head>
 <body>
 
@@ -87,8 +105,60 @@
     </c:forEach>
 
 
+    <br><br>
+    <hr>
+    forEach输出List集合, 集合元素为Student <br>
+    <%
+        // 存储学生对象的集合
+        LinkedList<Student> stuList = new LinkedList<Student>();
+        for (int i = 0; i < 10; i++) {
+            Integer stuId = 2021 + i * 16;
+            String username = "stuNo." + i * 3;
+            String password = "stuPassword" + (i * 5 % 3);
+            Integer age = 18 + i;
+            String phone = "186" + (i * 13 % 3) + (i * 13 % 2) + "521396";
+            Student student = new Student(stuId, username, password, age, phone);
+
+            stuList.add(student);
+        }
+        request.setAttribute("stuList", stuList);
+    %>
+    <c:forEach items="${ requestScope.stuList }" var="item">
+        ${ item.stuId }
+        ${ item.username }
+        ${ item.password }
+        ${ item.age }
+        ${ item.phone }
+        <br>
+    </c:forEach>
+
+    <br><br>
+    第二种输出方式 -> <br>
+
+    <table align="center" cellspacing="0" border="1">
+        <%-- 表头部分 --%>
+        <tr>
+            <th>编号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>年龄</th>
+            <th>电话</th>
+            <th>操作</th>
+        </tr>
+
+    <c:forEach items="${ requestScope.stuList }" var="item">
+        <tr>
+            <td>${ item.stuId }</td>
+            <td>${ item.username }</td>
+            <td>${ item.password }</td>
+            <td>${ item.password }</td>
+            <td>${ item.phone }</td>
+            <td>删除 / 更新</td>
+        </tr>
+    </c:forEach>
 
 
+    </table>
 
 
 

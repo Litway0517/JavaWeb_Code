@@ -1,3 +1,4 @@
+<%@ page import="java.util.HashMap" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -65,6 +66,28 @@
         </tr>
     </c:forEach>
     </table>
+
+
+    <br><br>
+    <hr>
+    forEach输出Java中的Map集合对象 <br>
+    <%
+        HashMap<String, String> map = new HashMap<>();
+        map.put("key1", "Regexp1");
+        map.put("key2", "Regexp2");
+        map.put("key3", "Regexp3");
+        request.setAttribute("hashMap", map);
+    %>
+
+<%--    这个语句会输出三次, 具体的次数就是数据源hashMap的长度--%>
+    <c:forEach items="${ requestScope.hashMap }" var="entry">
+        ${ entry } <br>
+        只获取key -> ${ entry.key } <br>
+        只获取value -> ${ entry.value } <br><br>
+    </c:forEach>
+
+
+
 
 
 

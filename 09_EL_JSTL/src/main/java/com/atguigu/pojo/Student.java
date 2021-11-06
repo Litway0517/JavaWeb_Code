@@ -53,6 +53,23 @@ public class Student {
      * @param password 密码
      * @param age      年龄
      * @param phone    电话
+     */
+    public Student(Integer stuId, String username, String password, Integer age, String phone) {
+        this.stuId = stuId;
+        this.username = username;
+        this.password = password;
+        this.age = age;
+        this.phone = phone;
+    }
+
+    /**
+     * 学生
+     *
+     * @param stuId    斯图id
+     * @param username 用户名
+     * @param password 密码
+     * @param age      年龄
+     * @param phone    电话
      * @param ok       好吧
      */
     public Student(Integer stuId, String username, String password, Integer age, String phone, boolean ok) {
@@ -65,6 +82,7 @@ public class Student {
     }
 
     /**
+     * 得到stu id
      * 得到stu id
      *
      * @return {@code Integer}

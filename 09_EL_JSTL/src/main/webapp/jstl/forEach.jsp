@@ -19,12 +19,12 @@
     <style type="text/css">
 
         table{
-            width: 700px;
-            color: red;
-            border-collapse: collapse;
+            color: black;
+            border: 1px solid black;
         }
         td, th{
-            border: yellowgreen 1px;
+            border: yellowgreen 1px solid;
+            border-collapse: collapse;
         }
 
     </style>
@@ -135,7 +135,7 @@
     <br><br>
     第二种输出方式 -> <br>
 
-    <table align="center" cellspacing="0" border="1">
+    <table align="center" border="1">
         <%-- 表头部分 --%>
         <tr>
             <th>编号</th>
@@ -161,6 +161,59 @@
     </table>
 
 
+
+    <br><br><br>
+    <hr>
+    指定开始位置和结束位置(索引从0开始) -> forEach输出List集合, 集合元素为Student <br>
+    <table align="center" cellspacing="0" border="1">
+        <%-- 表头部分 --%>
+        <tr>
+            <th>编号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>年龄</th>
+            <th>电话</th>
+            <th>varStatus信息</th>
+            <th>current内容</th>
+            <th>索引</th>
+            <th>计数</th>
+            <th>isFirst</th>
+            <th>isLast</th>
+            <th>获取begin</th>
+            <th>获取end</th>
+            <th>获取step</th>
+            <th></th>
+        </tr>
+
+        <%--
+            begin -> 表示开始索引
+            end -> 表示结束索引
+            items -> 表示数据源, 这里需要用EL表达式, 这个很容易忘记
+            var -> 是每次操作的对象
+            step -> 这个是每次循环的步长, 默认为1
+        --%>
+        <c:forEach begin="2" end="7" step="2" varStatus="status" items="${ requestScope.stuList }" var="item">
+        <tr>
+            <td>${ item.stuId }</td>
+            <td>${ item.username }</td>
+            <td>${ item.password }</td>
+            <td>${ item.password }</td>
+            <td>${ item.phone }</td>
+            <td>${ status }</td>
+            <td>${ status.current }</td>
+            <td>${ status.index }</td>
+            <td>${ status.count }</td>
+            <td>${ status.first }</td>
+            <td>${ status.last }</td>
+            <td>${ status.begin }</td>
+            <td>${ status.end }</td>
+            <td>${ status.step }</td>
+        </tr>
+        </c:forEach>
+        <br>varStatus这个属性挺重要的, 能够获取很多信息. 它属于这个javax.servlet.jsp.jstl.core.LoopTagSupport类<br>
+
+        </table>
+<br><br><br><br><br><br>
 
 
 </body>

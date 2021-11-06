@@ -146,4 +146,15 @@ public class Student {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "stuId=" + stuId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }

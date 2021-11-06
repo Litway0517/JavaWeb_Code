@@ -28,6 +28,11 @@ public class Student {
      */
     private Integer age;
 
+    /**
+     * 电话
+     */
+    private String phone;
+
 
     /**
      * 学生
@@ -42,12 +47,14 @@ public class Student {
      * @param username 用户名
      * @param password 密码
      * @param age      年龄
+     * @param phone    电话
      */
-    public Student(Integer stuId, String username, String password, Integer age) {
+    public Student(Integer stuId, String username, String password, Integer age, String phone) {
         this.stuId = stuId;
         this.username = username;
         this.password = password;
         this.age = age;
+        this.phone = phone;
     }
 
     /**
@@ -120,5 +127,23 @@ public class Student {
      */
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    /**
+     * 得到电话
+     *
+     * @return {@code String}
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * 设置手机
+     *
+     * @param phone 电话
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

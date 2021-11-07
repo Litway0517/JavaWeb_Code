@@ -37,7 +37,15 @@ public class UploadServlet extends HttpServlet {
 
         System.out.println("接收到文件了");
 
+        // 这些数据是null, 获取不到
+        System.out.println(request.getParameter("username"));
+        System.out.println(request.getParameter("photo"));
 
+        ServletInputStream inputStream = request.getInputStream();
+
+        byte[] buf = new byte[10240000];
+        int read = inputStream.read(buf);
+        System.out.println("前端上传的数据 -> " + new String(buf, 0, read));
 
 
     }

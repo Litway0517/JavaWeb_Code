@@ -15,9 +15,9 @@
     <br><br>
     文件的上传
     <hr>
-    <form action="" enctype="multipart/form-data" method="post" >
+    <form action="http://localhost:8080/09_EL_JSTL/uploadServlet" enctype="multipart/form-data" method="post" >
         用户名: <input type="text" name="username" id="name"> <br>
-        头像: <input type="file" name="photo" id="upload_photo">
+        头像: <input type="file" name="photo" id="upload_photo"> <br>
 
         <input type="submit" value="上传">
 

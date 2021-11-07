@@ -11,4 +11,15 @@
     </context-param>
 
 
+<!--    为UploadServlet 接收前端上传的文件类配置xml信息 -->
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>com.atguigu.servlet.UploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/uploadServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

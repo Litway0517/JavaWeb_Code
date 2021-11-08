@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 
 public class DownloadServlet extends HttpServlet {
     @Override
@@ -28,13 +29,21 @@ public class DownloadServlet extends HttpServlet {
         /*
             Content-Disposition -> 响应头中的这个参数表示的是, 对于该文件的处置(Disposition)方式
             attachment -> 是附件的意思
-            filename -> 是服务器端返回给客户端的文件的名字
+            filename -> 是服务器端返回给客户端的文件的名字. 这个文件名字是能够随便更改的
          */
-        response.setHeader("Content-Disposition", "attachment;filename=" + downloadName);
+//        response.setHeader("Content-Disposition", "attachment;filename=" + downloadName);
+//        response.setHeader("Content-Disposition", "attachment;filename=newFileName.jpg");
+        /*
+            chrome浏览器, 将文件改成中文名时 -> 会出现乱码. 需要改变编码. URLEncoder.encode("中国.jpg", "UTF-8")
+            这个叫做URL编码, 把中国转成16进制
+            前端的相应头
+                filename=%E4%B8%AD%E5%9B%BD.jpg
+         */
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("中国.jpg", "UTF-8"));
 
         /*
-            把读取到的文件流回传给客户端
-            获取相应的输出流
+            1 -> 把读取到的文件流回传给客户端
+            2 -> 获取相应的输出流
          */
         ServletOutputStream outputStream = response.getOutputStream();
 

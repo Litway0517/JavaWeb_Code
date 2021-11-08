@@ -45,7 +45,7 @@ public class UploadServlet extends HttpServlet {
 
         byte[] buf = new byte[10240000];
         int read = inputStream.read(buf);
-        System.out.println("前端上传的数据 -> " + new String(buf, 0, read));
+        System.out.println("前端上传的数据 -> \n" + new String(buf, 0, read));
 
 
     }

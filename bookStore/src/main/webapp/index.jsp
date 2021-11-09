@@ -1,10 +1,13 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>书城首页</title>
-<link type="text/css" rel="stylesheet" href="static/css/style.css" >
+
+	<%--  改为静态包含 --%>
+	<%@ include file="/pages/common/header.jsp"%>
+
 </head>
 <body>
 

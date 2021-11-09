@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>尚硅谷会员注册页面</title>
-    <!--  Base标签, 固定相对路径的跳转结果  -->
 
     <%--  改为静态包含 --%>
     <%@ include file="/pages/common/header.jsp"%>

@@ -4,7 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>编辑图书</title>
-<link type="text/css" rel="stylesheet" href="../../static/css/style.css" >
+
+	<%--  改为静态包含 --%>
+	<%@ include file="/pages/common/header.jsp"%>
+
 <style type="text/css">
 	h1 {
 		text-align: center;

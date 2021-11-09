@@ -4,8 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>购物车</title>
-<base href="http://localhost:8080/BookStore02/">
-<link type="text/css" rel="stylesheet" href="static/css/style.css" >
+
+	<%--  改为静态包含 --%>
+	<%@ include file="/pages/common/header.jsp"%>
+
 </head>
 <body>
 

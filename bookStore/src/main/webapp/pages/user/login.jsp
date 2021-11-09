@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>尚硅谷会员登录页面</title>
-    <!--  Base标签, 固定相对路径的跳转结果  -->
-    <base href="http://localhost:8080/bookStore/" />
-    <link type="text/css" rel="stylesheet" href="static/css/style.css">
+    <%--  改为静态包含 --%>
+    <%@ include file="/pages/common/header.jsp"%>
+
+
 </head>
 <body>
 <div id="login_header">

@@ -5,7 +5,7 @@
   Time: 20:02
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 
 <!--  Base标签, 固定相对路径的跳转结果  -->

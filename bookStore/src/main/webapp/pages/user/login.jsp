@@ -1,10 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>尚硅谷会员登录页面</title>
     <!--  Base标签, 固定相对路径的跳转结果  -->
-    <base href="http://localhost:8092/bookStore/" />
+    <base href="http://localhost:8080/bookStore/" />
     <link type="text/css" rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
@@ -23,7 +24,7 @@
             <div class="login_box">
                 <div class="tit">
                     <h1>尚硅谷会员</h1>
-                    <a href="regist.html">立即注册</a>
+                    <a href="regist.jsp">立即注册</a>
                 </div>
                 <div class="msg_cont">
                     <b></b>

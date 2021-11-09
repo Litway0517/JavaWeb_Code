@@ -1,10 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>尚硅谷会员注册页面</title>
     <!--  Base标签, 固定相对路径的跳转结果  -->
-    <base href="http://localhost:8092/bookStore/" />
+    <base href="http://localhost:8080/bookStore/" />
     <link type="text/css" rel="stylesheet" href="static/css/style.css">
     <style type="text/css">
         h1 {
@@ -30,7 +31,7 @@
 
 <div id="main">
 
-    <h1>欢迎回来 <a href="index.html">转到主页</a></h1>
+    <h1>欢迎回来 <a href="index.jsp">转到主页</a></h1>
 
 </div>
 

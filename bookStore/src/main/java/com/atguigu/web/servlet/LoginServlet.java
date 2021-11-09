@@ -44,10 +44,10 @@ public class LoginServlet extends HttpServlet {
              */
             // System.out.println("用户名或密码不匹配!请重新登录");
             // 提示之后别忘了停留在登陆界面 -> 不跳转(这点千万别忘了)
-            request.getRequestDispatcher("/pages/user/login.html").forward(request, response);
+            request.getRequestDispatcher("/pages/user/login.jsp").forward(request, response);
         } else {
             // 登陆成功 -> 跳转到登陆成功界面
-            request.getRequestDispatcher("/pages/user/login_success.html").forward(request, response);
+            request.getRequestDispatcher("/pages/user/login_success.jsp").forward(request, response);
         }
 
 

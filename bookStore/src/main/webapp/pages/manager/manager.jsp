@@ -18,13 +18,12 @@
 <body>
 
 	<div id="header">
-			<img class="logo_img" alt="" src="../../static/img/logo.gif" >
-			<span class="wel_word">后台管理系统</span>
-			<div>
-				<a href="book_manager.jsp">图书管理</a>
-				<a href="order_manager.jsp">订单管理</a>
-				<a href="../../index.html">返回商城</a>
-			</div>
+		<img class="logo_img" alt="" src="../../static/img/logo.gif" >
+		<span class="wel_word">后台管理系统</span>
+
+		<%--  静态包含管理界面 --%>
+		<%@ include file="/pages/common/manager.jsp"%>
+
 	</div>
 
 	<div id="main">

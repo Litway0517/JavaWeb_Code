@@ -6,9 +6,8 @@
     <title>尚硅谷会员登录页面</title>
     <%--  改为静态包含 --%>
     <%@ include file="/pages/common/header.jsp"%>
-
-
 </head>
+
 <body>
 <div id="login_header">
     <img class="logo_img" alt="" src="static/img/logo.gif">

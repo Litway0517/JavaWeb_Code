@@ -8,7 +8,6 @@
     <%--  改为静态包含 --%>
     <%@ include file="/pages/common/header.jsp"%>
 
-    <script type="text/javascript" src="static/script/jquery-1.7.2.js"></script>
     <script type="text/javascript">
 
         // 页面加载完成之后

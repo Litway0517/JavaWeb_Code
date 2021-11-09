@@ -27,7 +27,6 @@
     <%--  jsp界面静态包含  --%>
     <%@ include file="/pages/common/login_success_menu.jsp" %>
 
-
 </div>
 
 <div id="main">

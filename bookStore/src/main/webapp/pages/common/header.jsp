@@ -7,9 +7,28 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
+<%
+    String scheme = request.getScheme()
+            + "://"
+            + request.getServerName()
+            + ":"
+            + request.getServerPort()
+            + "/"
+            + request.getContextPath()
+            + "/";
+
+//    session.setAttribute("scheme", scheme);
+
+%>
+
 
 <!--  Base标签, 固定相对路径的跳转结果  -->
-<base href="http://localhost:8080/bookStore/"/>
+<base href=" <%= scheme %>>"/>
+
+<%--这样写也行--%>
+<%--<base href="${ sessionScope.scheme }"/>--%>
+
+
 <link type="text/css" rel="stylesheet" href="static/css/style.css">
 <script type="text/javascript" src="static/script/jquery-1.7.2.js"></script>
 

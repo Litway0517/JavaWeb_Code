@@ -1,6 +1,7 @@
 package com.atguigu.servlet;
 
 import org.apache.commons.io.IOUtils;
+import sun.misc.BASE64Encoder;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -35,11 +36,21 @@ public class DownloadServlet extends HttpServlet {
 //        response.setHeader("Content-Disposition", "attachment;filename=newFileName.jpg");
         /*
             chrome浏览器, 将文件改成中文名时 -> 会出现乱码. 需要改变编码. URLEncoder.encode("中国.jpg", "UTF-8")
-            这个叫做URL编码, 把中国转成16进制
-            前端的相应头
+            这个叫做URL编码, 把中文转成16进制
+
+            前端的相应头就成为了 ->
                 filename=%E4%B8%AD%E5%9B%BD.jpg
          */
-        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("中国.jpg", "UTF-8"));
+//        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("中国.jpg", "UTF-8"));
+
+
+        /*
+            但是火狐浏览器仍然会报错, 下面的是专门为火狐设置的 -> 中间需要BASE64的编码器
+         */
+        response.setHeader("Content-Disposition", "attachment;filename==?UTF-8?B?" +
+                new BASE64Encoder().encode("中国.jpg".getBytes("UTF-8")) + "?=");
+
+
 
         /*
             1 -> 把读取到的文件流回传给客户端

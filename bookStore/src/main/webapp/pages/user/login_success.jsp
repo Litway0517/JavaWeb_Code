@@ -21,12 +21,21 @@
 <body>
 <div id="header">
     <img class="logo_img" alt="" src="static/img/logo.gif">
+
+<%--
     <div>
         <span>欢迎<span class="um_span">韩总</span>光临尚硅谷书城</span>
-        <a href="order/order.html">我的订单</a>
-        <a href="index.html">注销</a>&nbsp;&nbsp;
-        <a href="index.html">返回</a>
+        <a href="order/order.jsp">我的订单</a>
+        <a href="index.jsp">注销</a>&nbsp;&nbsp;
+        <a href="index.jsp">返回</a>
     </div>
+--%>
+
+    <%--  jsp界面静态包含  --%>
+    <%@ include file="/pages/common/login_success_menu.jsp" %>
+
+
+
 </div>
 
 <div id="main">

@@ -22,7 +22,7 @@
     </servlet-mapping>
 
 
-
+    <!--    为DownloadServlet 接收前端上传的文件类配置xml信息 -->
     <servlet>
         <servlet-name>DownloadServlet</servlet-name>
         <servlet-class>com.atguigu.servlet.DownloadServlet</servlet-class>
@@ -30,6 +30,17 @@
     <servlet-mapping>
         <servlet-name>DownloadServlet</servlet-name>
         <url-pattern>/downloadServlet</url-pattern>
+    </servlet-mapping>
+
+
+<!--    为DownloadServlet2 接收前端上传的文件类配置xml信息 -->
+    <servlet>
+        <servlet-name>DownloadServlet2</servlet-name>
+        <servlet-class>com.atguigu.servlet.DownloadServlet2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet2</servlet-name>
+        <url-pattern>/downloadServlet2</url-pattern>
     </servlet-mapping>
 
 

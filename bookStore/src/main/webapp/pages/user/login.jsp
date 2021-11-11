@@ -35,7 +35,10 @@
                     </span>
                 </div>
                 <div class="form">
-                    <form action="loginServlet" method="post">
+                    <form action="userServlet" method="post">
+                        <!-- 这是隐藏域, 后端根据此值能够判断前端穿过来的动作类型 -->
+                        <input type="hidden" name="action" value="login">
+
                         <label>用户名称：</label>
                         <input class="itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1"
                                name="username"

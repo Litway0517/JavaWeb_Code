@@ -16,9 +16,7 @@
             + "/"
             + request.getContextPath()
             + "/";
-
 //    session.setAttribute("scheme", scheme);
-
 %>
 
 

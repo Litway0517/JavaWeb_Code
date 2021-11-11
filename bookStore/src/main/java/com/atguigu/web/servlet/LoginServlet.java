@@ -36,13 +36,18 @@ public class LoginServlet extends HttpServlet {
 
         // 检查用户输入的相关信息是否正确
         User loginUser = userService.login(new User(null, username, password, null));
-        System.out.println(loginUser);
         if (loginUser == null) {
             /*
                 控制台提示一下 -> 信息错误, 请重新登录
                 提示这种方式比较low, 用debug
              */
-            // System.out.println("用户名或密码不匹配!请重新登录");
+
+            // 提示错误信息, 并将正确地相关数据回显给前端
+            request.setAttribute("msg", "用户名或密码错误! ");
+            request.setAttribute("username", username);
+
+
+
             // 提示之后别忘了停留在登陆界面 -> 不跳转(这点千万别忘了)
             request.getRequestDispatcher("/pages/user/login.jsp").forward(request, response);
         } else {
@@ -54,3 +59,10 @@ public class LoginServlet extends HttpServlet {
 
     }
 }
+
+
+
+
+
+
+

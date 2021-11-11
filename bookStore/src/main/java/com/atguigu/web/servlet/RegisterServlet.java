@@ -62,14 +62,31 @@ public class RegisterServlet extends HttpServlet {
             if (userService.existsUsername(username)) {
                 // 返回true表示不能使用该用户名注册 -> 提醒 + 跳转到注册界面
                 System.out.println("用户名 [" + username + "] 已存在! ");
+
+                // 注册失败的时候, 将原来的数据回显到文本框中
+                req.setAttribute("msg", "用户名已存在! ");
+                req.setAttribute("username", username);
+                req.setAttribute("email", email);
+
+
+
+
                 // 跳到注册界面
                 req.getRequestDispatcher("/pages/user/regist.jsp").forward(req, resp);
-            } else {
+            }
+            else {
                 // 用户名不存在表中 -> 可用情况 -> 调用UserService表存到表中 -> 在跳转到注册成功界面
                 userService.registerUser(new User(null, username, password, email));
                 req.getRequestDispatcher("/pages/user/regist_success.jsp").forward(req, resp);
             }
-        } else {
+        }
+        else {
+            // 注册失败的时候, 将原来的数据回显到文本框中
+            req.setAttribute("msg", "验证码错误! ");
+            req.setAttribute("username", username);
+            req.setAttribute("email", email);
+
+
             // 验证码错误 -> 跳转到注册界面
             System.out.println("验证码 [" + code + "] 错误");
             // 这里面也验证了, getRequestDispatcher方法是具有跳转页面的功能的

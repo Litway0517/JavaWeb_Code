@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class UserServlet extends HttpServlet {
 
@@ -19,16 +20,16 @@ public class UserServlet extends HttpServlet {
         // 前端的两个表单的input的name值都叫做action就行了, 所以传过来那个额都能够接收到
         String action = req.getParameter("action");
 
-        if (action.equals("login")) {
-            System.out.println("处理登录的需求");
-            login(req, resp);
+        try {
+            // 获取反射对象
+            Method method = this.getClass().getDeclaredMethod(action, HttpServletRequest.class, HttpServletResponse.class);
+            // 调用方法
+            method.invoke(this, req, resp);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        }
-        else if (action.equals("regist")) {
-            System.out.println("处理注册的请求");
-            regist(req, resp);
-        }
     }
 
 

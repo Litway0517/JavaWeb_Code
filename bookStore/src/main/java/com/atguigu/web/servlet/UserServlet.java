@@ -1,4 +1,4 @@
-package com.atguigu.web.servlet.user;
+package com.atguigu.web.servlet;
 
 import com.atguigu.pojo.User;
 import com.atguigu.service.UserService;

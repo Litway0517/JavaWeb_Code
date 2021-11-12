@@ -1,4 +1,4 @@
-package com.atguigu.web.servlet.user;
+package com.atguigu.web.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

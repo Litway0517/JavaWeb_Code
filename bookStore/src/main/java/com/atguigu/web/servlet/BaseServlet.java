@@ -10,6 +10,11 @@ import java.lang.reflect.Method;
 public abstract class BaseServlet extends HttpServlet {
 
 
+    /*
+        bookStore UserServlet程序是继承自BaseServlet的, 当请求从客户端传到userServlet这个路由的时候,
+        就会先寻找doPost()这个方法, 如果没找到就回去父类找, 所以就是BaseServlet的doPost了,
+        此时已经初始化了UserServlet和BaseServlet程序, 所以能够找到login方法
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 前端的两个表单的input的name值都叫做action就行了, 所以传过来那个额都能够接收到

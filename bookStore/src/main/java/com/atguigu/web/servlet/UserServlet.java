@@ -5,6 +5,7 @@ import com.atguigu.service.UserService;
 import com.atguigu.service.impl.UserServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,9 +22,8 @@ public class UserServlet extends BaseServlet {
     UserService userService = new UserServiceImpl();
 
 
-    protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println(req.getParameterMap());
         // 使用BeanUtils这个工具类
         try {
             User user = new User();

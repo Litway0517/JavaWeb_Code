@@ -3,6 +3,7 @@ package com.atguigu.web.servlet;
 import com.atguigu.pojo.User;
 import com.atguigu.service.UserService;
 import com.atguigu.service.impl.UserServiceImpl;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class UserServlet extends BaseServlet {
+    /**
+     * 一个很基本的思想 ->
+     *      所有前端发送过来的数据, 到了后端都需要将其封装成为一个Bean对象.
+     *      或者直接理解为, Bean才是编程时, 要着重注意的一个点, 将需要的数据都考虑为一个Bean
+     *      每一次操作的基本单位是Bean
+     */
 
     UserService userService = new UserServiceImpl();
 
 
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        System.out.println(req.getParameterMap());
+        // 使用BeanUtils这个工具类
+        try {
+            User user = new User();
+            System.out.println("注入参数之前 -> " + user);
+            BeanUtils.populate(user, req.getParameterMap());
+            System.out.println("注入参数之后 -> " + user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // 获取前端参数值
         String username = req.getParameter("username");

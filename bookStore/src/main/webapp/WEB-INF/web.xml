@@ -9,7 +9,7 @@
 <!--    为UserServlet配置xml信息-->
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.atguigu.web.servlet.user.UserServlet</servlet-class>
+        <servlet-class>com.atguigu.web.servlet.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>

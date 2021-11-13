@@ -14,8 +14,6 @@ public class UserServlet extends BaseServlet {
     UserService userService = new UserServiceImpl();
 
 
-
-
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // 获取前端参数值

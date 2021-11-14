@@ -7,10 +7,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+/**
+ * 基地servlet
+ *
+ * @author DELL
+ * @date 2021/11/14
+ */
 public abstract class BaseServlet extends HttpServlet {
 
 
-    /*
+    /**
+     * 做帖子
+     *
+     * @param req  要求的事情
+     * @param resp 分别地
+     * @throws ServletException servlet异常
+     * @throws IOException      IO异常
+     *//*
         bookStore UserServlet程序是继承自BaseServlet的, 当请求从客户端传到userServlet这个路由的时候,
         就会先寻找doPost()这个方法, 如果没找到就回去父类找, 所以就是BaseServlet的doPost了,
         此时已经初始化了UserServlet和BaseServlet程序, 所以能够找到login方法

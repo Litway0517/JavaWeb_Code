@@ -13,7 +13,6 @@
             + request.getServerName()
             + ":"
             + request.getServerPort()
-            + "/"
             + request.getContextPath()
             + "/";
 //    session.setAttribute("scheme", scheme);
@@ -30,6 +29,21 @@
 <link type="text/css" rel="stylesheet" href="static/css/style.css">
 <script type="text/javascript" src="static/script/jquery-1.7.2.js"></script>
 
+
+<%--
+        <%
+            String scheme2 = request.getScheme()
+                    + "://"
+                    + request.getServerName()
+                    + ":"
+                    + request.getServerPort()
+                    + request.getContextPath()
+                    + "/";
+
+            request.setAttribute("scheme2", scheme2);
+        %>
+        ${ requestScope.scheme2 }
+--%>
 
 
 

@@ -66,7 +66,10 @@ public class Book {
         this.bookPrice = bookPrice;
         this.bookSales = bookSales;
         this.bookStock = bookStock;
-        this.bookImgPath = bookImgPath;
+        // 对传入的参数进行限制
+        if (bookImgPath != null && bookImgPath.equals("")) {
+            this.bookImgPath = bookImgPath;
+        }
     }
 
 
@@ -193,12 +196,15 @@ public class Book {
      * @param bookImgPath 书img路径
      */
     public void setBookImgPath(String bookImgPath) {
-        this.bookImgPath = bookImgPath;
+        // 对传入的参数进行限制
+        if (bookImgPath != null && bookImgPath.equals("")) {
+            this.bookImgPath = bookImgPath;
+        }
     }
 
 
     /**
-     * 字符串
+     * 字符串/
      *
      * @return {@code String}
      */

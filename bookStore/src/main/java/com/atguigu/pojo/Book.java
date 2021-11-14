@@ -16,29 +16,29 @@ public class Book {
      */
     private Integer id;
     /**
-     * 的名字
+     * 书的名字
      */
-    private String name;
+    private String bookName;
     /**
-     * 作者
+     * 书的作者
      */
-    private String author;
+    private String bookAuthor;
     /**
-     * 价格
+     * 书的价格
      */
-    private BigDecimal price;
+    private BigDecimal bookPrice;
     /**
-     * 销售
+     * 书的销量
      */
-    private Integer sales;
+    private Integer bookSales;
     /**
-     * 股票
+     * 书股票
      */
-    private Integer stock;
+    private Integer bookStock;
     /**
-     * img路径
+     * 书img路径
      */
-    private String imgPath = "static/img/default.jpg";
+    private String bookImgPath = "static/img/default.jpg";
 
 
     /**
@@ -47,28 +47,26 @@ public class Book {
     public Book() {
     }
 
+
     /**
      * 书
      *
-     * @param id      id
-     * @param name    的名字
-     * @param author  作者
-     * @param price   价格
-     * @param sales   销售
-     * @param stock   股票
-     * @param imgPath img路径
+     * @param id          id
+     * @param bookName    书的名字
+     * @param bookAuthor  书的作者
+     * @param bookPrice   书的价格
+     * @param bookSales   书的销量
+     * @param bookStock   书股票
+     * @param bookImgPath 书img路径
      */
-    public Book(Integer id, String name, String author, BigDecimal price, Integer sales, Integer stock, String imgPath) {
+    public Book(Integer id, String bookName, String bookAuthor, BigDecimal bookPrice, Integer bookSales, Integer bookStock, String bookImgPath) {
         this.id = id;
-        this.name = name;
-        this.author = author;
-        this.price = price;
-        this.sales = sales;
-        this.stock = stock;
-        // 对图书路径赋值的时候, 进行一下检查
-        if (imgPath != null && !imgPath.equals("")) {
-            this.imgPath = imgPath;
-        }
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookPrice = bookPrice;
+        this.bookSales = bookSales;
+        this.bookStock = bookStock;
+        this.bookImgPath = bookImgPath;
     }
 
 
@@ -91,114 +89,111 @@ public class Book {
     }
 
     /**
-     * 得到的名字
+     * 把书的名字
      *
      * @return {@code String}
      */
-    public String getName() {
-        return name;
+    public String getBookName() {
+        return bookName;
     }
 
     /**
-     * 集名称
+     * 集书的名字
      *
-     * @param name 的名字
+     * @param bookName 书的名字
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
     /**
-     * 让作者
+     * 让书的作者
      *
      * @return {@code String}
      */
-    public String getAuthor() {
-        return author;
+    public String getBookAuthor() {
+        return bookAuthor;
     }
 
     /**
-     * 集的作者
+     * 集书的作者
      *
-     * @param author 作者
+     * @param bookAuthor 书的作者
      */
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
     }
 
     /**
-     * 得到价格
+     * 让书的价格
      *
      * @return {@code BigDecimal}
      */
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getBookPrice() {
+        return bookPrice;
     }
 
     /**
-     * 固定价格
+     * 本书定价
      *
-     * @param price 价格
+     * @param bookPrice 书的价格
      */
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setBookPrice(BigDecimal bookPrice) {
+        this.bookPrice = bookPrice;
     }
 
     /**
-     * 得到销售
-     *
-     * @return {@code Integer}
-     */
-    public Integer getSales() {
-        return sales;
-    }
-
-    /**
-     * 集销售
-     *
-     * @param sales 销售
-     */
-    public void setSales(Integer sales) {
-        this.sales = sales;
-    }
-
-    /**
-     * 得到股票
+     * 让图书销售
      *
      * @return {@code Integer}
      */
-    public Integer getStock() {
-        return stock;
+    public Integer getBookSales() {
+        return bookSales;
     }
 
     /**
-     * 集股票
+     * 集图书销售
      *
-     * @param stock 股票
+     * @param bookSales 书的销量
      */
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setBookSales(Integer bookSales) {
+        this.bookSales = bookSales;
     }
 
     /**
-     * 得到img路径
+     * 让书股票
+     *
+     * @return {@code Integer}
+     */
+    public Integer getBookStock() {
+        return bookStock;
+    }
+
+    /**
+     * 集书股票
+     *
+     * @param bookStock 书股票
+     */
+    public void setBookStock(Integer bookStock) {
+        this.bookStock = bookStock;
+    }
+
+    /**
+     * 让书img路径
      *
      * @return {@code String}
      */
-    public String getImgPath() {
-        return imgPath;
+    public String getBookImgPath() {
+        return bookImgPath;
     }
 
     /**
-     * img设置路径
+     * 集书img路径
      *
-     * @param imgPath img路径
+     * @param bookImgPath 书img路径
      */
-    public void setImgPath(String imgPath) {
-        // 对图书路径赋值的时候, 进行一下检查
-        if (imgPath != null && !imgPath.equals("")) {
-            this.imgPath = imgPath;
-        }
+    public void setBookImgPath(String bookImgPath) {
+        this.bookImgPath = bookImgPath;
     }
 
 
@@ -211,12 +206,12 @@ public class Book {
     public String toString() {
         return "Book{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                ", price=" + price +
-                ", sales=" + sales +
-                ", stock=" + stock +
-                ", imgPath='" + imgPath + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", bookAuthor='" + bookAuthor + '\'' +
+                ", bookPrice=" + bookPrice +
+                ", bookSales=" + bookSales +
+                ", bookStock=" + bookStock +
+                ", bookImgPath='" + bookImgPath + '\'' +
                 '}';
     }
 }

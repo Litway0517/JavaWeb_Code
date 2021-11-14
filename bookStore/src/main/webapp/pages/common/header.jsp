@@ -8,26 +8,30 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 <%
-    String scheme = request.getScheme()
+    String basePath = request.getScheme()
             + "://"
             + request.getServerName()
             + ":"
             + request.getServerPort()
             + request.getContextPath()
             + "/";
-//    session.setAttribute("scheme", scheme);
+//    session.setAttribute("basePath", basePath);
 %>
 
 
 <!--  Base标签, 固定相对路径的跳转结果  -->
-<base href=" <%= scheme %>>"/>
+<base href=" <%= basePath %>>"/>
 
 <%--这样写也行--%>
-<%--<base href="${ sessionScope.scheme }"/>--%>
+<%--<base href="${ sessionScope.basePath }"/>--%>
 
 
 <link type="text/css" rel="stylesheet" href="static/css/style.css">
 <script type="text/javascript" src="static/script/jquery-1.7.2.js"></script>
+
+
+
+
 
 
 <%--

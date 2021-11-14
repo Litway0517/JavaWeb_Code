@@ -29,7 +29,7 @@
 			<span class="wel_word">编辑图书</span>
 
 			<%--  静态包含管理界面 --%>
-			<%@ include file="/pages/common/manager.jsp"%>
+			<%@ include file="/pages/common/manager_menu.jsp"%>
 
 		</div>
 

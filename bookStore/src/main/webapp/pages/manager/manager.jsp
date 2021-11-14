@@ -22,7 +22,7 @@
 		<span class="wel_word">后台管理系统</span>
 
 		<%--  静态包含管理界面 --%>
-		<%@ include file="/pages/common/manager.jsp"%>
+		<%@ include file="/pages/common/manager_menu.jsp"%>
 
 	</div>
 

@@ -7,14 +7,16 @@ import com.atguigu.service.BookService;
 import java.util.List;
 
 /**
- * 书服务impl
+ * 书服务实现
  *
  * @author DELL
  * @date 2021/11/15
  */
 public class BookServiceImpl implements BookService {
 
-    // Service的具体实现, 一般都是依赖于DAO层, 先导入
+    /**
+     * 书DAO实现
+     */// Service的具体实现, 一般都是依赖于DAO层, 先导入
     private final BookDaoImpl bookDaoImpl = new BookDaoImpl();
 
 

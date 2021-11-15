@@ -23,6 +23,8 @@ public class UserServlet extends BaseServlet {
      *      所有前端发送过来的数据, 到了后端都需要将其封装成为一个Bean对象.
      *      或者直接理解为, Bean才是编程时, 要着重注意的一个点, 将需要的数据都考虑为一个Bean
      *      每一次操作的基本单位是Bean
+     *
+     *      一句话, 前后端交互的最基础的数据就是一个Bean, 通过JSON文件格式进行交换
      */
 
     UserService userService = new UserServiceImpl();

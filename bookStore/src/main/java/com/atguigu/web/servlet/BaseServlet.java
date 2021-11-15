@@ -27,6 +27,8 @@ public abstract class BaseServlet extends HttpServlet {
         bookStore UserServlet程序是继承自BaseServlet的, 当请求从客户端传到userServlet这个路由的时候,
         就会先寻找doPost()这个方法, 如果没找到就回去父类找, 所以就是BaseServlet的doPost了,
         此时已经初始化了UserServlet和BaseServlet程序, 所以能够找到login方法
+
+        其他Servlet继承自BaseServlet的程序, 也是一样的原理
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

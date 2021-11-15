@@ -1,9 +1,10 @@
-package com.atguigu.web.servlet;
+package com.atguigu.web.servlet.user;
 
 import com.atguigu.pojo.User;
 import com.atguigu.service.UserService;
 import com.atguigu.service.impl.UserServiceImpl;
 import com.atguigu.utils.WebUtils;
+import com.atguigu.web.servlet.base.BaseServlet;
 
 
 import javax.servlet.ServletException;

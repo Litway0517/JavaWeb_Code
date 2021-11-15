@@ -8,7 +8,19 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 <div>
-    <a href="pages/manager/book_manager.jsp">图书管理</a>
+<%--    <a href="pages/manager/book_manager.jsp">图书管理</a>--%>
+    <%--
+        因为客户端在访问的时候需要通过 BookServlet 跳转到图书管理界面, 这样才能获得数据, 否则, 直接用jsp访问拿不到数据
+        所以, 这里面的href标签改为 -> manager/bookServlet?action=list
+
+        bookServlet 这个是后台的servlet程序, 没啥好说的.
+        ? 后面表示本次请求携带的参数
+        action=list 表示到BookServlet之后会即刻调用list方法
+            action是我们在BaseServlet反射时的一个入口参数, 很重要. 不过前端传过来action的方式有很多, 比如form表单的action, 各种input的action, 还有这里的直接在href上加?加参数
+
+        这里面细节有点多
+    --%>
+    <a href="manager/bookServlet?action=list">图书管理</a>
     <a href="pages/manager/order_manager.jsp">订单管理</a>
     <a href="index.jsp">返回商城</a>
 </div>

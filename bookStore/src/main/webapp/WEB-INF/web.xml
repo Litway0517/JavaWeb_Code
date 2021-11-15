@@ -9,11 +9,27 @@
 <!--    为UserServlet配置xml信息-->
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.atguigu.web.servlet.UserServlet</servlet-class>
+        <servlet-class>com.atguigu.web.servlet.user.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/userServlet</url-pattern>
     </servlet-mapping>
+    
+
+<!--  为BookServlet配置路由请求地址  -->
+    <servlet>
+        <servlet-name>BookServlet</servlet-name>
+        <servlet-class>com.atguigu.web.servlet.book.BookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookServlet</servlet-name>
+        <!--
+            这里的路由地址有一些特殊, 先加上再说, 后面在讲解.
+            但是并不是因为在web目录下有一个manager目录
+        -->
+        <url-pattern>/manager/bookServlet</url-pattern>
+    </servlet-mapping>
+    
 
 </web-app>

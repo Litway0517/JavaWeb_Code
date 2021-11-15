@@ -41,14 +41,13 @@ public class BookServiceImplTest {
 
     @Test
     public void queryBooks() {
-        List<Book> books = bookServiceImpl.queryBooks();
         System.out.println("第一种输出 -> enhanced for, 最方便的");
-        for (Book book : books) {
+        for (Book book : bookServiceImpl.queryBooks()) {
             System.out.println(book);
         }
 
         System.out.println("第二种遍历 -> 使用迭代器, 别忘了");
-        Iterator<Book> iterator = books.iterator();
+        Iterator<Book> iterator = bookServiceImpl.queryBooks().iterator();
         while (iterator.hasNext()) {
             Book next = iterator.next();
             System.out.println(next);

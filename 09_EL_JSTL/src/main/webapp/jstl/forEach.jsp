@@ -191,6 +191,10 @@
             items -> 表示数据源, 这里需要用EL表达式, 这个很容易忘记
             var -> 是每次操作的对象
             step -> 这个是每次循环的步长, 默认为1
+
+            status中呦很多有用的属性
+                current, index, count, first, last, begin, end, step. 这些都是需要对应到Getter()/Setter()上去的
+                注意boolean类型的成员变量对应的是isFrst()二不是getFirst()
         --%>
         <c:forEach begin="2" end="7" step="2" varStatus="status" items="${ requestScope.stuList }" var="item">
         <tr>

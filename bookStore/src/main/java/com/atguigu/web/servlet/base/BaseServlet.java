@@ -24,7 +24,7 @@ public abstract class BaseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 别忘了设置字符集, 很可能就出现乱码
-        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
         doPost(req, resp);
     }
 

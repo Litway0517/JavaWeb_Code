@@ -33,6 +33,7 @@ public class UserServlet extends BaseServlet {
 
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        resp.setContentType("text/html; charset=UTF-8");
         User user = WebUtils.copyParamsToBean(req.getParameterMap(), new User());
 
 
@@ -67,7 +68,10 @@ public class UserServlet extends BaseServlet {
 
 
         // 设置字符集
-        req.setCharacterEncoding("UTF-8");
+        // 这个设置字符集的API仅仅是设置了 服务器端 使用的字符集, 不用这个, 使用另一个, 一定要在获取响应流之前调用, 否则失效 -> resp.setContentType("text/html; charset=UTF-8");
+//        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+
 
         // 使用封装好的工具类, 获取到前端传入的参数, 并注入到新的user对象中
         User user = WebUtils.copyParamsToBean(req.getParameterMap(), new User());

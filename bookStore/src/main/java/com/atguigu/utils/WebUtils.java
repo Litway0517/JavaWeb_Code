@@ -1,6 +1,5 @@
 package com.atguigu.utils;
 
-import com.atguigu.pojo.User;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.util.Map;
@@ -27,9 +26,11 @@ public class WebUtils {
     public static <T> T copyParamsToBean(Map value, T bean) {
 
         try {
-            System.out.println("注入参数之前 -> " + bean);
+//            System.out.println("注入参数之前 -> " + bean);
+
             BeanUtils.populate(bean, value);
-            System.out.println("注入参数之后 -> " + bean);
+
+//            System.out.println("注入参数之后 -> " + bean);
         } catch (Exception e) {
             e.printStackTrace();
         }

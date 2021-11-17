@@ -23,6 +23,8 @@ public abstract class BaseServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 别忘了设置字符集, 很可能就出现乱码
+        req.setCharacterEncoding("UTF-8");
         doPost(req, resp);
     }
 
@@ -42,6 +44,7 @@ public abstract class BaseServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         // 前端的两个表单的input的name值都叫做action就行了, 所以传过来那个额都能够接收到
         String action = req.getParameter("action");
 

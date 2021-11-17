@@ -2,7 +2,9 @@ package com.atguigu.web.servlet.book;
 
 import com.atguigu.pojo.Book;
 import com.atguigu.service.impl.BookServiceImpl;
+import com.atguigu.utils.WebUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +50,24 @@ public class BookServlet extends BaseServlet {
      * @throws IOException      IO流异常
      */
     protected void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+
+        try {
+            // 读取前端传入得图书参数, 注入到Bean中
+            Book book = WebUtils.copyParamsToBean(req.getParameterMap(), new Book());
+
+            // 调用Service层(service层还会调用DAO层)保存到数据库
+            bookServiceImpl.addBook(book);
+
+            // 添加图书成功之后, 还需要再跳转到图书馆里界面
+            req.getRequestDispatcher("/manager/bookServlet?action=list").forward(req, resp);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

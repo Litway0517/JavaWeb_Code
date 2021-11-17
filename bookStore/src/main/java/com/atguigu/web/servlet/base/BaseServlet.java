@@ -1,4 +1,4 @@
-package com.atguigu.web.servlet;
+package com.atguigu.web.servlet.base;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +15,16 @@ import java.lang.reflect.Method;
  */
 public abstract class BaseServlet extends HttpServlet {
 
+    /*
+        客户端出现 405 错误码 -> HTTP method GET is not supported by this URL
+        意思是指, BookServlet中没有doGet()昂发, 因此就会向其继承的父类寻找doGet()方法, 发现父类也没有, 所以现在新增doGet()方法.
+        doGet()方法做的就是doPost()的事情. 直接跳转到doPost()中
+     */
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
 
     /**
      * 做帖子
@@ -39,6 +49,8 @@ public abstract class BaseServlet extends HttpServlet {
             // 获取反射对象
             Method method = this.getClass().getDeclaredMethod(action, HttpServletRequest.class, HttpServletResponse.class);
 
+            // 暴力反射 -> 避免某些方法是被 [private protected 默认] 这三种权限修饰的, 而导致访问失败
+            method.setAccessible(true);
             // 调用方法
             method.invoke(this, req, resp);
         } catch (Exception e) {

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -40,35 +41,25 @@
 				<td><a href="#">删除</a></td>
 			</tr>
 
-			<tr>
-				<td>时间简史</td>
-				<td>20.00</td>
-				<td>霍金</td>
-				<td>200</td>
-				<td>400</td>
-				<td><a href="book_edit.jsp">修改</a></td>
-				<td><a href="#">删除</a></td>
-			</tr>
 
-			<tr>
-				<td>时间简史</td>
-				<td>20.00</td>
-				<td>霍金</td>
-				<td>200</td>
-				<td>400</td>
-				<td><a href="book_edit.jsp">修改</a></td>
-				<td><a href="#">删除</a></td>
-			</tr>
+<%--			${ requestScope.books }--%>
+<%--			这个JSTL标签使用的时候, 一定要导包--%>
+			<c:forEach items="${ requestScope.books }" var="book">
 
-			<tr>
-				<td>时间简史</td>
-				<td>20.00</td>
-				<td>霍金</td>
-				<td>200</td>
-				<td>400</td>
-				<td><a href="book_edit.jsp">修改</a></td>
-				<td><a href="#">删除</a></td>
-			</tr>
+				<tr>
+					<td>${ book.bookName }</td>
+					<td>${ book.bookPrice }</td>
+					<td>${ book.bookAuthor }</td>
+					<td>${ book.bookSales }</td>
+					<td>${ book.bookStock }</td>
+					<td><a href="book_edit.jsp">修改</a></td>
+					<td><a href="#">删除</a></td>
+
+				</tr>
+			</c:forEach>
+
+
+
 
 			<tr>
 				<td></td>

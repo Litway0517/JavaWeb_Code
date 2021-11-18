@@ -102,6 +102,20 @@ public class BookServlet extends BaseServlet {
      * @throws IOException      IO流异常
      */
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        // 获取前端传过来的待删除的图书的 id编号 -> 实际上直接将参数均注入到一个新的Bean中
+        Book book = WebUtils.copyParamsToBean(req.getParameterMap(), new Book());
+
+        // 调用Service层的删除业务, 删除图书
+        bookServiceImpl.deleteBookById(book.getId());
+
+        // 重定向到, 查询数据列表界面
+        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
+
+
+
+
+
+
+
     }
 }

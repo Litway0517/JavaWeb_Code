@@ -9,6 +9,22 @@
 	<%--  改为静态包含 --%>
 	<%@ include file="/pages/common/header.jsp"%>
 
+	<script type="text/javascript">
+		$(function () {
+			// 再给标签加上class属性的时候, 不要有下划线
+			$("a.deleteClass").click(function () {
+				// 在事件function函数中, 有一个this对象, 他就是用户当前正在操作的对象. 这个this对象, 是当前正在相应的事件的DOM对象
+
+				// confirm函数, 点击确定, 则执行题型.
+				return confirm("Are you sure you want to delete this [" + $(this).parent().parent().find("td:first").text() + "] book? ");
+
+				// 点击取消, 则返回false, 组织元素的默认行为, 不提交请求
+				// return false;
+			});
+		});
+
+	</script>
+
 </head>
 <body>
 
@@ -42,8 +58,9 @@
 			</tr>
 
 
-<%--			${ requestScope.books }--%>
-<%--			这个JSTL标签使用的时候, 一定要导包--%>
+            <%-- ${ requestScope.books }--%>
+            <%-- 这个JSTL标签使用的时候, 一定要导包--%>
+            <%-- 注意删除图书的时候, 需要把图书的ID信息也带上, 否则后端不知道怎么删除图书 --%>
 			<c:forEach items="${ requestScope.books }" var="book">
 
 				<tr>
@@ -53,7 +70,7 @@
 					<td>${ book.bookSales }</td>
 					<td>${ book.bookStock }</td>
 					<td><a href="book_edit.jsp">修改</a></td>
-					<td><a href="#">删除</a></td>
+					<td><a class="deleteClass" href="manager/bookServlet?action=delete&id=${ book.id }">删除</a></td>
 
 				</tr>
 			</c:forEach>

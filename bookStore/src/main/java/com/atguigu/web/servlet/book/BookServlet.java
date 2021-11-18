@@ -89,7 +89,17 @@ public class BookServlet extends BaseServlet {
      * @throws IOException      IO流异常
      */
     protected void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        // 将请求的数据注入到Bean中
+        Book book = WebUtils.copyParamsToBean(req.getParameterMap(), new Book());
+
+        // 调用Service层的update更新方法, 完成业务
+        bookServiceImpl.updateBook(book);
+
+        // 重定向到图书的列表页面
+        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
+
+
+
     }
 
 
@@ -111,11 +121,33 @@ public class BookServlet extends BaseServlet {
         // 重定向到, 查询数据列表界面
         resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
 
+    }
 
 
+    /**
+     * 客户端点击图书的 修改按钮 时, 因为数据不能直接传入到另一个修改界面的jsp上面, 所以点击修改时先通过servlet, 再转发给修改界面回显
+     * @param req 请求参数
+     * @param resp 回复参数
+     * @throws ServletException Servlet异常
+     * @throws IOException IO异常
+     */
+    protected void getBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 客户端点击修改的时候, 先请求给servlet
+        Book book = WebUtils.copyParamsToBean(req.getParameterMap(), new Book());
 
+        // 根据前端传过来的book Bean对象, 抽取其中的id, 根据id查询
+        Book bookInfo = bookServiceImpl.queryBookById(book.getId());
 
+        // 将数据保存到request域中
+        req.setAttribute("bookInfo", bookInfo);
+
+        // 转发给 book_edit.jsp 修改界面
+        req.getRequestDispatcher("/pages/manager/book_edit.jsp").forward(req, resp);
 
 
     }
+
+
+
+
 }

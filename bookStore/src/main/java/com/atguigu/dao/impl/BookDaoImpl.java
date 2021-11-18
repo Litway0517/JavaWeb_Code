@@ -17,9 +17,9 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     @Override
     public int addBook(Book book) {
 
-        String sql = "INSERT INTO t_book(`book_name`,`book_author`,`book_price`,`book_sales`,`book_stock`,`book_img_path`) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO t_book(`book_name`,`book_author`,`book_price`,`book_sales`,`book_stock`,`del_flag`,`book_img_path`) VALUES(?,?,?,?,?,?,?)";
 
-        return updateForOne(sql, book.getBookName(), book.getBookAuthor(), book.getBookPrice(), book.getBookSales(), book.getBookStock(), book.getBookImgPath());
+        return updateForOne(sql, book.getBookName(), book.getBookAuthor(), book.getBookPrice(), book.getBookSales(), book.getBookStock(), null, book.getBookImgPath());
     }
 
     /**
@@ -31,9 +31,9 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     @Override
     public int updateBook(Book book) {
 
-        String sql = "UPDATE t_book SET `book_name`=?,`book_author`=?,`book_price`=?,`book_sales`=?,`book_stock`=?,`book_img_path`=? WHERE id=?";
+        String sql = "UPDATE t_book SET `book_name`=?,`book_author`=?,`book_price`=?,`book_sales`=?,`book_stock`=?,`del_flag`=?,`book_img_path`=? WHERE id=?";
 
-        return updateForOne(sql, book.getBookName(), book.getBookAuthor(), book.getBookPrice(), book.getBookSales(), book.getBookStock(), book.getBookImgPath(), book.getId());
+        return updateForOne(sql, book.getBookName(), book.getBookAuthor(), book.getBookPrice(), book.getBookSales(), book.getBookStock(), null, book.getBookImgPath(), book.getId());
     }
 
     /**
@@ -44,7 +44,9 @@ public class BookDaoImpl extends BaseDao implements BookDao {
      */
     @Override
     public int deleteBookById(Integer id) {
-        String sql = "DELETE FROM t_book WHERE id=?";
+//        String sql = "DELETE FROM t_book WHERE id=?";
+        // 增加一个软删除功能
+        String sql = "UPDATE t_book tb SET tb.`del_flag` = '2' WHERE tb.id=?";
         return updateForOne(sql, id);
     }
 
@@ -56,7 +58,7 @@ public class BookDaoImpl extends BaseDao implements BookDao {
      */
     @Override
     public Book queryBookById(Integer id) {
-        String sql = "SELECT `id`,`book_name` `bookName`,`book_author` `bookAuthor`,`book_price` `bookPrice`,`book_sales` `bookSales`,`book_stock` `bookStock`,`book_img_path` `bookImgPath` FROM t_book WHERE `id`=?";
+        String sql = "SELECT `id`,`book_name` `bookName`,`book_author` `bookAuthor`,`book_price` `bookPrice`,`book_sales` `bookSales`,`book_stock` `bookStock`,`del_flag` `bookDelFlag`,`book_img_path` `bookImgPath` FROM t_book WHERE `del_flag` = '0' AND `id`=?";
         return queryForOne(Book.class, sql, id);
     }
 
@@ -67,7 +69,7 @@ public class BookDaoImpl extends BaseDao implements BookDao {
      */
     @Override
     public List<Book> queryBooks() {
-        String sql = "SELECT `id`,`book_name` `bookName`,`book_author` `bookAuthor`,`book_price` `bookPrice`,`book_sales` `bookSales`,`book_stock` `bookStock`,`book_img_path` `bookImgPath` FROM t_book";
+        String sql = "SELECT `id`,`book_name` `bookName`,`book_author` `bookAuthor`,`book_price` `bookPrice`,`book_sales` `bookSales`,`book_stock` `bookStock`,`del_flag` `bookDelFlag`,`book_img_path` `bookImgPath` FROM t_book WHERE `del_flag` = '0' ";
         return queryForList(Book.class, sql);
     }
 }

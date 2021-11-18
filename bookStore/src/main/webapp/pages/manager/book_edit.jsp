@@ -33,6 +33,12 @@
 
 		</div>
 
+		<%-- 这里面读取不到数据, 注意. 保存在request域中是不行, 因为, request域仅仅是支持一次请求.  --%>
+<%--		<%=--%>
+<%--			request.getAttribute("bookInfo")--%>
+<%--		%>--%>
+<%--		${ requestScope.bookInfo }--%>
+
 		<div id="main">
 			<form action="manager/bookServlet" method="post">
 				<input type="hidden" name="action" value="add"/>
@@ -45,12 +51,13 @@
 						<td>库存</td>
 						<td colspan="2">操作</td>
 					</tr>
+
 					<tr>
-						<td><input name="bookName" type="text" value="时间简史"/></td>
-						<td><input name="bookPrice" type="text" value="30.00"/></td>
-						<td><input name="bookAuthor" type="text" value="霍金"/></td>
-						<td><input name="bookSales" type="text" value="200"/></td>
-						<td><input name="bookStock" type="text" value="300"/></td>
+						<td><input name="bookName" type="text" value="${ requestScope.bookInfo.bookName }" /></td>
+						<td><input name="bookPrice" type="text" value="${ requestScope.bookInfo.bookPrice }"/></td>
+						<td><input name="bookAuthor" type="text" value="${ requestScope.bookInfo.bookAuthor }"/></td>
+						<td><input name="bookSales" type="text" value="${ requestScope.bookInfo.bookSales }"/></td>
+						<td><input name="bookStock" type="text" value="${ requestScope.bookInfo.bookStock }"/></td>
 						<td><input type="submit" value="提交"/></td>
 					</tr>
 				</table>

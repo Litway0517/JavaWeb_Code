@@ -69,7 +69,7 @@
 					<td>${ book.bookAuthor }</td>
 					<td>${ book.bookSales }</td>
 					<td>${ book.bookStock }</td>
-					<td><a href="book_edit.jsp">修改</a></td>
+					<td><a href="manager/bookServlet?action=getBook&id=${ book.id }">修改</a></td>
 					<td><a class="deleteClass" href="manager/bookServlet?action=delete&id=${ book.id }">删除</a></td>
 
 				</tr>

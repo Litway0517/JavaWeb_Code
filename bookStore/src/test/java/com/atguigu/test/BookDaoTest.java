@@ -17,13 +17,13 @@ public class BookDaoTest {
     @Test
     public void addBook() {
 
-        bookDaoImpl.addBook(new Book(null, "国哥为什么那么帅?", "国哥", new BigDecimal(9999), 99999, 0, null));
+        bookDaoImpl.addBook(new Book(null, "国哥为什么那么帅?", "国哥", new BigDecimal(9999), 99999, 0, null, null));
     }
 
     @Test
     public void updateBook() {
 
-        bookDaoImpl.updateBook(new Book(23, "大家都可以这么帅", "国哥", new BigDecimal(999999), 101351, 15131351, null));
+        bookDaoImpl.updateBook(new Book(23, "大家都可以这么帅", "国哥", new BigDecimal(999999), 101351, 15131351, null, null));
     }
 
     @Test

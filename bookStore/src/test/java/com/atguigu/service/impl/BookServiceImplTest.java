@@ -21,12 +21,12 @@ public class BookServiceImplTest {
 
     @Test
     public void addBook() {
-        bookServiceImpl.addBook(new Book(null, "国哥在手, 天下我有!", "11259", new BigDecimal(10151), 10000000, 0, null));
+        bookServiceImpl.addBook(new Book(null, "国哥在手, 天下我有!", "11259", new BigDecimal(10151), 10000000, 0, null, null));
     }
 
     @Test
     public void updateBook() {
-        bookServiceImpl.updateBook(new Book(13, "大话西游", "罗贯中", new BigDecimal("35.7"), 5926, 3373, null));
+        bookServiceImpl.updateBook(new Book(13, "大话西游", "罗贯中", new BigDecimal("35.7"), 5926, 3373, null, null));
     }
 
     @Test

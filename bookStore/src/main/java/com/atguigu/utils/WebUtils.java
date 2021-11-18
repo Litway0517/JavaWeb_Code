@@ -38,6 +38,22 @@ public class WebUtils {
 
     }
 
+    /**
+     * 将字符串转换为int类型的数据
+     * @param strInt 传入的字符串类型的数值
+     * @param defaultValue
+     * @return 返回一个int类型的数据
+     */
+    public static int parseInt(String strInt, Integer defaultValue) {
+        try {
+            return Integer.parseInt(strInt, defaultValue);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return defaultValue;
+    }
+
+
 }
 
 

@@ -38,54 +38,55 @@
 	</div>
 
 	<div id="main">
-		<table>
-			<tr>
-				<td>名称</td>
-				<td>价格</td>
-				<td>作者</td>
-				<td>销量</td>
-				<td>库存</td>
-				<td colspan="2">操作</td>
-			</tr>
-			<tr>
-				<td>时间简史</td>
-				<td>20.00</td>
-				<td>霍金</td>
-				<td>200</td>
-				<td>400</td>
-				<td><a href="book_edit.jsp">修改</a></td>
-				<td><a href="#">删除</a></td>
-			</tr>
 
+        <form action="manager/bookServlet" method="post">
+            <input type="hidden" name="action" value="${ param.method }">
+            <table>
+                <tr>
+                    <td>名称</td>
+                    <td>价格</td>
+                    <td>作者</td>
+                    <td>销量</td>
+                    <td>库存</td>
+                    <td colspan="2">操作</td>
+                </tr>
+                <tr>
+                    <td>时间简史</td>
+                    <td>20.00</td>
+                    <td>霍金</td>
+                    <td>200</td>
+                    <td>400</td>
+                    <td><a href="book_edit.jsp">修改</a></td>
+                    <td><a href="#">删除</a></td>
+                </tr>
 
-            <%-- ${ requestScope.books }--%>
-            <%-- 这个JSTL标签使用的时候, 一定要导包--%>
-            <%-- 注意删除图书的时候, 需要把图书的ID信息也带上, 否则后端不知道怎么删除图书 --%>
-			<c:forEach items="${ requestScope.books }" var="book">
+                <%-- ${ requestScope.books }--%>
+                <%-- 这个JSTL标签使用的时候, 一定要导包--%>
+                <%-- 注意删除图书的时候, 需要把图书的ID信息也带上, 否则后端不知道怎么删除图书 --%>
+                <c:forEach items="${ requestScope.books }" var="book">
 
-				<tr>
-					<td>${ book.bookName }</td>
-					<td>${ book.bookPrice }</td>
-					<td>${ book.bookAuthor }</td>
-					<td>${ book.bookSales }</td>
-					<td>${ book.bookStock }</td>
-					<td><a href="manager/bookServlet?action=getBook&id=${ book.id }">修改</a></td>
-					<td><a class="deleteClass" href="manager/bookServlet?action=delete&id=${ book.id }">删除</a></td>
+                    <tr>
+                        <td>${ book.bookName }</td>
+                        <td>${ book.bookPrice }</td>
+                        <td>${ book.bookAuthor }</td>
+                        <td>${ book.bookSales }</td>
+                        <td>${ book.bookStock }</td>
+                        <td><a href="manager/bookServlet?action=getBook&id=${ book.id }&method=update">修改</a></td>
+                        <td><a class="deleteClass" href="manager/bookServlet?action=delete&id=${ book.id }">删除</a></td>
+                    </tr>
+                </c:forEach>
 
-				</tr>
-			</c:forEach>
-
-
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><a href="pages/manager/book_edit.jsp">添加图书</a></td>
-			</tr>
-		</table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="pages/manager/book_edit.jsp?method=add">添加图书</a></td>
+                </tr>
+            </table>
+        </form>
 	</div>
 
 	<%--  静态包含页脚内容 --%>

@@ -32,6 +32,11 @@
 			<%@ include file="/pages/common/manager_menu.jsp"%>
 
 		</div>
+        是否是添加操作: ${ empty param.id }
+        <%--
+            如果, 在更新的时候, 会包含id参数. 而新增图书的时候, 就不会有id参数.
+            所以, 可以判断
+        --%>
 
 		<%-- 这里面读取不到数据, 注意. 保存在request域中是不行, 因为, request域仅仅是支持一次请求.  --%>
 <%--		<%=--%>

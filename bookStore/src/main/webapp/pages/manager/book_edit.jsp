@@ -24,6 +24,8 @@
 </style>
 </head>
 <body>
+		第一种方式, 判断请求参数是否包含id -> 是否是添加操作: ${ empty param.id ? "add" : "update"} <br>
+		第二种方式, 判断requestScope域中book是否是空, 因为修改图书会经过servlet -> 是否是添加操作: ${ empty requestScope.book ? "add" : "update"}
 		<div id="header">
 			<img class="logo_img" alt="" src="../../static/img/logo.gif" >
 			<span class="wel_word">编辑图书</span>
@@ -32,7 +34,7 @@
 			<%@ include file="/pages/common/manager_menu.jsp"%>
 
 		</div>
-        是否是添加操作: ${ empty param.id }
+
         <%--
             如果, 在更新的时候, 会包含id参数. 而新增图书的时候, 就不会有id参数.
             所以, 可以判断
@@ -46,7 +48,8 @@
 
 		<div id="main">
 			<form action="manager/bookServlet" method="post">
-				<input type="hidden" name="action" value="add"/>
+				<input type="hidden" name="action" value="${ param.method }"/>
+				<input type="hidden" name="id" value="${ requestScope.bookInfo.id }"/>
 				<table>
 					<tr>
 						<td>名称</td>

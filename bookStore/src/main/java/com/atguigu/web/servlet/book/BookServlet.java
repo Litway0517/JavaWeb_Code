@@ -4,7 +4,6 @@ import com.atguigu.pojo.Book;
 import com.atguigu.service.impl.BookServiceImpl;
 import com.atguigu.utils.WebUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
-import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -70,8 +69,6 @@ public class BookServlet extends BaseServlet {
             */
             resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
 
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,8 +94,6 @@ public class BookServlet extends BaseServlet {
 
         // 重定向到图书的列表页面
         resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
-
-
 
     }
 
@@ -144,10 +139,6 @@ public class BookServlet extends BaseServlet {
         // 转发给 book_edit.jsp 修改界面
         req.getRequestDispatcher("/pages/manager/book_edit.jsp").forward(req, resp);
 
-
     }
-
-
-
 
 }

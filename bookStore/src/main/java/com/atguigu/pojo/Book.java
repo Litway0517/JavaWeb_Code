@@ -38,7 +38,7 @@ public class Book {
     /**
      * 本德尔国旗
      */
-    private String bookDelFlag;
+    private String bookDelFlag = "0";
     /**
      * 书img路径
      */

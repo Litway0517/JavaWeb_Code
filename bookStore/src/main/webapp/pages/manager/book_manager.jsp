@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>图书管理</title>
+    ${ param }
 
 	<%--  改为静态包含 --%>
 	<%@ include file="/pages/common/header.jsp"%>
@@ -38,7 +39,19 @@
 	</div>
 
 	<div id="main">
+        <%--
+            更新的时候, 需要先把选中的图书的原来的信息带到book_edit.jsp这个界面中.
+            所以, form表单的action属性, 还是 action="manager/bookServlet" . 不需要修改.
 
+            新增图书的时候, 所有信息都需要用户直接输入, 所以不需要带过去数据, 就不需要经过bookServlet这个web类.
+            所以 -> <a href="pages/manager/book_edit.jsp?method=add">添加图书</a>
+            携带的参数就是method=add
+
+            这样逻辑就不是很清晰. 因为, 本身就是book_manager.jsp界面.
+            添加图书 和 修改图书 都是一个界面, 就是book_edit.jsp界面完成的, 那么这个任务就应该由book_edit.jsp界面完成
+
+            但是转回来, 实际上这些界面都需要实现! (体会一下这句话)
+        --%>
         <form action="manager/bookServlet" method="post">
             <input type="hidden" name="action" value="${ param.method }">
             <table>

@@ -25,7 +25,7 @@
 </head>
 <body>
 		第一种方式, 判断请求参数是否包含id -> 是否是添加操作: ${ empty param.id ? "add" : "update"} <br>
-		第二种方式, 判断requestScope域中book是否是空, 因为修改图书会经过servlet -> 是否是添加操作: ${ empty requestScope.book ? "add" : "update"}
+		第二种方式, 判断requestScope域中book是否是空, 因为修改图书会经过servlet -> 是否是添加操作: ${ empty requestScope.bookInfo ? "add" : "update"}
 		<div id="header">
 			<img class="logo_img" alt="" src="../../static/img/logo.gif" >
 			<span class="wel_word">编辑图书</span>
@@ -48,7 +48,10 @@
 
 		<div id="main">
 			<form action="manager/bookServlet" method="post">
-				<input type="hidden" name="action" value="${ param.method }"/>
+				<input type="hidden" name="action" value="${ empty requestScope.bookInfo ? "add" : "update"}"/>
+                <%--
+                    在这里通过hidden隐藏于将id带到了后端, 实际上就是存储在了request.getParameterMap中了, 所以在注入参数的时候会将id也注入给后端的book的id成员变量
+                --%>
 				<input type="hidden" name="id" value="${ requestScope.bookInfo.id }"/>
 				<table>
 					<tr>

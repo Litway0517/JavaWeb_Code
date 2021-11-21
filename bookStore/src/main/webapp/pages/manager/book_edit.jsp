@@ -40,11 +40,26 @@
             所以, 可以判断
         --%>
 
-		<%-- 这里面读取不到数据, 注意. 保存在request域中是不行, 因为, request域仅仅是支持一次请求.  --%>
-<%--		<%=--%>
-<%--			request.getAttribute("bookInfo")--%>
-<%--		%>--%>
-<%--		${ requestScope.bookInfo }--%>
+		 <%--
+		    这里面读取不到数据, 注意. 保存在request域中是不行, 因为, request域仅仅是支持一次请求.
+
+            <%=
+                request.getAttribute("bookInfo")
+            %>
+            ${ requestScope.bookInfo }
+		 --%>
+
+
+        <%--
+            book_edit.jsp界面是用来修改图书的. 两个作用: 从 图书管理界面book_manager.jsp 新增和更改 改均是此界面
+            1- 新增时候, 是从book_manager界面直接跳转到此界面的, 不需要经过bookServlet界面
+            2- 更改时候, 需要将原来的图书数据带到book_edit.jsp界面
+
+            因此, 还可以通过判断是否经过bookServlet来确定具体是那种操作
+
+        --%>
+
+
 
 		<div id="main">
 			<form action="manager/bookServlet" method="post">

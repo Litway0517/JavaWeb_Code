@@ -36,7 +36,7 @@
                 </div>
                 <div class="form">
                     <form action="userServlet" method="post">
-                        <!-- 这是隐藏域, 后端根据此值能够判断前端穿过来的动作类型 -->
+                        <!-- 这是隐藏域, 后端根据此值能够判断前端传过来的动作类型: 登录 -->
                         <input type="hidden" name="action" value="login">
 
                         <label>用户名称：</label>

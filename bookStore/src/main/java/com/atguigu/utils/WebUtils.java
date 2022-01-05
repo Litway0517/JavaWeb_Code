@@ -5,7 +5,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import java.util.Map;
 
 /**
- * web跑龙套
+ * web工具类
  *
  * @author DELL
  * @date 2021/11/14

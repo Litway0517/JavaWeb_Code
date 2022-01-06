@@ -41,7 +41,7 @@ public class WebUtils {
     /**
      * 将字符串转换为int类型的数据
      * @param strInt 传入的字符串类型的数值
-     * @param defaultValue
+     * @param defaultValue 默认数据
      * @return 返回一个int类型的数据
      */
     public static int parseInt(String strInt, Integer defaultValue) {

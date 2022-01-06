@@ -35,6 +35,13 @@
                     </span>
                 </div>
                 <div class="form">
+                    <%--
+                        这里, action=userServlet是因为, 在上面的<%@ include ... %>这个标签, 包含了一个<base>标签
+                        因此, 提供了前面的地址信息(如下), 最后加上userServlet即可, 通过web.xml文件就能讲改次form表单的请求发送到目的Servlet上
+                            http://
+                            ip:port
+                            /工程路径名
+                    --%>
                     <form action="userServlet" method="post">
                         <!-- 这是隐藏域, 后端根据此值能够判断前端传过来的动作类型: 登录 -->
                         <input type="hidden" name="action" value="login">

@@ -17,13 +17,13 @@ public abstract class BaseServlet extends HttpServlet {
 
     /*
         客户端出现 405 错误码 -> HTTP method GET is not supported by this URL
-        意思是指, BookServlet中没有doGet()昂发, 因此就会向其继承的父类寻找doGet()方法, 发现父类也没有, 所以现在新增doGet()方法.
+        意思是指, BookServlet中没有doGet()方法, 因此就会向其继承的父类寻找doGet()方法, 发现父类也没有, 所以现在新增doGet()方法.
         doGet()方法做的就是doPost()的事情. 直接跳转到doPost()中
      */
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 别忘了设置字符集, 很可能就出现乱码
+        // 别忘了设置字符集, 很可能就出现乱码 -> setContentType()方法, 能够将客户端和服务器端一次性都设置成UTF-8类型
         resp.setContentType("text/html; charset=UTF-8");
         doPost(req, resp);
     }
@@ -35,7 +35,8 @@ public abstract class BaseServlet extends HttpServlet {
      * @param resp 分别地
      * @throws ServletException servlet异常
      * @throws IOException      IO异常
-     *//*
+     */
+    /*
         bookStore UserServlet程序是继承自BaseServlet的, 当请求从客户端传到userServlet这个路由的时候,
         就会先寻找doPost()这个方法, 如果没找到就回去父类找, 所以就是BaseServlet的doPost了,
         此时已经初始化了UserServlet和BaseServlet程序, 所以能够找到login方法
@@ -49,7 +50,7 @@ public abstract class BaseServlet extends HttpServlet {
         String action = req.getParameter("action");
 
         try {
-            // 获取反射对象
+            // 获取反射对象 -> 注意, 这个this就是userServlet对象 并不是现在的BaseServlet对象. 通过反射拿到方法名再掉用! 
             Method method = this.getClass().getDeclaredMethod(action, HttpServletRequest.class, HttpServletResponse.class);
 
             // 暴力反射 -> 避免某些方法是被 [private protected 默认] 这三种权限修饰的, 而导致访问失败

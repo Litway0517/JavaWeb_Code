@@ -37,6 +37,8 @@
 
     <%-- 代码脚本, 先在域中存放数据, 然后再获取 --%>
     <%
+        // 存数据当然是存在jsp的九大内置对象中的四个域对象中, 而不是存储在EL的域中, EL对象本身是用来使用的而不是用来存储的
+        // EL对象是用来访问jsp九大内置对象的
         request.setAttribute("req", "req");
         session.setAttribute("session", "session");
         application.setAttribute("application", "application");

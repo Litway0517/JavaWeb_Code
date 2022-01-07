@@ -23,7 +23,7 @@
     输出header中的内容
     <hr>
     请求头 -> ${ header } <br>
-    输出请求头中的[user-agent] -> ${ header.user-agent } (这样就是0, 因为-号的原因)<br>
+    输出请求头中的[user-agent] -> ${ header.user-agent } (这样就是0, 因为-号的原因, 需要加上单引号)<br>
     输出请求头中的[user-agent] -> ${ header['user-agent'] } (这里是正确的)<br>
     输出请求头中的[Connection] -> ${ header.Connection } <br>
 

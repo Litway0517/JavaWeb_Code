@@ -1,4 +1,7 @@
+<%-- 下面是jsp界面包含的一句声明 jsp文件特有的 不用纠结 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>

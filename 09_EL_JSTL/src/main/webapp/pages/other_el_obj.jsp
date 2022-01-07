@@ -43,7 +43,7 @@
     <hr>
     现在还未赋值 -> ${ initParam } <br>
     已经赋值 -> ${ initParam.username } <br>
-    这里不需要重新部署web服务器才能够生效
+    这里需要重新部署web服务器才能够生效
 
 
 </body>

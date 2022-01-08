@@ -34,8 +34,16 @@ public class BookServlet extends BaseServlet {
         // s1 -> 通过DAO层, 查询到数据
         List<Book> books = bookServiceImpl.queryBooks();
         // s2 -> 将数据保存到request域中, 别忘了域对象是前后端数据交换的一个重要手段
+        /*
+            中间一段时间挺了没接续看视频, 因为上学期期末考试复习. 这里有一些疑惑, 再写一下.
+            1- request这个实例对象, 包含了所有的信息.
+                为什么前端的请求就自动的将所有的信息都封装好了? 这是Tomcat的功劳, Tomcat自动将客户端请求封装成一个HttpServletRequest对象, 供我们使用.
+            2- 前端的请求封装在了request实例对象中, 我们从中解析出来最重要的需求参数, 然后按照需求获取到数据库中的相关数据后, 查询好.
+                按照逻辑, 存储到请求的域中, 即request域, 有时也会存储到pageScope, session, application中. 这几个域的生命周期一个比一个长.
+            3- 这样前端就能够使用EL表达式结合11个隐含对象输出到客户端, 达成目的.
+         */
         req.setAttribute("books", books);
-        // s3 -> 请求转发. 因为请求转发算作一次请求, 所以s2是可行的.
+        // s3 -> 请求转发. 因为请求转发算作一次请求, 所以s2是可行的. 当数据存储好了之后, 不要忘记了转发!
         req.getRequestDispatcher("/pages/manager/book_manager.jsp").forward(req, resp);
     }
 

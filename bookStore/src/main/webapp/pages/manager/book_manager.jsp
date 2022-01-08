@@ -56,6 +56,10 @@
             但是转回来, 实际上这些界面都需要实现! (体会一下这句话)
         --%>
         <form action="manager/bookServlet" method="post">
+            <%--
+                form表单中的input标签, 里面的name标签固定为action, 但是其值是变化的, 而后端正是利用这个变化的值,
+                来确定客户端传过来的是什么需求, 新增, 添加, 删除, 修改等.
+             --%>
             <input type="hidden" name="action" value="${ param.method }">
             <table>
                 <tr>

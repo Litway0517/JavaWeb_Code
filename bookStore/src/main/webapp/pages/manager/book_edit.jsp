@@ -65,7 +65,7 @@
 			<form action="manager/bookServlet" method="post">
 				<input type="hidden" name="action" value="${ empty requestScope.bookInfo ? "add" : "update"}"/>
                 <%--
-                    在这里通过hidden隐藏于将id带到了后端, 实际上就是存储在了request.getParameterMap中了, 所以在注入参数的时候会将id也注入给后端的book的id成员变量
+                    在这里通过hidden隐藏域将id带到了后端, 实际上就是存储在了request.getParameterMap中了, 所以在注入参数的时候会将id也注入给后端的book的id成员变量
                 --%>
 				<input type="hidden" name="id" value="${ requestScope.bookInfo.id }"/>
 				<table>
@@ -84,6 +84,11 @@
 						<td><input name="bookAuthor" type="text" value="${ requestScope.bookInfo.bookAuthor }"/></td>
 						<td><input name="bookSales" type="text" value="${ requestScope.bookInfo.bookSales }"/></td>
 						<td><input name="bookStock" type="text" value="${ requestScope.bookInfo.bookStock }"/></td>
+
+						<%--
+							form表单中, 点击 [提交] 按钮, 会把整个form标签下面的数据发送给 form标签的action 属性指定的值的目标地址.
+							此时, 提交动作会把, input中的隐藏于的值提交给目标地址, 把table中的每一行的值提交给目标地址.
+						 --%>
 						<td><input type="submit" value="提交"/></td>
 					</tr>
 				</table>

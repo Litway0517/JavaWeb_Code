@@ -45,18 +45,22 @@
         value -> 用来设置key对应的value值  <br>
 
 
+    <br>
+    <h3>这里是测试</h3>
+    <hr>
 
-
-    这里是测试 ===> <br>
     保存之前 -> ${ requestScope.key }  <br>
     <c:set scope="request" var="key" value="abcValue" />
     保存之后 -> ${ requestScope.key }  <br>
 
     <br><br>
     <hr>
-<%--
-    标签: <c:if ></c:if>  用来做简单判断
---%>
+
+
+    <%--
+        标签: <c:if ></c:if>  用来做简单判断
+            test属性, 用来填写EL表达式, 注意EL表达式需要用双引号引起来
+    --%>
     <c:if test="${ 12==12 }">
         <h3>如果test中的内容为真(test需要用EL表达式写出来), 则执行c:if标签中的内容, 即此处的内容.</h3>
         没有if-else语句
@@ -77,7 +81,7 @@
             1、标签里不能使用 html 注释，要使用 jsp 注释
             2、when 标签的父标签一定要是 choose 标签
     --%>
-<%--    先保存数据--%>
+    <%-- 先保存数据 --%>
     <%
         request.setAttribute("height", 17);
     %>

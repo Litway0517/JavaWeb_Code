@@ -15,7 +15,7 @@
 <head>
     <title>forEach标签</title>
 
-<%--    添加样式--%>
+    <%-- 添加样式 --%>
     <style type="text/css">
 
         table{
@@ -99,7 +99,7 @@
 
 <%--    这个语句会输出三次, 具体的次数就是数据源hashMap的长度--%>
     <c:forEach items="${ requestScope.hashMap }" var="entry">
-        ${ entry } <br>
+        键值对: ${ entry } <br>
         只获取key -> ${ entry.key } <br>
         只获取value -> ${ entry.value } <br><br>
     </c:forEach>

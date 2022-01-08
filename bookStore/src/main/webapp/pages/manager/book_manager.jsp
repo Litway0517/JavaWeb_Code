@@ -5,7 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>图书管理</title>
-    ${ param }
+    <h3>测试打印</h3>
+    <hr>
+    ${ param } <br/>
+    实例 -> 使用EL表达式输出后端传回的所有图书中的一本图书: ${ requestScope.books[10] }
 
 	<%--  改为静态包含 --%>
 	<%@ include file="/pages/common/header.jsp"%>
@@ -63,6 +66,8 @@
                     <td>库存</td>
                     <td colspan="2">操作</td>
                 </tr>
+
+                <%-- 一个写成固定方式的书 --%>
                 <tr>
                     <td>时间简史</td>
                     <td>20.00</td>

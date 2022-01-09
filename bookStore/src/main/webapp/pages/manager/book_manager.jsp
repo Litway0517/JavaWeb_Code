@@ -71,7 +71,8 @@
                     <td colspan="2">操作</td>
                 </tr>
 
-                <%-- 一个写成固定方式的书 --%>
+                <%-- 原来这本固定的书, 现在注释掉
+                &lt;%&ndash; 一个写成固定方式的书 &ndash;%&gt;
                 <tr>
                     <td>时间简史</td>
                     <td>20.00</td>
@@ -81,11 +82,13 @@
                     <td><a href="book_edit.jsp">修改</a></td>
                     <td><a href="#">删除</a></td>
                 </tr>
+                --%>
+
 
                 <%-- ${ requestScope.books }--%>
                 <%-- 这个JSTL标签使用的时候, 一定要导包--%>
                 <%-- 注意删除图书的时候, 需要把图书的ID信息也带上, 否则后端不知道怎么删除图书 --%>
-                <c:forEach items="${ requestScope.books }" var="book">
+                <c:forEach items="${ requestScope.page.items }" var="book">
 
                     <tr>
                         <td>${ book.bookName }</td>

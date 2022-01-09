@@ -21,23 +21,23 @@ public class Page<T> {
     public static final Integer PAGE_SIZE = 4;
 
     /**
-     * 页面没有
+     * 页面编号
      */
     private Integer pageNo;
     /**
-     * 页面大小
+     * 页面大小, 显示多少条图书数据
      */
     private Integer pageSize = PAGE_SIZE;
     /**
-     * 页面总数
+     * 总记录, 共多少条记录. 总记录数
      */
     private Integer pageTotalCount;
     /**
-     * 页面总
+     * 页面总数, 共多少页. 总页数
      */
     private Integer pageTotal;
     /**
-     * 项目
+     * 每一页中, 具体的图书的数据
      */
     private List<T> items;
 

@@ -149,10 +149,10 @@
                 console.log("页码 -> ", inputPageNo);
                 console.log("当前地址栏地址 -> ", location.href);
 
-                if (!(((inputPageNo < 1) || (inputPageNo > pageTotal)))) {
-                    location.href = "${ pageScope.basePath }manager/bookServlet?action=page&pageNo=" + inputPageNo;
-                } else {
+                if ((inputPageNo < 1) || (inputPageNo > pageTotal)) {
                     alert("请输入正确的页码数目! ");
+                } else {
+                    location.href = "${ pageScope.basePath }manager/bookServlet?action=page&pageNo=" + inputPageNo;
                 }
             });
         });

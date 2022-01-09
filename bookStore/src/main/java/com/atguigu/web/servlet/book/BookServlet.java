@@ -1,6 +1,8 @@
 package com.atguigu.web.servlet.book;
 
 import com.atguigu.pojo.Book;
+import com.atguigu.pojo.Page;
+import com.atguigu.service.BookService;
 import com.atguigu.service.impl.BookServiceImpl;
 import com.atguigu.utils.WebUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
@@ -146,6 +148,24 @@ public class BookServlet extends BaseServlet {
 
         // 转发给 book_edit.jsp 修改界面
         req.getRequestDispatcher("/pages/manager/book_edit.jsp").forward(req, resp);
+
+    }
+
+
+    protected void page(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1- 获取请求的参数 pageNo 和 pageSize
+        int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 1);
+        int pageSize = WebUtils.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
+
+        // 2- 调用BookService.page(pageNo, pageSeize): Page对象
+        Page<Book> page = bookServiceImpl.page(pageNo, pageSize);
+
+        // 3- 保存到request域中, 这是前后端交互数据的重要手段
+        req.setAttribute("page", page);
+
+        // 4- 请求转发到, pages/book_manage.jsp中
+        req.getRequestDispatcher("pages/manager/book_manager.jsp").forward(req, resp);
+
 
     }
 

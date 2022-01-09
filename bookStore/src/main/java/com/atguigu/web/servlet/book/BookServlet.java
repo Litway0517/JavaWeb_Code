@@ -156,6 +156,10 @@ public class BookServlet extends BaseServlet {
         int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 1);
         int pageSize = WebUtils.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
 
+        /*
+            在这里需要做数据的边界有效性校验, 这里放在service层来实现
+         */
+
         // 2- 调用BookService.page(pageNo, pageSeize): Page对象
         Page<Book> page = bookServiceImpl.page(pageNo, pageSize);
 

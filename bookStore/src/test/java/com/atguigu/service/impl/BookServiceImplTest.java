@@ -1,6 +1,7 @@
 package com.atguigu.service.impl;
 
 import com.atguigu.pojo.Book;
+import com.atguigu.pojo.Page;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -52,5 +53,11 @@ public class BookServiceImplTest {
             Book next = iterator.next();
             System.out.println(next);
         }
+    }
+
+    @Test
+    public void page() {
+        Page<Book> page = bookServiceImpl.page(2, 4);
+        System.out.println(page);
     }
 }

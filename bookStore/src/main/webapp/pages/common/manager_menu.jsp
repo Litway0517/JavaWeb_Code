@@ -20,7 +20,14 @@
 
         这里面细节有点多
     --%>
-    <a href="manager/bookServlet?action=list">图书管理</a>
+
+<%--    <a href="manager/bookServlet?action=list">图书管理</a>--%>
+
+    <%--
+        上面一行是以前我们没有分页的时候的写法, 当点击 [图书管理] 按钮时, 即执行BookServlet的list方法, 查询所有的图书.
+        而, 现在我们需要分页, 那么当点击 [图书管理] 按钮时, 应当先执行page分页方法, 故action动作改成page
+     --%>
+    <a href="manager/bookServlet?action=page">图书管理</a>
     <a href="pages/manager/order_manager.jsp">订单管理</a>
     <a href="index.jsp">返回商城</a>
 </div>

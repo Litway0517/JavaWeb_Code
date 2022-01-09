@@ -56,6 +56,17 @@ public class Page<T> {
      * @param pageNo 页面没有
      */
     public void setPageNo(Integer pageNo) {
+        /*
+            从地址栏中输入非法页码然后访问, 前端js脚本是不能检测到的, 需要后端来检测. 在设置这个值之前检测
+            如果地址栏中输入的页码小于1, 则最后赋值1
+            如果地址栏中输入的页码大于最大页码max, 则最后赋值最大页码max
+         */
+        if (pageNo < 1) {
+            pageNo = 1;
+        }
+        if (pageNo > pageTotal) {
+            pageNo = pageTotal;
+        }
         this.pageNo = pageNo;
     }
 

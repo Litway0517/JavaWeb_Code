@@ -29,13 +29,13 @@ public class Page<T> {
      */
     private Integer pageSize = PAGE_SIZE;
     /**
-     * 总记录, 共多少条记录. 总记录数
-     */
-    private Integer pageTotalCount;
-    /**
      * 页面总数, 共多少页. 总页数
      */
     private Integer pageTotal;
+    /**
+     * 总记录, 共多少条记录. 总记录数
+     */
+    private Integer pageTotalCount;
     /**
      * 每一页中, 具体的图书的数据
      */
@@ -78,24 +78,6 @@ public class Page<T> {
     }
 
     /**
-     * 获取页面总数
-     *
-     * @return {@link Integer}
-     */
-    public Integer getPageTotalCount() {
-        return pageTotalCount;
-    }
-
-    /**
-     * 设置页面总数
-     *
-     * @param pageTotalCount 页面总数
-     */
-    public void setPageTotalCount(Integer pageTotalCount) {
-        this.pageTotalCount = pageTotalCount;
-    }
-
-    /**
      * 获取页面总
      *
      * @return {@link Integer}
@@ -111,6 +93,24 @@ public class Page<T> {
      */
     public void setPageTotal(Integer pageTotal) {
         this.pageTotal = pageTotal;
+    }
+
+    /**
+     * 获取页面总数
+     *
+     * @return {@link Integer}
+     */
+    public Integer getPageTotalCount() {
+        return pageTotalCount;
+    }
+
+    /**
+     * 设置页面总数
+     *
+     * @param pageTotalCount 页面总数
+     */
+    public void setPageTotalCount(Integer pageTotalCount) {
+        this.pageTotalCount = pageTotalCount;
     }
 
     /**

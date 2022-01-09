@@ -145,9 +145,15 @@
             // 当点击确定按钮时的操作
             $("#searchPageBtn").click(function () {
                 const inputPageNo = $("#pn_input").val();
+                let pageTotal = ${ requestScope.page.pageTotal };
                 console.log("页码 -> ", inputPageNo);
                 console.log("当前地址栏地址 -> ", location.href);
-                location.href = "http://localhost:8080/bookStore/manager/bookServlet?action=page&pageNo=" + inputPageNo;
+
+                if (!(((inputPageNo < 1) || (inputPageNo > pageTotal)))) {
+                    location.href = "${ pageScope.basePath }manager/bookServlet?action=page&pageNo=" + inputPageNo;
+                } else {
+                    alert("请输入正确的页码数目! ");
+                }
             });
         });
     </script>

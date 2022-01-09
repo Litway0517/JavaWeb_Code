@@ -99,7 +99,6 @@ public class BookServiceImpl implements BookService {
         page.setPageTotalCount(pageTotalCount);
 
 
-
         // 4- 设置总页码数
         // 先计算总页码数
         int pageTotal = pageTotalCount / pageSize;
@@ -107,6 +106,17 @@ public class BookServiceImpl implements BookService {
             pageTotal += 1;
         }
         page.setPageTotal(pageTotal);
+
+        /*
+            如果地址栏中输入的页码小于1, 则最后赋值1
+            如果地址栏中输入的页码大于最大页码max, 则最后赋值最大页码max
+         */
+        if (pageNo < 1) {
+            pageNo = 1;
+        }
+        if (pageNo > pageTotal) {
+            pageNo = pageTotal;
+        }
 
 
         // 5- 设置items的值, 就是查询当前页的数据

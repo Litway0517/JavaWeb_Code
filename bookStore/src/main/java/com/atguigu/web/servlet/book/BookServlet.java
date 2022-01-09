@@ -164,7 +164,7 @@ public class BookServlet extends BaseServlet {
         req.setAttribute("page", page);
 
         // 4- 请求转发到, pages/book_manage.jsp中
-        req.getRequestDispatcher("pages/manager/book_manager.jsp").forward(req, resp);
+        req.getRequestDispatcher("/pages/manager/book_manager.jsp").forward(req, resp);
 
 
     }

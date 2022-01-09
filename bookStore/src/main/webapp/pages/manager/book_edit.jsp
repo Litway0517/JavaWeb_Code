@@ -65,7 +65,8 @@
 			<form action="manager/bookServlet" method="post">
 				<input type="hidden" name="action" value="${ empty requestScope.bookInfo ? "add" : "update"}"/>
                 <%--
-                    在这里通过hidden隐藏域将id带到了后端, 实际上就是存储在了request.getParameterMap中了, 所以在注入参数的时候会将id也注入给后端的book的id成员变量
+                    在这里通过hidden隐藏域将id带到了后端, 实际上就是存储在了request域中, 使用request.getParameterMap("id")便可以获得,
+                    所以在注入参数的时候会将id也注入给后端的book的id成员变量
                 --%>
 				<input type="hidden" name="id" value="${ requestScope.bookInfo.id }"/>
 				<table>

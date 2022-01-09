@@ -18,7 +18,8 @@ public class BookServiceImpl implements BookService {
 
     /**
      * 书刀impl
-     */ // Service的具体实现, 一般都是依赖于DAO层, 先导入
+     */
+    // Service的具体实现, 一般都是依赖于DAO层, 先导入
     private final BookDaoImpl bookDaoImpl = new BookDaoImpl();
 
 
@@ -84,8 +85,36 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Page<Book> page(int pageNo, int pageSize) {
+        Page<Book> page = new Page<Book>();
 
-        return null;
+        // 1- 设置当前页码
+        page.setPageNo(pageNo);
+
+        // 2- 设置每页显示的图书数量
+        page.setPageSize(pageSize);
+
+        // 3- 设置总记录数 -> 调用DAO层, 进行查询
+        // 先查库计算总的记录数
+        Integer pageTotalCount = bookDaoImpl.queryForPageTotalCount();
+        page.setPageTotalCount(pageTotalCount);
+
+
+
+        // 4- 设置总页码数
+        // 先计算总页码数
+        int pageTotal = pageTotalCount / pageSize;
+        if (pageTotalCount % pageSize > 0) {
+            pageTotal += 1;
+        }
+        page.setPageTotal(pageTotal);
+
+
+        // 5- 设置items的值, 就是查询当前页的数据
+        int begin = (page.getPageNo() - 1) * pageSize;
+        List<Book> items = bookDaoImpl.queryForPageItems(begin, pageSize);
+        page.setItems(items);
+
+        return page;
     }
 }
 

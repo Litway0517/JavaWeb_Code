@@ -6,6 +6,7 @@ import java.util.List;
 
 
 /**
+ * 书刀
  * 书DAO
  *
  * @author DELL
@@ -15,6 +16,7 @@ public interface BookDao {
 
 
     /**
+     * 添加书
      * 添加的书
      *
      * @param book 书
@@ -24,6 +26,7 @@ public interface BookDao {
 
 
     /**
+     * 更新书
      * 更新的书
      *
      * @param book 书
@@ -44,7 +47,7 @@ public interface BookDao {
      * 通过id查询书
      *
      * @param id id
-     * @return {@code Book}
+     * @return {@link Book}
      */
     public Book queryBookById(Integer id);
 
@@ -52,10 +55,26 @@ public interface BookDao {
     /**
      * 查询图书
      *
-     * @return {@code List<Book>}
+     * @return {@link List}<{@link Book}> 查询所有图书
      */
     public List<Book> queryBooks();
 
+
+    /**
+     * 查询页面总数
+     *
+     * @return {@link Integer} 返回记录的总数, 即数据库中的表里面有多少条数据, 多少本书.
+     */
+    public Integer queryForPageTotalCount();
+
+    /**
+     * 查询页面项目
+     *
+     * @param begin    开始
+     * @param pageSize 页面大小
+     * @return {@link List}<{@link Book}> 根据前端的请求, 返回该页的数据, 第1, 2, 3, ... 页
+     */
+    public List<Book> queryForPageItems(int begin, int pageSize);
 
 
 

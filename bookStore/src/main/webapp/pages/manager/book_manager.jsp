@@ -33,7 +33,7 @@
 <body>
 
 	<div id="header">
-		<img class="logo_img" alt="" src="../../static/img/logo.gif" >
+		<img class="logo_img" alt="" src="static/img/logo.gif" >
 		<span class="wel_word">图书管理系统</span>
 
 		<%--  静态包含管理界面 --%>
@@ -112,7 +112,45 @@
                 </tr>
             </table>
         </form>
+
+        <%-- 将分页的控件添加上去 --%>
+
+        <div id="page_nav">
+            <%-- 因为下面一直使用pageNo这个变量, 索性就把该变量给存储起来, 换个名字, 不然下面每次用到的话名字很长 --%>
+            <c:set scope="page" var="pageNo" value="${ requestScope.page.pageNo }"/>
+            <c:if test="${ pageNo > 1 }">
+                <a href="manager/bookServlet?action=page&pageNo=1">首页</a>&nbsp;
+                <a href="manager/bookServlet?action=page&pageNo=${ pageNo - 1 }">上一页</a>&nbsp;
+                <a href="manager/bookServlet?action=page&pageNo=${ pageNo - 1 }">${ pageNo - 1 }</a>&nbsp;
+            </c:if>
+             [${ pageNo }]&nbsp;
+            <%--
+                再写a超链接标签的href标签的值时, 无论写多长, 都不能换行, 否则的话请求的地址就会莫名其妙出现 空格
+            --%>
+            <c:if test="${ pageNo < requestScope.page.pageTotal }">
+                <a href="manager/bookServlet?action=page&pageNo=${ pageNo + 1 }">${ pageNo + 1 }</a>&nbsp;
+                <a href="manager/bookServlet?action=page&pageNo=${ pageNo + 1 }">下一页</a>&nbsp;&nbsp;
+                <a href="manager/bookServlet?action=page&pageNo=${ requestScope.page.pageTotal }">末页</a>&nbsp;&nbsp;
+            </c:if>
+            共 ${ requestScope.page.pageTotal } 页, ${ requestScope.page.pageTotalCount } 条记录&nbsp;&nbsp;
+            到第<input value="${ pageNo }" name="pn" id="pn_input"/>页
+            <input id="searchPageBtn" type="button" value="确定">
+        </div>
 	</div>
+
+    <%-- 这一小段js脚本是为了服务, 客户端输入任意一页时的跳转 --%>
+    <script type="text/javascript">
+        // 当页面加载完成这段js才能够相应, 别忘了, 这点很容易出错误, 而且不容易找出
+        $(function () {
+            // 当点击确定按钮时的操作
+            $("#searchPageBtn").click(function () {
+                const inputPageNo = $("#pn_input").val();
+                console.log("页码 -> ", inputPageNo);
+                console.log("当前地址栏地址 -> ", location.href);
+                location.href = "http://localhost:8080/bookStore/manager/bookServlet?action=page&pageNo=" + inputPageNo;
+            });
+        });
+    </script>
 
 	<%--  静态包含页脚内容 --%>
 	<%@ include file="/pages/common/footer.jsp"%>

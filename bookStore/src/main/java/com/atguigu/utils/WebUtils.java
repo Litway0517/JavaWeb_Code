@@ -44,11 +44,11 @@ public class WebUtils {
      * @param defaultValue 默认数据
      * @return 返回一个int类型的数据
      */
-    public static int parseInt(String strInt, Integer defaultValue) {
+    public static int parseInt(String strInt, int defaultValue) {
         try {
             /*
                 return Integer.parseInt(strInt, defaultValue);
-                String strInt, int redix
+                String strInt, int radix
                 原来这一行是这样写的, 不知道是因为视频的原因还是因为什么? 压根就是错的, 导致调试了一会时间
              */
             return Integer.parseInt(strInt);

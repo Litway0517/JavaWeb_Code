@@ -2,7 +2,6 @@ package com.atguigu.web.servlet.book;
 
 import com.atguigu.pojo.Book;
 import com.atguigu.pojo.Page;
-import com.atguigu.service.BookService;
 import com.atguigu.service.impl.BookServiceImpl;
 import com.atguigu.utils.WebUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
@@ -77,7 +76,7 @@ public class BookServlet extends BaseServlet {
                 而响应报文resp在相应的时候, /  会被解析为port部分, 也就是说缺少了ContextPath(). 所以前面要加上, 都是细节, 需要复习.
                 重定向跳转的路由是 -> /manager/bookServlet?action=list
             */
-            resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
+            resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,7 +102,7 @@ public class BookServlet extends BaseServlet {
         bookServiceImpl.updateBook(book);
 
         // 重定向到图书的列表页面
-        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
+        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page");
 
     }
 
@@ -124,7 +123,7 @@ public class BookServlet extends BaseServlet {
         bookServiceImpl.deleteBookById(book.getId());
 
         // 重定向到, 查询数据列表界面
-        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
+        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page");
 
     }
 

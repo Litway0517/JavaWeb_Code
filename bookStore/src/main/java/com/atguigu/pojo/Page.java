@@ -17,7 +17,7 @@ public class Page<T> {
     /**
      * 页面大小
      */// pageSeize是一个常量, 这是根据我们前端的布局设置的, 每页4条数据
-    public static final Integer PAGE_SIZE = 4;
+    public static final Integer PAGE_SIZE = 2;
 
     /**
      * 页面编号

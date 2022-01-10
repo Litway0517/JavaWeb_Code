@@ -87,17 +87,15 @@ public class BookServiceImpl implements BookService {
     public Page<Book> page(int pageNo, int pageSize) {
         Page<Book> page = new Page<Book>();
 
-        // 1- 设置当前页码
-        page.setPageNo(pageNo);
-
-        // 2- 设置每页显示的图书数量
-        page.setPageSize(pageSize);
-
+        /*
+            设置pageNo时, 出现了异常, 原因是此时还没有pageTotal值(看一下Page实体类就知道了).
+            所以, 调整一下赋值顺序. pageTotal -> pageTotalCount -> pageNo
+            其他顺序不做要求, 而pageNo必须在pageTotal后面赋值
+         */
         // 3- 设置总记录数 -> 调用DAO层, 进行查询
         // 先查库计算总的记录数
         Integer pageTotalCount = bookDaoImpl.queryForPageTotalCount();
         page.setPageTotalCount(pageTotalCount);
-
 
         // 4- 设置总页码数
         // 先计算总页码数
@@ -106,6 +104,12 @@ public class BookServiceImpl implements BookService {
             pageTotal += 1;
         }
         page.setPageTotal(pageTotal);
+
+        // 1- 设置当前页码
+        page.setPageNo(pageNo);
+
+        // 2- 设置每页显示的图书数量
+        page.setPageSize(pageSize);
 
         /*
             如果地址栏中输入的页码小于1, 则最后赋值1

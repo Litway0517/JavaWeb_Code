@@ -63,8 +63,8 @@ public class Page<T> {
         if (pageNo < 1) {
             pageNo = 1;
         }
-        if (pageNo > pageTotal) {
-            pageNo = pageTotal;
+        if (pageNo > this.pageTotal) {
+            pageNo = this.pageTotal;
         }
         this.pageNo = pageNo;
     }

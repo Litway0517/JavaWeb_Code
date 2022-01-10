@@ -85,8 +85,6 @@ public class BookServlet extends BaseServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -99,6 +97,8 @@ public class BookServlet extends BaseServlet {
      * @throws IOException      IO流异常
      */
     protected void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 修改之后仍要跳转到原来的界面
+        int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 0);
         // 将请求的数据注入到Bean中
         Book book = WebUtils.copyParamsToBean(req.getParameterMap(), new Book());
 
@@ -106,7 +106,7 @@ public class BookServlet extends BaseServlet {
         bookServiceImpl.updateBook(book);
 
         // 重定向到图书的列表页面
-        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page");
+        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page&pageNo=" + pageNo);
 
     }
 
@@ -120,6 +120,9 @@ public class BookServlet extends BaseServlet {
      * @throws IOException      IO流异常
      */
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 分页功能添加之后: 删除图书还需要再跳转到相应的页码
+        int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 0);
+
         // 获取前端传过来的待删除的图书的 id编号 -> 实际上直接将参数均注入到一个新的Bean中
         Book book = WebUtils.copyParamsToBean(req.getParameterMap(), new Book());
 
@@ -127,7 +130,7 @@ public class BookServlet extends BaseServlet {
         bookServiceImpl.deleteBookById(book.getId());
 
         // 重定向到, 查询数据列表界面
-        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page");
+        resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page&pageNo=" + pageNo);
 
     }
 

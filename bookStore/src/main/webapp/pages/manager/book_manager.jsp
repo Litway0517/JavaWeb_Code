@@ -143,12 +143,8 @@
             <c:choose>
                 <%-- 情况1: 如果总的页码数<5, 那么就显示1到最大页码数.  --%>
                 <c:when test="${ pageTotal <= 5 }">
-                    <c:forEach begin="1" end="${ pageTotal }" var="i">
-                        <c:if test="${ i == pageNo }"> 【${ i }】 </c:if>
-                        <c:if test="${ i != pageNo }">
-                            <a href="manager/bookServlet?action=page&pageNo=${ i }">${i}</a>
-                        </c:if>
-                    </c:forEach>
+                    <c:set var="begin" value="1" />
+                    <c:set var="end" value="${ pageTotal }" />
                 </c:when>
                 <%-- 情况2: 如果总页数>5, 需要进行如下处理. 假设有10页 --%>
                 <c:when test="${ pageTotal > 5 }">
@@ -156,35 +152,31 @@
                     <c:choose>
                         <%-- 小情况1: 页码为前面3个的情况: 1, 2, 3, 页码范围为: 1-5 --%>
                         <c:when test="${ pageNo <= 3 }">
-                            <c:forEach begin="1" end="5" var="i">
-                                <c:if test="${ i == pageNo }"> 【${ i }】 </c:if>
-                                <c:if test="${ i != pageNo }">
-                                    <a href="manager/bookServlet?action=page&pageNo=${ i }">${i}</a>
-                                </c:if>
-                            </c:forEach>
+                            <c:set var="begin" value="1" />
+                            <c:set var="end" value="5" />
                         </c:when>
                         <%-- 小情况2: 当前页码为最后3个: 8, 9, 10 --%>
                         <c:when test="${ pageNo > pageTotal - 3 }">
-                            <c:forEach begin="${ pageTotal - 4 }" end="${ pageTotal }" var="i">
-                                <c:if test="${ i == pageNo }"> 【${ i }】 </c:if>
-                                <c:if test="${ i != pageNo }">
-                                    <a href="manager/bookServlet?action=page&pageNo=${ i }">${i}</a>
-                                </c:if>
-                            </c:forEach>
+                            <c:set var="begin" value="${ pageTotal - 4 }" />
+                            <c:set var="end" value="${ pageTotal }" />
                         </c:when>
                         <%-- 小情况3: 4, 5, 6, 7, 页码范围是: 当前页码-2 到 当前页码+2 --%>
                         <c:otherwise>
-                            <c:forEach begin="${ pageNo - 2 }" end="${ pageNo + 2 }" var="i">
-                                <c:if test="${ i == pageNo }"> 【${ i }】 </c:if>
-                                <c:if test="${ i != pageNo }">
-                                    <a href="manager/bookServlet?action=page&pageNo=${ i }">${i}</a>
-                                </c:if>
-                            </c:forEach>
+                            <c:set var="begin" value="${pageNo - 2 }" />
+                            <c:set var="end" value="${ pageNo + 2 }" />
                         </c:otherwise>
                     </c:choose>
                 </c:when>
             </c:choose>
             <%-- 页码输出的结束 --%>
+
+            <%-- 代码优化: 因为forEach只执行一次, 因此上面我们只需要记录下来begin和end的值即可, 让forEach在下面执行 --%>
+                <c:forEach begin="${ begin }" end="${ end }" var="i">
+                    <c:if test="${ i == pageNo }"> 【${ i }】 </c:if>
+                    <c:if test="${ i != pageNo }">
+                        <a href="manager/bookServlet?action=page&pageNo=${ i }">${i}</a>
+                    </c:if>
+                </c:forEach>
 
 
 

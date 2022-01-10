@@ -69,6 +69,9 @@
                     所以在注入参数的时候会将id也注入给后端的book的id成员变量
                 --%>
 				<input type="hidden" name="id" value="${ requestScope.bookInfo.id }"/>
+
+				<%-- 将添加图书时的页码数目带过来, 在这里存储到隐藏于, 一并发给bookServlet --%>
+				<input type="hidden" name="pageNo" value="${ param.pageNo }"/>
 				<table>
 					<tr>
 						<td>名称</td>

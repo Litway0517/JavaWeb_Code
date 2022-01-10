@@ -58,6 +58,9 @@ public class BookServlet extends BaseServlet {
      * @throws IOException      IO流异常
      */
     protected void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 前端在添加书籍的时候, 后端处理完成之后需要再跳到最后一页. 先获取pageNo再让它始终+1
+        int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 0);
+        pageNo += 1;
 
         try {
             // 读取前端传入得图书参数, 注入到Bean中
@@ -73,11 +76,12 @@ public class BookServlet extends BaseServlet {
                 因为, 请求转发算作一次请求. 当我们点击提交的时候, 浏览器会记录下最后一次得请求, 就是manager/bookServlet. 当按下F5时, 还会执行添加图书得动作, 这是一个bug.
                 所以改用重定向. 重定向是由resp, 相应报文发送的重定向, 而不是请求报文req
 
-                而响应报文resp在相应的时候, /  会被解析为port部分, 也就是说缺少了ContextPath(). 所以前面要加上, 都是细节, 需要复习.
+                而响应报文resp在响应的时候, /  会被解析为port部分, 也就是说缺少了ContextPath(). 所以前面要加上, 都是细节, 需要复习.
                 重定向跳转的路由是 -> /manager/bookServlet?action=list
-            */
-            resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page");
 
+                添加了分页功能之后的路径是 -> /manager/bookServlet?action=page
+            */
+            resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page&pageNo=" + pageNo);
         } catch (Exception e) {
             e.printStackTrace();
         }

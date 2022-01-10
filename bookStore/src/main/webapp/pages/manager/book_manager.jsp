@@ -106,8 +106,8 @@
                         <td>${ book.bookAuthor }</td>
                         <td>${ book.bookSales }</td>
                         <td>${ book.bookStock }</td>
-                        <td><a href="manager/bookServlet?action=getBook&id=${ book.id }&method=update">修改</a></td>
-                        <td><a class="deleteClass" href="manager/bookServlet?action=delete&id=${ book.id }">删除</a></td>
+                        <td><a href="manager/bookServlet?action=getBook&id=${ book.id }&method=update&pageNo=${ pageNo }">修改</a></td>
+                        <td><a class="deleteClass" href="manager/bookServlet?action=delete&id=${ book.id }&pageNo=${ pageNo }">删除</a></td>
                     </tr>
                 </c:forEach>
 

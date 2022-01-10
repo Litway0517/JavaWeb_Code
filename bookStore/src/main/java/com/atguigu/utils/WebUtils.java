@@ -1,6 +1,7 @@
 package com.atguigu.utils;
 
 import org.apache.commons.beanutils.BeanUtils;
+import sun.invoke.empty.Empty;
 
 import java.util.Map;
 
@@ -45,29 +46,25 @@ public class WebUtils {
      * @return 返回一个int类型的数据
      */
     public static int parseInt(String strInt, int defaultValue) {
-        try {
+        // 估计这样写还会出现其他的逻辑错误
+        if ((strInt != null) && (!strInt.equals("")))
+        {
+            try {
             /*
                 return Integer.parseInt(strInt, defaultValue);
                 String strInt, int radix
                 原来这一行是这样写的, 不知道是因为视频的原因还是因为什么? 压根就是错的, 导致调试了一会时间
+
+                这个WenUtils有很大问题, 很多边界没有检查, 导致使用的时候出现了很多错误和异常.
              */
-            return Integer.parseInt(strInt);
-        } catch (Exception e) {
+                return Integer.parseInt(strInt);
+            } catch (Exception e) {
 //            e.printStackTrace();
-            System.out.println("waiting for parsing parameter 'strInt' is not a String, " +
-                                "so throwing a NumberFormatException. " + "\n" +
-                                "Reason: The first parameter is a null or zero length String. ");
+                System.out.println("waiting for parsing parameter 'strInt' is not a String, " +
+                        "so throwing a NumberFormatException. " + "\n" +
+                        "Reason: The first parameter is a null or zero length String. ");
+            }
         }
         return defaultValue;
     }
-
-
 }
-
-
-
-
-
-
-
-

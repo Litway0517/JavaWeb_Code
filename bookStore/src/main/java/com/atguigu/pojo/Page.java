@@ -2,16 +2,15 @@ package com.atguigu.pojo;
 
 import java.util.List;
 
-/**
- * 页面
- *
- * @author DELL_
- * @date 2022/01/09
- */
 
 /**
+ * Page是一个复用类
  * Page是分页的模型, 分页可能分的是, 每一页书, 每一页商户, 每一页订单, 每一页用户等等等等. 因此后面我们需要使用泛型
  * @param <T> T是泛型类型
+ *
+ * 页面
+ * @author DELL_
+ * @date 2022/01/09
  */
 public class Page<T> {
 

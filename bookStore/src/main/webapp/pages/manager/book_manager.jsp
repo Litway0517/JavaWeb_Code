@@ -56,6 +56,15 @@
 
             但是转回来, 实际上这些界面都需要实现! (体会一下这句话)
         --%>
+
+        <%--
+            因为下面一直使用pageNo(当前页码), pageTotalCount(总记录数)和pageTotal(总页数)变量,
+            索性就把该变量给存储起来, 换个名字, 不然下面每次用到的话名字很长
+        --%>
+        <c:set scope="request" var="pageNo" value="${ requestScope.page.pageNo }"/>
+        <c:set scope="request" var="pageTotalCount" value="${ requestScope.page.pageTotalCount }"/>
+        <C:set scope="request" var="pageTotal" value="${ requestScope.page.pageTotal }"/>
+
         <form action="manager/bookServlet" method="post">
             <%--
                 form表单中的input标签, 里面的name标签固定为action, 但是其值是变化的, 而后端正是利用这个变化的值,
@@ -109,7 +118,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><a href="pages/manager/book_edit.jsp?method=add">添加图书</a></td>
+                    <td><a href="pages/manager/book_edit.jsp?method=add&pageNo=${ pageTotal }">添加图书</a></td>
                 </tr>
             </table>
         </form>
@@ -117,14 +126,6 @@
         <%-- 将分页的控件添加上去 --%>
 
         <div id="page_nav">
-            <%--
-                因为下面一直使用pageNo(当前页码), pageTotalCount(总记录数)和pageTotal(总页数)变量,
-                索性就把该变量给存储起来, 换个名字, 不然下面每次用到的话名字很长
-            --%>
-            <c:set scope="request" var="pageNo" value="${ requestScope.page.pageNo }"/>
-            <c:set scope="request" var="pageTotalCount" value="${ requestScope.page.pageTotalCount }"/>
-            <C:set scope="request" var="pageTotal" value="${ requestScope.page.pageTotal }"/>
-
             <c:if test="${ pageNo > 1 }">
                 <a href="manager/bookServlet?action=page&pageNo=1">首页</a>&nbsp;
                 <a href="manager/bookServlet?action=page&pageNo=${ pageNo - 1 }">上一页</a>&nbsp;

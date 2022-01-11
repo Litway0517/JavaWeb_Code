@@ -85,7 +85,7 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Page<Book> page(int pageNo, int pageSize) {
-        Page<Book> page = new Page<Book>();
+        Page<Book> page = new Page<>();
 
         /*
             设置pageNo时, 出现了异常, 原因是此时还没有pageTotal值(看一下Page实体类就知道了).
@@ -115,12 +115,6 @@ public class BookServiceImpl implements BookService {
             如果地址栏中输入的页码小于1, 则最后赋值1
             如果地址栏中输入的页码大于最大页码max, 则最后赋值最大页码max
          */
-        /*if (pageNo < 1) {
-            pageNo = 1;
-        }
-        if (pageNo > pageTotal) {
-            pageNo = pageTotal;
-        }*/
 
 
         // 5- 设置items的值, 就是查询当前页的数据

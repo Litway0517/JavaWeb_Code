@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
         一般处理业务时, 都需要调用数据库, 而 "与数据库相关的操作" 我们全部封装到了DAO层.
         即, 先实例化一个DAO对象. 固然, 处理哪个Bean对象, 就导入哪个Bean对象对应的DAO呗.
      */
-    private UserDaoImpl userDao = new UserDaoImpl();
+    private final UserDaoImpl userDao = new UserDaoImpl();
 
 
     /**

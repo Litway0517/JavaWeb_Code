@@ -93,8 +93,8 @@
                         <td>${ book.bookAuthor }</td>
                         <td>${ book.bookSales }</td>
                         <td>${ book.bookStock }</td>
-                        <td><a href="manager/bookServlet?action=getBook&id=${ book.id }&method=update&pageNo=${ pageNo }">修改</a></td>
-                        <td><a class="deleteClass" href="manager/bookServlet?action=delete&id=${ book.id }&pageNo=${ pageNo }">删除</a></td>
+                        <td><a href="manager/bookServlet?action=getBook&id=${ book.id }&method=update&pageNo=${ requestScope.page.pageNo }">修改</a></td>
+                        <td><a class="deleteClass" href="manager/bookServlet?action=delete&id=${ book.id }&pageNo=${ requestScope.page.pageNo }">删除</a></td>
                     </tr>
                 </c:forEach>
 
@@ -105,7 +105,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><a href="pages/manager/book_edit.jsp?method=add&pageNo=${ pageTotal }">添加图书</a></td>
+                    <td><a href="pages/manager/book_edit.jsp?method=add&pageNo=${ requestScope.page.pageTotal }">添加图书</a></td>
                 </tr>
             </table>
         </form>

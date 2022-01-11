@@ -61,9 +61,9 @@
             因为下面一直使用pageNo(当前页码), pageTotalCount(总记录数)和pageTotal(总页数)变量,
             索性就把该变量给存储起来, 换个名字, 不然下面每次用到的话名字很长
         --%>
-        <c:set scope="request" var="pageNo" value="${ requestScope.page.pageNo }"/>
+        <%--<c:set scope="request" var="pageNo" value="${ requestScope.page.pageNo }"/>
         <c:set scope="request" var="pageTotalCount" value="${ requestScope.page.pageTotalCount }"/>
-        <C:set scope="request" var="pageTotal" value="${ requestScope.page.pageTotal }"/>
+        <C:set scope="request" var="pageTotal" value="${ requestScope.page.pageTotal }"/>--%>
 
         <form action="manager/bookServlet" method="post">
             <%--
@@ -113,45 +113,45 @@
 
         <%-- 将分页的控件添加上去 --%>
         <div id="page_nav">
-            <c:if test="${ pageNo > 1 }">
+            <c:if test="${ requestScope.page.pageNo > 1 }">
                 <a href="manager/bookServlet?action=page&pageNo=1">首页</a>&nbsp;
-                <a href="manager/bookServlet?action=page&pageNo=${ pageNo - 1 }">上一页</a>&nbsp;
+                <a href="manager/bookServlet?action=page&pageNo=${ requestScope.page.pageNo - 1 }">上一页</a>&nbsp;
             </c:if>
             <%-- 更改原有代码, 页码的显示换成了新的需求, 见PDF文档.
-                <a href="manager/bookServlet?action=page&pageNo=${ pageNo - 1 }">${ pageNo - 1 }</a>&nbsp;
-                [${ pageNo }]&nbsp;
+                <a href="manager/bookServlet?action=page&pageNo=${ requestScope.page.pageNo - 1 }">${ requestScope.page.pageNo - 1 }</a>&nbsp;
+                [${ requestScope.page.pageNo }]&nbsp;
             --%>
             <%--
                 再写a超链接标签的href标签的值时, 无论写多长, 都不能换行, 否则的话请求的地址就会莫名其妙出现 空格, 导致访问异常
             --%>
-            <%--<a href="manager/bookServlet?action=page&pageNo=${ pageNo + 1 }">${ pageNo + 1 }</a>&nbsp;--%>
+            <%--<a href="manager/bookServlet?action=page&pageNo=${ requestScope.page.pageNo + 1 }">${ requestScope.page.pageNo + 1 }</a>&nbsp;--%>
 
             <%-- TODO: 新需求: 显示 5 个连续的页码，而且当前页码在中间。除了当前页码之外，每个页码都可以点击跳到指定页。 --%>
             <%-- 页码输出的开始 --%>
             <c:choose>
                 <%-- 情况1: 如果总的页码数<5, 那么就显示1到最大页码数.  --%>
-                <c:when test="${ pageTotal <= 5 }">
+                <c:when test="${ requestScope.page.pageTotal <= 5 }">
                     <c:set var="begin" value="1" />
-                    <c:set var="end" value="${ pageTotal }" />
+                    <c:set var="end" value="${ requestScope.page.pageTotal }" />
                 </c:when>
                 <%-- 情况2: 如果总页数>5, 需要进行如下处理. 假设有10页 --%>
-                <c:when test="${ pageTotal > 5 }">
+                <c:when test="${ requestScope.page.pageTotal > 5 }">
                     <%-- 页码数大于5时, 还需要分为三种小情况 --%>
                     <c:choose>
                         <%-- 小情况1: 页码为前面3个的情况: 1, 2, 3, 页码范围为: 1-5 --%>
-                        <c:when test="${ pageNo <= 3 }">
+                        <c:when test="${ requestScope.page.pageNo <= 3 }">
                             <c:set var="begin" value="1" />
                             <c:set var="end" value="5" />
                         </c:when>
                         <%-- 小情况2: 当前页码为最后3个: 8, 9, 10 --%>
-                        <c:when test="${ pageNo > pageTotal - 3 }">
-                            <c:set var="begin" value="${ pageTotal - 4 }" />
-                            <c:set var="end" value="${ pageTotal }" />
+                        <c:when test="${ requestScope.page.pageNo > requestScope.page.pageTotal - 3 }">
+                            <c:set var="begin" value="${ requestScope.page.pageTotal - 4 }" />
+                            <c:set var="end" value="${ requestScope.page.pageTotal }" />
                         </c:when>
                         <%-- 小情况3: 4, 5, 6, 7, 页码范围是: 当前页码-2 到 当前页码+2 --%>
                         <c:otherwise>
-                            <c:set var="begin" value="${pageNo - 2 }" />
-                            <c:set var="end" value="${ pageNo + 2 }" />
+                            <c:set var="begin" value="${requestScope.page.pageNo - 2 }" />
+                            <c:set var="end" value="${ requestScope.page.pageNo + 2 }" />
                         </c:otherwise>
                     </c:choose>
                 </c:when>
@@ -160,20 +160,20 @@
 
             <%-- 代码优化: 因为forEach只执行一次, 因此上面我们只需要记录下来begin和end的值即可, 让forEach在下面执行 --%>
                 <c:forEach begin="${ begin }" end="${ end }" var="i">
-                    <c:if test="${ i == pageNo }"> 【${ i }】 </c:if>
-                    <c:if test="${ i != pageNo }">
+                    <c:if test="${ i == requestScope.page.pageNo }"> 【${ i }】 </c:if>
+                    <c:if test="${ i != requestScope.page.pageNo }">
                         <a href="manager/bookServlet?action=page&pageNo=${ i }">${i}</a>
                     </c:if>
                 </c:forEach>
 
 
 
-            <c:if test="${ pageNo < pageTotal }">
-                <a href="manager/bookServlet?action=page&pageNo=${ pageNo + 1 }">下一页</a>&nbsp;&nbsp;
-                <a href="manager/bookServlet?action=page&pageNo=${ pageTotal }">末页</a>&nbsp;&nbsp;
+            <c:if test="${ requestScope.page.pageNo < requestScope.page.pageTotal }">
+                <a href="manager/bookServlet?action=page&pageNo=${ requestScope.page.pageNo + 1 }">下一页</a>&nbsp;&nbsp;
+                <a href="manager/bookServlet?action=page&pageNo=${ requestScope.page.pageTotal }">末页</a>&nbsp;&nbsp;
             </c:if>
-            &nbsp;&nbsp;共 ${ pageTotal } 页, ${ pageTotalCount } 条记录&nbsp;&nbsp;
-            到第<input value="${ pageNo }" name="pn" id="pn_input"/>页
+            &nbsp;&nbsp;共 ${ requestScope.page.pageTotal } 页, ${ requestScope.page.pageTotalCount } 条记录&nbsp;&nbsp;
+            到第<input value="${ requestScope.page.pageNo }" name="pn" id="pn_input"/>页
             <input id="searchPageBtn" type="button" value="确定">
         </div>
 	</div>

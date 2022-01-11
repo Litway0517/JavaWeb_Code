@@ -52,6 +52,14 @@ public class ClientBookServlet extends BaseServlet {
     }
 
 
+    /**
+     * 页面
+     *
+     * @param req  要求事情
+     * @param resp 分别地
+     * @throws ServletException servlet异常
+     * @throws IOException      IO异常
+     */
     protected void pageByPrice(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1- 获取请求参数
         int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 1);

@@ -81,8 +81,8 @@
 		<%-- 将分页的控件添加上去 --%>
 		<div id="page_nav">
 			<c:if test="${ requestScope.page.pageNo > 1 }">
-				<a href="client/bookServlet?action=page&pageNo=1">首页</a>&nbsp;
-				<a href="client/bookServlet?action=page&pageNo=${ requestScope.page.pageNo - 1 }">上一页</a>&nbsp;
+				<a href="${ requestScope.page.url }&pageNo=1">首页</a>&nbsp;
+				<a href="${ requestScope.page.url }&pageNo=${ requestScope.page.pageNo - 1 }">上一页</a>&nbsp;
 			</c:if>
 
 			<%-- TODO: 新需求: 显示 5 个连续的页码，而且当前页码在中间。除了当前页码之外，每个页码都可以点击跳到指定页。 --%>
@@ -121,15 +121,15 @@
 			<c:forEach begin="${ begin }" end="${ end }" var="i">
 				<c:if test="${ i == requestScope.page.pageNo }"> 【${ i }】 </c:if>
 				<c:if test="${ i != requestScope.page.pageNo }">
-					<a href="client/bookServlet?action=page&pageNo=${ i }">${i}</a>
+					<a href="${ requestScope.page.url }&pageNo=${ i }">${i}</a>
 				</c:if>
 			</c:forEach>
 
 
 
 			<c:if test="${ requestScope.page.pageNo < requestScope.page.pageTotal }">
-				<a href="client/bookServlet?action=page&pageNo=${ requestScope.page.pageNo + 1 }">下一页</a>&nbsp;&nbsp;
-				<a href="client/bookServlet?action=page&pageNo=${ requestScope.page.pageTotal }">末页</a>&nbsp;&nbsp;
+				<a href="${ requestScope.page.url }&pageNo=${ requestScope.page.pageNo + 1 }">下一页</a>&nbsp;&nbsp;
+				<a href="${ requestScope.page.url }&pageNo=${ requestScope.page.pageTotal }">末页</a>&nbsp;&nbsp;
 			</c:if>
 			&nbsp;&nbsp;共 ${ requestScope.page.pageTotal } 页, ${ requestScope.page.pageTotalCount } 条记录&nbsp;&nbsp;
 			到第<input value="${ requestScope.page.pageNo }" name="pn" id="pn_input"/>页
@@ -149,7 +149,7 @@
                 if ((inputPageNo < 1) || (inputPageNo > pageTotal)) {
                     alert("请输入正确的页码数目! ");
                 } else {
-                    location.href = "${ pageScope.basePath }client/bookServlet?action=page&pageNo=" + inputPageNo;
+                    location.href = "${ pageScope.basePath }${ requestScope.page.url }&pageNo=" + inputPageNo;
                 }
             });
         });

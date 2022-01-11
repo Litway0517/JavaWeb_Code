@@ -60,4 +60,11 @@ public class BookServiceImplTest {
         Page<Book> page = bookServiceImpl.page(2, 4);
         System.out.println(page);
     }
+
+    @Test
+    public void pageByPrice() {
+        Page<Book> page = bookServiceImpl.pageByPrice(1, 4, 0, 10);
+        System.out.println(page);
+    }
+
 }

@@ -4,7 +4,6 @@ import com.atguigu.dao.BaseDao;
 import com.atguigu.dao.BookDao;
 import com.atguigu.pojo.Book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -112,4 +111,31 @@ public class BookDaoImpl extends BaseDao implements BookDao {
         return books;
     }
 
+    /**
+     * 根据最小价格和最大价格进行分页(与上面不同就是添加了限制条件), 查询符合指定价格区间的图书共有多少本
+     * @param minPrice 最小价格
+     * @param maxPrice 最大价格
+     * @return 处于指定价格区间中的书本一共有多少本
+     */
+    @Override
+    public Integer queryForPageTotalCountByPrice(int minPrice, int maxPrice) {
+        String sql = "SELECT COUNT(*) FROM `t_book` WHERE `del_flag` = 0 AND `book_price` BETWEEN ? AND ?";
+        Number num = (Number) queryForSingleValue(sql, minPrice, maxPrice);
+        return num.intValue();
+    }
+
+    /**
+     * 查询到该页中具体的书籍
+     * @param begin 从第几条数据开始查询
+     * @param pageSize 本次查询的长度. 实际上这个就是每页中书本的数量. 此时指的是4
+     * @param minPrice 最小价格
+     * @param maxPrice 最大价格
+     * @return 第1页, 2, 3, ...
+     */
+    @Override
+    public List<Book> queryForPageItemsByPrice(int begin, int pageSize, int minPrice, int maxPrice) {
+        String sql = "SELECT `id`,`book_name` `bookName`,`book_author` `bookAuthor`,`book_price` `bookPrice`,`book_sales` `bookSales`,`book_stock` `bookStock`,`del_flag` `bookDelFlag`,`book_img_path` `bookImgPath` FROM t_book WHERE `del_flag` = '0' AND (`book_price` BETWEEN ? AND ?) ORDER BY `book_price` ASC LIMIT ?,?";
+        List<Book> books = queryForList(Book.class, sql, minPrice, maxPrice, begin, pageSize);
+        return books;
+    }
 }

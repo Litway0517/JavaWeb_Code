@@ -166,8 +166,6 @@
                     </c:if>
                 </c:forEach>
 
-
-
             <c:if test="${ requestScope.page.pageNo < requestScope.page.pageTotal }">
                 <a href="manager/bookServlet?action=page&pageNo=${ requestScope.page.pageNo + 1 }">下一页</a>&nbsp;&nbsp;
                 <a href="manager/bookServlet?action=page&pageNo=${ requestScope.page.pageTotal }">末页</a>&nbsp;&nbsp;

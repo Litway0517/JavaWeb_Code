@@ -135,8 +135,26 @@
 			到第<input value="${ requestScope.page.pageNo }" name="pn" id="pn_input"/>页
 			<input id="searchPageBtn" type="button" value="确定">
 		</div>
-
 	</div>
+
+    <%-- 这一小段js脚本是为了服务, 客户端输入任意一页时的跳转 --%>
+    <script type="text/javascript">
+        // 当页面加载完成这段js才能够相应, 别忘了, 这点很容易出错误, 而且不容易找出
+        $(function () {
+            // 当点击确定按钮时的操作
+            $("#searchPageBtn").click(function () {
+                const inputPageNo = $("#pn_input").val();
+                let pageTotal = ${ requestScope.page.pageTotal };
+
+                if ((inputPageNo < 1) || (inputPageNo > pageTotal)) {
+                    alert("请输入正确的页码数目! ");
+                } else {
+                    location.href = "${ pageScope.basePath }manager/bookServlet?action=page&pageNo=" + inputPageNo;
+                }
+            });
+        });
+    </script>
+
 
 	<%--  静态包含页脚内容 --%>
 	<%@ include file="/pages/common/footer.jsp"%>

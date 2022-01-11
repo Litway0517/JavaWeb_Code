@@ -77,8 +77,23 @@ public class ClientBookServlet extends BaseServlet {
         // 2- 调用bookServiceImpl根据前端传递过来的参数, 最小价格和最大价格在表中进行搜索
         Page<Book> page = bookServiceImpl.pageByPrice(pageNo, pageSize, minPrice, maxPrice);
 
+        /*
+            因为一上来, 这个方法就是专门用来处理主页上的带价格限制的分页功能的, 所以, 前端肯定传过来了价格区间, 那么下面我们再设置url是就要加上
+         */
+
+        // 增加设置价格区间
+        StringBuilder sb = new StringBuilder("client/bookServlet?action=pageByPrice");
+        // 如果有最小价格就追加到分页的地址参数中
+        if (req.getParameter("min") != null) {
+            sb.append("&min=").append(req.getParameter("min"));
+        }
+        // 最大价格也是一样
+        if (req.getParameter("max") != null) {
+            sb.append("&max=").append(req.getParameter("max"));
+        }
         // 3- 设置page类的url地址
-        page.setUrl("client/bookServlet?action=pageByPrice");
+        page.setUrl(sb.toString());
+
 
         // 4- 将数据保存到request域中
         req.setAttribute("page", page);

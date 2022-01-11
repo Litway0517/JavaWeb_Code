@@ -62,8 +62,13 @@ public interface BookService {
      */
     public Page<Book> page(int pageNo, int pageSize);
 
-
-
-
-
+    /**
+     * 根据最小价格和最大价格分页
+     * @param pageNo 第几页, 页码
+     * @param pageSize 页码大小, 默认为4
+     * @param minPrice 前端传过来的最小价格
+     * @param maxPrice 前端传过来的最大价格
+     * @return 返回的是根据最小价格最大价格的Page实体对象
+     */
+    public Page<Book> pageByPrice(int pageNo, int pageSize, int minPrice, int maxPrice);
 }

@@ -30,7 +30,6 @@ public class ClientBookServlet extends BaseServlet {
      * @throws IOException      IO异常
      */
     protected void page(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         // 1- 获取请求的参数 pageNo 和 pageSize
         int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 1);
         int pageSize = WebUtils.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
@@ -50,5 +49,35 @@ public class ClientBookServlet extends BaseServlet {
 
         // 4- 请求转发到, web目录下的index将请求转发给了pages下面的index. 但是中间经过servlet, 因此下面更改
         req.getRequestDispatcher("/pages/client/index.jsp").forward(req, resp);
+    }
+
+
+    protected void pageByPrice(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1- 获取请求参数
+        int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 1);
+        int pageSize = WebUtils.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
+
+        /*
+            req.getParameter("待获取的参数的名字")
+            如果前端是通过form表单传过来的话, input输入标签的变量值的获取, 应该填写这个标签的name属性的值. 这样就能获取到
+         */
+        int minPrice = WebUtils.parseInt(req.getParameter("min"), 0);
+        // 这里, 价格的最大值如果没写就直接设置Integer包装类的最大值
+        int maxPrice = WebUtils.parseInt(req.getParameter("max"), Integer.MAX_VALUE);
+
+
+        // 2- 调用bookServiceImpl根据前端传递过来的参数, 最小价格和最大价格在表中进行搜索
+        Page<Book> page = bookServiceImpl.pageByPrice(pageNo, pageSize, minPrice, maxPrice);
+
+        // 3- 设置page类的url地址
+        page.setUrl("client/bookServlet?action=pageByPrice");
+
+        // 4- 将数据保存到request域中
+        req.setAttribute("page", page);
+
+        // 5- 请求转发地址
+        req.getRequestDispatcher("/pages/client/index.jsp").forward(req, resp);
+
+
     }
 }

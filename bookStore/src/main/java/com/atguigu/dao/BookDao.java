@@ -77,6 +77,24 @@ public interface BookDao {
     public List<Book> queryForPageItems(int begin, int pageSize);
 
 
+    /**
+     * 根据最小价格和最大价格进行分页(与上面不同就是添加了限制条件), 查询符合指定价格区间的图书共有多少本
+     * @param minPrice 最小价格
+     * @param maxPrice 最大价格
+     * @return 处于指定价格区间中的书本一共有多少本
+     */
+    public Integer queryForPageTotalCountByPrice(int minPrice, int maxPrice);
+
+
+    /**
+     * 查询到该页中具体的书籍
+     * @param begin 从第几条数据开始查询
+     * @param pageSize 本次查询的长度. 实际上这个就是每页中书本的数量. 此时指的是4
+     * @param minPrice 最小价格
+     * @param maxPrice 最大价格
+     * @return 第1页, 2, 3, ...
+     */
+    public List<Book> queryForPageItemsByPrice(int begin, int pageSize, int minPrice, int maxPrice);
 
 
 

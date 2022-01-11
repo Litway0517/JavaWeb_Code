@@ -124,6 +124,51 @@ public class BookServiceImpl implements BookService {
 
         return page;
     }
+
+    /**
+     * 根据最小价格和最大价格分页
+     * @param pageNo 第几页, 页码
+     * @param pageSize 页码大小, 默认为4
+     * @param minPrice 前端传过来的最小价格
+     * @param maxPrice 前端传过来的最大价格
+     * @return 返回的是根据最小价格最大价格的Page实体对象
+     */
+    @Override
+    public Page<Book> pageByPrice(int pageNo, int pageSize, int minPrice, int maxPrice) {
+        Page<Book> page = new Page<>();
+
+        // 3- 设置总记录数 -> 调用DAO层, 进行查询
+        // 先查库计算总的记录数
+        Integer pageTotalCount = bookDaoImpl.queryForPageTotalCountByPrice(minPrice, maxPrice);
+        page.setPageTotalCount(pageTotalCount);
+
+        // 4- 设置总页码数
+        // 先计算总页码数
+        int pageTotal = pageTotalCount / pageSize;
+        if (pageTotalCount % pageSize > 0) {
+            pageTotal += 1;
+        }
+        page.setPageTotal(pageTotal);
+
+        // 1- 设置当前页码
+        page.setPageNo(pageNo);
+
+        // 2- 设置每页显示的图书数量
+        page.setPageSize(pageSize);
+
+        /*
+            如果地址栏中输入的页码小于1, 则最后赋值1
+            如果地址栏中输入的页码大于最大页码max, 则最后赋值最大页码max
+         */
+
+
+        // 5- 设置items的值, 就是查询当前页的数据
+        int begin = (page.getPageNo() - 1) * pageSize;
+        List<Book> items = bookDaoImpl.queryForPageItemsByPrice(begin, pageSize, minPrice, maxPrice);
+        page.setItems(items);
+
+        return page;
+    }
 }
 
 

@@ -110,8 +110,8 @@
             </table>
         </form>
 
-        <%-- 将分页的控件添加上去 --%>
 
+        <%-- 将分页的控件添加上去 --%>
         <div id="page_nav">
             <c:if test="${ pageNo > 1 }">
                 <a href="manager/bookServlet?action=page&pageNo=1">首页</a>&nbsp;

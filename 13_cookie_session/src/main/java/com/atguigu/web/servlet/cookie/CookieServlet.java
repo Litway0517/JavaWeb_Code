@@ -11,12 +11,14 @@ public class CookieServlet extends BaseServlet {
 
     /**
      * 创建cookie
-     * @param req 请求
+     *
+     * @param req  请求
      * @param resp 响应
      * @throws ServletException servlet异常
-     * @throws IOException IO异常
+     * @throws IOException      IO异常
      */
     protected void createCookie(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 
 
     }

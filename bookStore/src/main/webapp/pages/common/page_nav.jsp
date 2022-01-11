@@ -5,7 +5,7 @@
   Time: 11:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
   <%-- 将分页的控件添加上去 --%>
   <div id="page_nav">
     <c:if test="${ requestScope.page.pageNo > 1 }">
@@ -66,7 +66,7 @@
       <a href="${ requestScope.page.url }&pageNo=${ requestScope.page.pageTotal }">末页</a>&nbsp;&nbsp;
     </c:if>
     &nbsp;&nbsp;共 ${ requestScope.page.pageTotal } 页, ${ requestScope.page.pageTotalCount } 条记录&nbsp;&nbsp;
-    到第<input value="${ requestScope.page.pageNo }" name="pn" id="pn_input"/>页
+    到第<input value="${ requestScope.page.pageNo }" name="pn" id="pn_input"/><label for="pn_input">页</label>
     <input id="searchPageBtn" type="button" value="确定">
   </div>
 
@@ -76,7 +76,7 @@
     $(function () {
       // 当点击确定按钮时的操作
       $("#searchPageBtn").click(function () {
-        const inputPageNo = $("#pn_input").val();
+        let inputPageNo = $("#pn_input").val();
         let pageTotal = ${ requestScope.page.pageTotal };
         console.log("页码 -> ", inputPageNo);
         console.log("当前地址栏地址 -> ", location.href);

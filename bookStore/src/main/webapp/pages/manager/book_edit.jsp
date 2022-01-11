@@ -49,7 +49,6 @@
             ${ requestScope.bookInfo }
 		 --%>
 
-
         <%--
             book_edit.jsp界面是用来修改图书的. 两个作用: 从 图书管理界面book_manager.jsp 新增和更改 改均是此界面
             1- 新增时候, 是从book_manager界面直接跳转到此界面的, 不需要经过bookServlet界面
@@ -58,8 +57,6 @@
             因此, 还可以通过判断是否经过bookServlet来确定具体是那种操作
 
         --%>
-
-
 
 		<div id="main">
 			<form action="manager/bookServlet" method="post">
@@ -70,7 +67,7 @@
                 --%>
 				<input type="hidden" name="id" value="${ requestScope.bookInfo.id }"/>
 
-				<%-- 将添加图书时的页码数目带过来, 在这里存储到隐藏于, 一并发给bookServlet --%>
+				<%-- 将添加图书时的页码数目带过来, 在这里存储到隐藏域, 一并发给bookServlet --%>
 				<input type="hidden" name="pageNo" value="${ param.pageNo }"/>
 				<table>
 					<tr>
@@ -91,14 +88,12 @@
 
 						<%--
 							form表单中, 点击 [提交] 按钮, 会把整个form标签下面的数据发送给 form标签的action 属性指定的值的目标地址.
-							此时, 提交动作会把, input中的隐藏于的值提交给目标地址, 把table中的每一行的值提交给目标地址.
+							此时, 提交动作会把, input中的隐藏域的所有值提交给目标地址, 把table中的每一行的值也提交给目标地址.
 						 --%>
 						<td><input type="submit" value="提交"/></td>
 					</tr>
 				</table>
 			</form>
-
-
 		</div>
 
 		<%--  静态包含页脚内容 --%>

@@ -28,9 +28,9 @@
 		<div id="book">
 			<div class="book_cond">
 				<form action="" method="get">
-					价格：<input id="min" type="text" name="min" value=""> 元 -
-						<input id="max" type="text" name="max" value=""> 元
-						<input type="submit" value="查询" />
+					价格：<input id="min" type="text" name="min" value=""><label for="min"> 元 -</label>
+						<input id="max" type="text" name="max" value=""><label for="max"> 元</label>
+                    <input href="" type="submit" value="查询" />
 				</form>
 			</div>
 			<div style="text-align: center">
@@ -79,7 +79,6 @@
 
         <%-- 静态包含分页控件, 地址由后台进行控制 --%>
         <%@ include file="/pages/common/page_nav.jsp"%>
-
         <%--
             这是被包含界面的编码格式:
                 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -88,8 +87,6 @@
 
             两者因为一个空格的原因, 导致后端报错.
         --%>
-
-
     </div>
 
 

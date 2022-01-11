@@ -6,7 +6,7 @@
 
 
 
-<!--    为UserServlet配置xml信息-->
+    <!-- 为UserServlet配置xml信息 -->
     <servlet>
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>com.atguigu.web.servlet.user.UserServlet</servlet-class>
@@ -15,9 +15,9 @@
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/userServlet</url-pattern>
     </servlet-mapping>
-    
 
-<!--  为BookServlet配置路由请求地址  -->
+
+    <!-- 为BookServlet配置路由请求地址 -->
     <servlet>
         <servlet-name>BookServlet</servlet-name>
         <servlet-class>com.atguigu.web.servlet.book.BookServlet</servlet-class>
@@ -30,6 +30,15 @@
         -->
         <url-pattern>/manager/bookServlet</url-pattern>
     </servlet-mapping>
-    
+
+    <!-- 为ClientBookServlet配置xml信息 -->
+    <servlet>
+        <servlet-name>ClientBookServlet</servlet-name>
+        <servlet-class>com.atguigu.web.servlet.client.ClientBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientBookServlet</servlet-name>
+        <url-pattern>/client/bookServlet</url-pattern>
+    </servlet-mapping>
 
 </web-app>

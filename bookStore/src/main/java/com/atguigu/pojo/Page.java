@@ -36,7 +36,7 @@ public class Page<T> {
      */
     private Integer pageTotalCount;
     /**
-     * 每一页中, 具体的图书的数据
+     * 每一页中, 具体的图书的数据. 要记着, 到了前端又懵了
      */
     private List<T> items;
 

@@ -27,10 +27,14 @@
 	<div id="main">
 		<div id="book">
 			<div class="book_cond">
-				<form action="" method="get">
-					价格：<input id="min" type="text" name="min" value=""><label for="min"> 元 -</label>
-						<input id="max" type="text" name="max" value=""><label for="max"> 元</label>
-                    <input href="" type="submit" value="查询" />
+				<form action="client/bookServlet" method="get">
+                    <%-- 隐藏于用于指明后端反射的方法名字 --%>
+                    <input type="hidden" name="action" value="pageByPrice">
+
+                    价格：<input id="min" type="text" name="min" value=""><label for="min"> 元 -</label>
+                         <input id="max" type="text" name="max" value=""><label for="max"> 元</label>
+
+                    <input type="submit" value="查询" />
 				</form>
 			</div>
 			<div style="text-align: center">

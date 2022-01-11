@@ -81,19 +81,6 @@
                     <td colspan="2">操作</td>
                 </tr>
 
-                <%-- 原来这本固定的书, 现在注释掉
-                &lt;%&ndash; 一个写成固定方式的书 &ndash;%&gt;
-                <tr>
-                    <td>时间简史</td>
-                    <td>20.00</td>
-                    <td>霍金</td>
-                    <td>200</td>
-                    <td>400</td>
-                    <td><a href="book_edit.jsp">修改</a></td>
-                    <td><a href="#">删除</a></td>
-                </tr>
-                --%>
-
 
                 <%-- ${ requestScope.books }--%>
                 <%-- 这个JSTL标签使用的时候, 一定要导包--%>

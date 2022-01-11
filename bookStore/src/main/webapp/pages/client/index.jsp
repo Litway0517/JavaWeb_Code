@@ -31,8 +31,8 @@
                     <%-- 隐藏于用于指明后端反射的方法名字 --%>
                     <input type="hidden" name="action" value="pageByPrice">
 
-                    价格：<input id="min" type="text" name="min" value=""><label for="min"> 元 -</label>
-                         <input id="max" type="text" name="max" value=""><label for="max"> 元</label>
+                    价格：<input id="min" type="text" name="min" value="${ param.min }"><label for="min"> 元 -</label>
+                         <input id="max" type="text" name="max" value="${ param.max }"><label for="max"> 元</label>
 
                     <input type="submit" value="查询" />
 				</form>

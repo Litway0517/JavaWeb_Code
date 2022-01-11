@@ -27,6 +27,9 @@
         <!--
             这里的路由地址有一些特殊, 先加上再说, 后面在讲解.
             但是并不是因为在web目录下有一个manager目录
+
+            原因:　因为后面又一部分代码都是复用的, 复用BookServlet代码的时候, 前端的请求地址只需要从manager改成client就行了.
+                  这样就节省了代码量
         -->
         <url-pattern>/manager/bookServlet</url-pattern>
     </servlet-mapping>

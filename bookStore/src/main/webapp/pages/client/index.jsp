@@ -149,7 +149,7 @@
                 if ((inputPageNo < 1) || (inputPageNo > pageTotal)) {
                     alert("请输入正确的页码数目! ");
                 } else {
-                    location.href = "${ pageScope.basePath }manager/bookServlet?action=page&pageNo=" + inputPageNo;
+                    location.href = "${ pageScope.basePath }client/bookServlet?action=page&pageNo=" + inputPageNo;
                 }
             });
         });

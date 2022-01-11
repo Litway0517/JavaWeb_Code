@@ -40,6 +40,19 @@ public class Page<T> {
      */
     private List<T> items;
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    /**
+     * 客户端访问的时候, 需要有url地址, 这里就能够确定是client的请求还是说是manager的请求
+     */
+    private String url;
+
     /**
      * 获取页面没有
      *
@@ -151,9 +164,10 @@ public class Page<T> {
         return "Page{" +
                 "pageNo=" + pageNo +
                 ", pageSize=" + pageSize +
-                ", pageTotalCount=" + pageTotalCount +
                 ", pageTotal=" + pageTotal +
+                ", pageTotalCount=" + pageTotalCount +
                 ", items=" + items +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

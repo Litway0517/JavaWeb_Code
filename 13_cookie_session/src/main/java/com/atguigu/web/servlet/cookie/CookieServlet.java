@@ -1,5 +1,6 @@
 package com.atguigu.web.servlet.cookie;
 
+import com.atguigu.util.CookieUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -44,13 +45,26 @@ public class CookieServlet extends BaseServlet {
     protected void getCookie(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
+        // 遍历获取所有的cookie
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie : cookies) {
             resp.getWriter().write("Cookie[" + cookie.getName() + "=" + cookie.getValue() + "] <br/>");
         }
 
+        // 获取某个指定的cookie的值, 因为没有获取指定的cookie的方法, 所以我们需要自行遍历并判断
+        Cookie iWantCookie = CookieUtils.findCookie("cookie2", cookies);
+//        for (Cookie cookie1 : cookies) {
+//            if ("cookie2".equals(cookie1.getName())) {
+//                iWantCookie = cookie1;
+//            }
+//        }
 
 
+
+
+        if (iWantCookie != null) {
+            resp.getWriter().write("找到了指定的Cookie");
+        }
     }
 
 

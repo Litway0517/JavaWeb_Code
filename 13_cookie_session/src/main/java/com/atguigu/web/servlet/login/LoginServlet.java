@@ -5,6 +5,7 @@ import com.atguigu.web.servlet.base.BaseServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 登录servlet
@@ -14,7 +15,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginServlet extends BaseServlet {
 
-    protected void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    /**
+     * 免用户名登录
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
+    protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
         // 获取前端传递的参数

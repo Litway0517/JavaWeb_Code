@@ -3,23 +3,28 @@ package com.atguigu.web.servlet.cookie;
 import com.atguigu.util.CookieUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 饼干servlet
+ *
+ * @author DELL_
+ * @date 2022/01/12
+ */
 public class CookieServlet extends BaseServlet {
 
     /**
+     * 创建饼干
      * 创建cookie
      *
      * @param req  请求
      * @param resp 响应
-     * @throws ServletException servlet异常
      * @throws IOException      IO异常
      */
-    protected void createCookie(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void createCookie(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // 解决中文乱码
         resp.setContentType("text/html; charset=UTF-8");
 
@@ -35,14 +40,14 @@ public class CookieServlet extends BaseServlet {
     }
 
     /**
+     * 把饼干
      * 创建cookie
      *
      * @param req  请求
      * @param resp 响应
-     * @throws ServletException servlet异常
      * @throws IOException      IO异常
      */
-    protected void getCookie(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void getCookie(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
         // 遍历获取所有的cookie
@@ -62,6 +67,31 @@ public class CookieServlet extends BaseServlet {
         if (iWantCookie != null) {
             resp.getWriter().write("找到了指定的Cookie");
         }
+    }
+
+    protected void updateCookie(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        // 新建一个cookie对象, 并且置其name值与待修改的cookie一样. 赋予新的cookie值
+        Cookie cookie = new Cookie("cookie2", "newCookieValue");
+
+        // 获取客户端的所有cookies
+        Cookie[] cookies = req.getCookies();
+        resp.getWriter().write("所有Cookie的值: Cookie[" + cookie.getName() + "=" + cookie.getValue() + "] <br/>");
+
+        // 先在所有的cookies数组中查找需要更改的馁个cookie
+        Cookie findCookie = CookieUtils.findCookie("cookie2", cookies);
+        resp.getWriter().write("查询到的cookie, 其原来值: findCookie[" + findCookie.getName() + "=" + findCookie.getValue() + "] <br/>");
+
+        // 传回给客户端, 并输出
+        resp.addCookie(cookie);
+        resp.getWriter().write("修改之后的cookie. cookie[" + cookie.getName() + "=" + cookie.getValue() + "] <br/>");
+
+
+
+
+
+
     }
 
 

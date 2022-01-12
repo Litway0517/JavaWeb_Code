@@ -93,9 +93,10 @@ public class CookieServlet extends BaseServlet {
         // 重新赋值之前别忘了判断 -> 因为有可能浏览器压根不存在待查找的cookie
         if (cookie1 != null) {
             cookie1.setValue("modifyNewCookie");
+            resp.getWriter().write("第二种方式修改之后的cookie. cookie[" + cookie1.getName() + "=" + cookie1.getValue() + "] <br/>");
         }
         resp.addCookie(cookie1);
-        resp.getWriter().write("第二种方式修改之后的cookie. cookie[" + cookie1.getName() + "=" + cookie1.getValue() + "] <br/>");
+
 
 
 

@@ -156,7 +156,12 @@ public class CookieServlet extends BaseServlet {
         }
     }
 
-
+    /**
+     * 设置一个cookie的生存周期
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
     protected void setLifeTime(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
@@ -166,6 +171,36 @@ public class CookieServlet extends BaseServlet {
             resp.addCookie(setCookieLife);
             resp.getWriter().write("设置cookie的存活时间为 1 小时. 3600秒. 时区格式为格林时间");
         }
+    }
+
+    /**
+     * 为cookie设置path路径, cookie的成员变量的path路径是与浏览器的请求路径相匹配的, 如果不匹配那么本次请求就不会将相应的cookie发送到服务器
+     *      CookieA     path=/工程路径
+     *      CookieB     path=/工程路径/abc
+     *
+     *      请求地址1 -> http://ip:port/工程路径
+     *          CookieA会发送给url1
+     *          CookieB不会发送给url2
+     *
+     *      http://ip:port/工程路径/abc.html
+     *          CookieA会发送给url1
+     *          CookieB会发送给url2
+     *
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
+    protected void testPath(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        resp.setContentType("text/html; charset=UTF-8");
+
+        Cookie path = new Cookie("path", "path");
+        path.setPath(req.getContextPath() + "/abc");
+        resp.addCookie(path);
+        resp.getWriter().write("设置带有path路径的cookie");
+
+
+
     }
 
 

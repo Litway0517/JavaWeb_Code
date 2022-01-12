@@ -59,9 +59,6 @@ public class CookieServlet extends BaseServlet {
 //            }
 //        }
 
-
-
-
         if (iWantCookie != null) {
             resp.getWriter().write("找到了指定的Cookie");
         }

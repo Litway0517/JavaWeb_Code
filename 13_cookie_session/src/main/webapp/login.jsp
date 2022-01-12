@@ -10,11 +10,11 @@
 <head>
     <title>免用户名登录</title>
 
-    <base href="http://localhost:8080/" />
+    <base href="http://localhost:8080/13_cookie_session/" />
 </head>
 <body>
 
-    <form action="loginServlet/action=login" method="POST">
+    <form action="loginServlet?action=login" method="POST">
         <input type="hidden" name="">
 
         <label>

@@ -199,8 +199,6 @@ public class CookieServlet extends BaseServlet {
         resp.addCookie(path);
         resp.getWriter().write("设置带有path路径的cookie");
 
-
-
     }
 
 

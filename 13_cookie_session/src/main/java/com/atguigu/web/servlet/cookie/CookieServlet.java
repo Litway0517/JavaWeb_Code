@@ -17,7 +17,6 @@ import java.io.IOException;
 public class CookieServlet extends BaseServlet {
 
     /**
-     * 创建饼干
      * 创建cookie
      *
      * @param req  请求
@@ -40,8 +39,7 @@ public class CookieServlet extends BaseServlet {
     }
 
     /**
-     * 把饼干
-     * 创建cookie
+     * 服务器端获取客户端请求时传过来的cookie
      *
      * @param req  请求
      * @param resp 响应
@@ -69,6 +67,14 @@ public class CookieServlet extends BaseServlet {
         }
     }
 
+
+    /**
+     * 更新cookie
+     *
+     * @param req  请求
+     * @param resp 响应
+     * @throws IOException      IO异常
+     */
     protected void updateCookie(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
@@ -96,12 +102,29 @@ public class CookieServlet extends BaseServlet {
             resp.getWriter().write("第二种方式修改之后的cookie. cookie[" + cookie1.getName() + "=" + cookie1.getValue() + "] <br/>");
         }
         resp.addCookie(cookie1);
+    }
 
+    protected void defaultLife(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        /*
+            设置cookie有三种结果: 以秒为单位
+                1- 正数: cookie的最大存活周期, 到了这个时间就销毁(删除)
+                2- 负数: 默认为-1, cookie 不会被持久存储, 将在 Web 浏览器退出时删除
+                3- 0: 立即删除该cookie
+         */
+        resp.setContentType("text/html; charset=UTF-8");
 
+        Cookie cookie = new Cookie("default", "defaultCookieValue");
+        // 实际上-1, 是默认值, 打开Cookie实体类看成员变量就知道了
+        cookie.setMaxAge(-1);
+        resp.addCookie(cookie);
 
-
+        resp.getWriter().write("Cookie固定的存储时间, maxAge = -1");
 
     }
+
+
+
+
 
 
 }

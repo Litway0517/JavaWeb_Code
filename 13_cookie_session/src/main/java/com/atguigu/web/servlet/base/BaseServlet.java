@@ -45,12 +45,13 @@ public abstract class BaseServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+
         // 前端的两个表单的input的name值都叫做action就行了, 所以传过来那个额都能够接收到
         String action = req.getParameter("action");
 
         try {
-            // 获取反射对象 -> 注意, 这个this就是userServlet对象 并不是现在的BaseServlet对象. 通过反射拿到方法名再掉用! 
+            // 获取反射对象 -> 注意, 这个this就是userServlet对象 并不是现在的BaseServlet对象. 通过反射拿到方法名再掉用!
             Method method = this.getClass().getDeclaredMethod(action, HttpServletRequest.class, HttpServletResponse.class);
 
             // 暴力反射 -> 避免某些方法是被 [private protected 默认] 这三种权限修饰的, 而导致访问失败

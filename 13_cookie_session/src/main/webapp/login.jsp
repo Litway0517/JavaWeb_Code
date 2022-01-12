@@ -15,14 +15,13 @@
 <body>
 
     <form action="loginServlet?action=login" method="POST">
-        <input type="hidden" name="">
 
         <label>
-            用户名: <input type="text" name="username" value="">
-        </label>
+            用户名: <input type="text" name="username" value="${ cookie.username.value }">
+        </label> <br/><br/>
         <label>
-            密 码: <input type="text" name="password" value="">
-        </label>
+            密  &nbsp;&nbsp;码: <input type="text" name="password" value="">
+        </label> <br/>
 
         <input type="submit" value="提交">
 

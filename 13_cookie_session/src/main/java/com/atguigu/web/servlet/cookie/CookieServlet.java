@@ -41,6 +41,10 @@ public class CookieServlet extends BaseServlet {
         Cookie cookieDeleteNow = new Cookie("cookieDeleteNow", "testDeleteFunction");
         resp.addCookie(cookieDeleteNow);
 
+        // 增加cookie -> 设置cookie的生命周期为一个小时(实际上, 一些网站会将时间设置为二十分钟左右, 或者十几分钟, 不会那么长)
+        Cookie setCookieLife = new Cookie("setCookieLife", "OneHourCookie");
+        resp.addCookie(setCookieLife);
+
         resp.getWriter().write("cookie创建成功");
     }
 
@@ -132,7 +136,6 @@ public class CookieServlet extends BaseServlet {
         resp.addCookie(cookie);
 
         resp.getWriter().write("Cookie固定的存储时间, maxAge = -1");
-
     }
 
     /**
@@ -151,8 +154,18 @@ public class CookieServlet extends BaseServlet {
             resp.addCookie(cookieDeleteNow);
             resp.getWriter().write("测试删除方法, 设置cookie的maxAge为0, 表示立即删除");
         }
+    }
 
 
+    protected void setLifeTime(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        Cookie setCookieLife = CookieUtils.findCookie("setCookieLife", req.getCookies());
+        if (setCookieLife != null) {
+            setCookieLife.setMaxAge(60 * 60);
+            resp.addCookie(setCookieLife);
+            resp.getWriter().write("设置cookie的存活时间为 1 小时. 3600秒. 时区格式为格林时间");
+        }
     }
 
 

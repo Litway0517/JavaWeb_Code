@@ -32,8 +32,14 @@ public class CookieServlet extends BaseServlet {
 
         // 2- 服务器发送给客户端, 使用resp报文
         resp.addCookie(cookie);
+
+        // 增加cookie
         Cookie cookie1 = new Cookie("cookie2", "testCookie2");
         resp.addCookie(cookie1);
+
+        // 增加cookie -> 测试删除方法
+        Cookie cookieDeleteNow = new Cookie("cookieDeleteNow", "testDeleteFunction");
+        resp.addCookie(cookieDeleteNow);
 
         resp.getWriter().write("cookie创建成功");
     }
@@ -104,6 +110,13 @@ public class CookieServlet extends BaseServlet {
         resp.addCookie(cookie1);
     }
 
+
+    /**
+     * 设置cookie的值为-1, 表示关闭浏览器则删除. 默认值其实就是-1
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
     protected void defaultLife(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         /*
             设置cookie有三种结果: 以秒为单位
@@ -119,6 +132,26 @@ public class CookieServlet extends BaseServlet {
         resp.addCookie(cookie);
 
         resp.getWriter().write("Cookie固定的存储时间, maxAge = -1");
+
+    }
+
+    /**
+     * 设置maxAge, 立即删除该cookie. 0表示零秒, 自然就表示删除
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
+    protected void deleteNow(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        Cookie cookieDeleteNow = CookieUtils.findCookie("cookieDeleteNow", req.getCookies());
+        // 别忘记了判断非空
+        if (cookieDeleteNow != null) {
+            cookieDeleteNow.setMaxAge(0);
+            resp.addCookie(cookieDeleteNow);
+            resp.getWriter().write("测试删除方法, 设置cookie的maxAge为0, 表示立即删除");
+        }
+
 
     }
 

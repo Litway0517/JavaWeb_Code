@@ -85,9 +85,17 @@ public class CookieServlet extends BaseServlet {
 
         // 传回给客户端, 并输出
         resp.addCookie(cookie);
-        resp.getWriter().write("修改之后的cookie. cookie[" + cookie.getName() + "=" + cookie.getValue() + "] <br/>");
+        resp.getWriter().write("第一种方式修改之后的cookie. cookie[" + cookie.getName() + "=" + cookie.getValue() + "] <br/>");
 
 
+        // 直接对查询到的cookie设置其value值
+        Cookie cookie1 = CookieUtils.findCookie("cookie1", cookies);
+        // 重新赋值之前别忘了判断 -> 因为有可能浏览器压根不存在待查找的cookie
+        if (cookie1 != null) {
+            cookie1.setValue("modifyNewCookie");
+        }
+        resp.addCookie(cookie1);
+        resp.getWriter().write("第二种方式修改之后的cookie. cookie[" + cookie1.getName() + "=" + cookie1.getValue() + "] <br/>");
 
 
 

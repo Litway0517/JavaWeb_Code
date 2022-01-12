@@ -30,16 +30,28 @@ public class CookieServlet extends BaseServlet {
         Cookie cookie1 = new Cookie("cookie2", "testCookie2");
         resp.addCookie(cookie1);
 
-
-
         resp.getWriter().write("cookie创建成功");
+    }
 
+    /**
+     * 创建cookie
+     *
+     * @param req  请求
+     * @param resp 响应
+     * @throws ServletException servlet异常
+     * @throws IOException      IO异常
+     */
+    protected void getCookie(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
 
+        Cookie[] cookies = req.getCookies();
+        for (Cookie cookie : cookies) {
+            resp.getWriter().write("Cookie[" + cookie.getName() + "=" + cookie.getValue() + "] <br/>");
+        }
 
-
-        System.out.println("test");
 
 
     }
+
 
 }

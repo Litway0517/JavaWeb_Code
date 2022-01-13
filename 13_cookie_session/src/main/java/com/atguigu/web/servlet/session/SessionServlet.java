@@ -73,6 +73,7 @@ public class SessionServlet extends BaseServlet {
 
 
     /**
+     * 默认生活
      * 默认时长
      *
      * @param req  要求事情
@@ -85,9 +86,20 @@ public class SessionServlet extends BaseServlet {
 
         // 客户端输出
         resp.getWriter().write("session的最大超时时长为: " + maxInactiveInterval + "秒 <br/>");
+    }
 
+    /**
+     * 设置life3
+     *
+     * @param req  要求事情
+     * @param resp 分别地
+     * @throws IOException IO异常
+     */
+    protected void setLife3(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        HttpSession session = req.getSession();
+        session.setMaxInactiveInterval(3);
 
-
+        resp.getWriter().write("设置session的时长为3秒后超时");
     }
 
 

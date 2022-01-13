@@ -1,29 +1,35 @@
 package com.atguigu.test;
 
 
+import org.junit.Test;
+
 import java.lang.reflect.Method;
 
 
 public class UserServletTest {
 
-
+    @Test
     public void login() {
         System.out.println("login()方法被执行了");
     }
 
+    @Test
     public void regist() {
         System.out.println("regist()方法被执行了");
     }
 
+    @Test
     public void updateUser() {
         System.out.println("updateUser()方法被执行了");
     }
 
+    @Test
     public void updatePassword() {
         System.out.println("updatePassword()方法被执行了");
     }
 
 
+    @Test
     public static void main(String[] args) {
 
         String action = "updateUser";

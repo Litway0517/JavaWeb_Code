@@ -37,6 +37,18 @@
     </servlet-mapping>
 
 
+    <!--
+        设置所有的session的默认时长为 20分钟
+        使用下面的标签就可以做到. 其实, 我们能够直接去C盘, 就是IDEA整合的Tomcat的工作目录(刚一启动的时候控制台会输出)
+        但是我们一般不去修改Tomcat的一些最原始的配置, 我们可以在自己的web.xml工程路由文件下修改相关的标签, 就会覆盖掉Tomcat的原始标签
+
+        举一反三: 其他标签应该也会有同样的效果
+    -->
+    <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+
+
 
 
 

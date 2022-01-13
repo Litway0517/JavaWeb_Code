@@ -30,7 +30,13 @@ public class UserServlet extends BaseServlet {
 
     UserService userService = new UserServiceImpl();
 
-
+    /**
+     * 处理前端登录请求
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws ServletException servlet异常
+     * @throws IOException IO异常
+     */
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html; charset=UTF-8");
@@ -54,16 +60,22 @@ public class UserServlet extends BaseServlet {
             // 提示之后别忘了停留在登陆界面 -> 不跳转(这点千万别忘了)
             req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
         } else {
+            // 先将查询到的用户信息保存到session域(因为request域已经不够用了), 记录下用户信息
+            req.getSession().setAttribute("user", loginUser);
+
             // 登陆成功 -> 跳转到登陆成功界面
             req.getRequestDispatcher("/pages/user/login_success.jsp").forward(req, resp);
         }
 
-
-
-
     }
 
-
+    /**
+     * 处理前端注册请求
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws ServletException servlet异常
+     * @throws IOException IO异常
+     */
     protected void regist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 

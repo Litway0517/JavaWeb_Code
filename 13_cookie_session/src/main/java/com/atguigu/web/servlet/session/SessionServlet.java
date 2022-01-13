@@ -53,7 +53,6 @@ public class SessionServlet extends BaseServlet {
         req.getSession().setAttribute("key1", "value1");
         // 提示
         resp.getWriter().write("已经向session中保存了数据");
-
     }
 
 
@@ -64,11 +63,21 @@ public class SessionServlet extends BaseServlet {
      * @param resp 分别地
      */
     protected void getAttribute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-
         // 获取存储在Session域中的key1的数据
         Object key1 = req.getSession().getAttribute("key1");
         resp.getWriter().write("存储在session域中的key1的数据: " + key1);
+
+    }
+
+
+    protected void defaultLife(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        // 获取session的最大时长
+        int maxInactiveInterval = req.getSession().getMaxInactiveInterval();
+
+        // 客户端输出
+        resp.getWriter().write("session的最大超时时长为: " + maxInactiveInterval + "秒 <br/>");
+
+
 
     }
 

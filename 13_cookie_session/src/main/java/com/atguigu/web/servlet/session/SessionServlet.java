@@ -47,6 +47,7 @@ public class SessionServlet extends BaseServlet {
      *
      * @param req  要求事情
      * @param resp 分别地
+     * @throws IOException IO异常
      */
     protected void setAttribute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // 设置session的属性. Session本身是一个域, 能够存储数据的, 别忘了
@@ -61,6 +62,7 @@ public class SessionServlet extends BaseServlet {
      *
      * @param req  要求事情
      * @param resp 分别地
+     * @throws IOException IO异常
      */
     protected void getAttribute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // 获取存储在Session域中的key1的数据
@@ -70,6 +72,13 @@ public class SessionServlet extends BaseServlet {
     }
 
 
+    /**
+     * 默认时长
+     *
+     * @param req  要求事情
+     * @param resp 分别地
+     * @throws IOException IO异常
+     */
     protected void defaultLife(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // 获取session的最大时长
         int maxInactiveInterval = req.getSession().getMaxInactiveInterval();

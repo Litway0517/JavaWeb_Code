@@ -24,6 +24,19 @@ public class LoginServlet extends BaseServlet {
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
+        /*
+            获取请求的参数, 调用service层判断 username 和 password 是否匹配:
+                是   登陆成功. 保存起来用户名, 用户名存到cookie中, 并设置这个cookie的生命周期, 并返回给客户端. 这样浏览器会把cookie存起来.
+                        实际上存起来应该是以文件的方式(查过资料了: IE是存储在文件中的, 纯txt文件. FireFox和Chrome是存储在SQLite中的).
+                        因为cookie是存储在文件中的, 浏览器即使关闭了, 下次重新打开浏览器, 浏览器会自动加载数据库/文件中的一由cookie,
+                        这样, 原本保存的 cookie=[username=XXX], 就能够加载到前端了, 达到面用户名登录的效果. 这个功能是有用的, 比如,
+                        网易163的邮箱登录的时候, 会包含邮箱地址. (密码当然没有)
+                不是  自行输入账户密码登录
+
+            主要是没有理解cookie的原理.
+            另外EL表达式中有一个隐含对象, cookie, 和req.getCookies()得到的结果一样, 就是获取本网站下所有的cookie.
+         */
+
         // 获取前端传递的参数
         String username = req.getParameter("username");
         String password = req.getParameter("password");
@@ -42,28 +55,6 @@ public class LoginServlet extends BaseServlet {
             resp.getWriter().write("登陆 失败");
 
         }
-
-
-//        Cookie findUsernameCookie = CookieUtils.findCookie("username", req.getCookies());
-//        if (findUsernameCookie == null) {
-//            // 第一次登录
-//
-//
-//
-//            Cookie usernameCookie = new Cookie("username", username);
-//            resp.addCookie(usernameCookie);
-//
-//        } else {
-//            // 已经登陆过
-//            // 保存查询到的名字为username的cookie的值
-//            req.setAttribute("username", findUsernameCookie.getValue());
-//            // 请求转发回到login登陆界面
-//            resp.sendRedirect(req.getContextPath() + "/login.jsp");
-//
-//        }
-
-
-
 
     }
 

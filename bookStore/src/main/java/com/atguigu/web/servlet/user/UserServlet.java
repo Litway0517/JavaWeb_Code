@@ -10,6 +10,7 @@ import com.atguigu.web.servlet.base.BaseServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -68,6 +69,26 @@ public class UserServlet extends BaseServlet {
         }
 
     }
+
+    /**
+     * 登出用户
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
+    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+        // 获取session, 并立即销毁
+        req.getSession().invalidate();
+
+        // 重定向
+        resp.sendRedirect(req.getContextPath() + "/index.jsp");
+
+    }
+
+
+
+
 
     /**
      * 处理前端注册请求

@@ -73,7 +73,7 @@ public class CookieServlet extends BaseServlet {
 
             综上:
                 cookie的唯一性是由key的唯一性确定的, 如果相同那么就是覆盖.
-                而session的id的值, 是由cookie来保存的, 此时, cookie的key固定为 JSESSION . value 是 id值.
+                而session的id的值, 是由cookie来保存的, 此时, cookie的key固定为 JSESSIONID . value 是 id值.
                 session的id是唯一的, 这样就确保了cookie的value是唯一的, 因此去Tomcat的内存中去遍历cookie时, 就会得到session的具体值.
 
          */

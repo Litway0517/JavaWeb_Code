@@ -45,6 +45,40 @@ public class CookieServlet extends BaseServlet {
         Cookie setCookieLife = new Cookie("setCookieLife", "OneHourCookie");
         resp.addCookie(setCookieLife);
 
+        // 测试cookie的唯一性
+        // 原始cookie
+        Cookie cookieTest1 = new Cookie("cookieTest", "testCookieValue");
+        // key相同, value值相同
+        Cookie cookieTest2 = new Cookie("cookieTest", "testCookieValue");
+        // key相同, value值不同
+        Cookie cookieTest3 = new Cookie("cookieTest", "testCookieValueNew");
+        // key不同, value值相同
+        Cookie cookieTest4 = new Cookie("cookieTestNew", "testCookieValue");
+
+        // 结果: cookieTest2会被覆盖掉, 只会保存一个
+        resp.addCookie(cookieTest1);
+        resp.addCookie(cookieTest2);
+        resp.addCookie(cookieTest3);
+        resp.addCookie(cookieTest4);
+
+        /*
+            结论:
+                1- cookieTest1和cookieTest2测试.
+                    key, value均相同, 两个cookie只能添加到response响应报文中一个, 类似于覆盖, 只会保留最新的
+                2- cookieTest1和cookieTest2和cookieTest3同时测试 | cookieTest1和cookieTest3同时测试
+                    由结论1知, cookieTest2覆盖了cookieTest1, 同样, 此时结论是cookieTest3覆盖了cookieTest2.
+                    最新的cookie是 cookie[cookieTest=testCookieValueNew], 只保存了cookieTest3
+                3- cookieTest1和cooKieTest4同时测试
+                    结论是, cookieTest1和cookieTest4同时保存下来了.
+
+            综上:
+                cookie的唯一性是由key的唯一性确定的, 如果相同那么就是覆盖.
+                而session的id的值, 是由cookie来保存的, 此时, cookie的key固定为 JSESSION . value 是 id值.
+                session的id是唯一的, 这样就确保了cookie的value是唯一的, 因此去Tomcat的内存中去遍历cookie时, 就会得到session的具体值.
+
+         */
+
+
         resp.getWriter().write("cookie创建成功");
     }
 

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="zh_CN">
 <head>
 <meta charset="UTF-8">
 <title>书城首页</title>
@@ -25,8 +25,10 @@
 
 			<%-- 如果未登陆成功, 那么就显示登录和注册 --%>
 			<c:if test="${ not empty sessionScope.user }">
-				<a href="pages/user/login.jsp">欢迎 <span class="um_span">${ sessionScope.user.username }</span></a> ┃
-				<a href="pages/user/regist.jsp">  光临尚硅谷书城</a> &nbsp;&nbsp;
+				<span>欢迎<span class="um_span">${ sessionScope.user.username }</span>
+				┃ 光临尚硅谷书城 ┃ &nbsp;&nbsp;</span>
+				<a href="pages/order/order.jsp">我的订单</a>
+				<a href="index.jsp">注销</a>&nbsp;&nbsp;
 			</c:if>
 			<a href="pages/cart/cart.jsp">购物车</a>
 			<a href="pages/manager/manager.jsp">后台管理</a>

@@ -26,6 +26,16 @@
         <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- 为SessionServlet配置xml信息  -->
+    <servlet>
+        <servlet-name>SessionServlet</servlet-name>
+        <servlet-class>com.atguigu.web.servlet.session.SessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionServlet</servlet-name>
+        <url-pattern>/sessionServlet</url-pattern>
+    </servlet-mapping>
+
 
 
 

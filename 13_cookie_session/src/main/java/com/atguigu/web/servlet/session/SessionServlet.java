@@ -96,10 +96,31 @@ public class SessionServlet extends BaseServlet {
      * @throws IOException IO异常
      */
     protected void setLife3(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        /*
+            注意, 一个客户端的session只有一个, 所以说每次客户端的请求, 带上的都是相同的session.
+            后端, 只需要获取session就行, 而不需要像cookie, 需要查找某个具体的cookie. 因为cookie有多个
+         */
         HttpSession session = req.getSession();
         session.setMaxInactiveInterval(3);
 
         resp.getWriter().write("设置session的时长为3秒后超时");
+    }
+
+
+    /**
+     * 删除会话
+     *
+     * @param req  要求事情
+     * @param resp 分别地
+     * @throws IOException IO异常
+     */
+    protected void deleteSessionNow(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        HttpSession session = req.getSession();
+        session.invalidate();
+
+        resp.getWriter().write("session已经设置为超时(无效), 相当于cookie的时长设置为, 立即删除此session");
+
+
     }
 
 

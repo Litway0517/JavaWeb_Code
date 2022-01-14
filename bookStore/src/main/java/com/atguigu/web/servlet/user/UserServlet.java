@@ -10,8 +10,9 @@ import com.atguigu.web.servlet.base.BaseServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 
 /**
  * 用户servlet
@@ -87,9 +88,6 @@ public class UserServlet extends BaseServlet {
     }
 
 
-
-
-
     /**
      * 处理前端注册请求
      * @param req 请求报文
@@ -99,11 +97,14 @@ public class UserServlet extends BaseServlet {
      */
     protected void regist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         // 设置字符集
         // 这个设置字符集的API仅仅是设置了 服务器端 使用的字符集, 不用这个, 使用另一个, 一定要在获取响应流之前调用, 否则失效 -> resp.setContentType("text/html; charset=UTF-8");
-//        req.setCharacterEncoding("UTF-8");
+        // req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
+
+        // 从session域中获取到验证码的内容, 然后保存下来, 并立即删除, 防止下一次再使用(回退网页, 重新提交).
+        String token = (String) req.getSession().getAttribute(KAPTCHA_SESSION_KEY);
+        req.getSession().removeAttribute(KAPTCHA_SESSION_KEY);
 
 
         // 使用封装好的工具类, 获取到前端传入的参数, 并注入到新的user对象中
@@ -112,7 +113,7 @@ public class UserServlet extends BaseServlet {
 
 
         // 目前还没有服务器生成验证码 -> 暂时将验证码写成固定的abcde, 且不区分大小写
-        if (code.equalsIgnoreCase("abcde")) {
+        if (token != null && code.equalsIgnoreCase(token)) {
             // 检查用户名是否可用 -> Web不能直接调用DAO层, 而是使用Service层完成的, 因此需要在 '方法体外' 实例化UserService层
             if (userService.existsUsername(user.getUsername())) {
                 // 返回true表示不能使用该用户名注册 -> 提醒 + 跳转到注册界面
@@ -144,7 +145,6 @@ public class UserServlet extends BaseServlet {
             req.getRequestDispatcher("/pages/user/regist.jsp").forward(req, resp);
         }
     }
-
 
 
 

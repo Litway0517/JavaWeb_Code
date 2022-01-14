@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>书城首页</title>

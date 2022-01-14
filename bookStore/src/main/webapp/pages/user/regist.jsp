@@ -110,7 +110,23 @@
                 // 只要上面输入的信息合法, 则要删掉提示信息
                 $("span.errorMsg").text("");
 
+            });
 
+            // 点击验证码图片, 重新加载验证码
+            $("#code_img").click(function () {
+                // 在事件响应的function函数中, 有一个this对象. 这个this对象, 就是正在相应时间的dom对象
+                /*
+                    而此时, img在相应事件, 因此this就是img. src是img的属性值, 重新赋值了kaptcha(后端的KaptchaServlet),
+                    形成新的验证码. img的src属性可读可写. 所以能够这样做. 举一反三, 其他的控件的属性是不是也能可读可写?
+                 */
+
+                /*
+                    某些浏览器(比如IE, FireFox), 为了请求的速度更快, 会把一些类型的资源缓存下来, 比如, 一张图片. 这个缓存, 由
+                    最后请求的资源名和参数组成. 当客户端能再次请求名称一样的服务器上的资源(比如此处的验证码图片)时, 就会从缓存中
+                    查找, 缓存可以存在浏览器内存中或者是文件中.
+                    解决办法: 只需要让每次请求的验证码的名称不一样就能解决, 因为缓存就是以名称存储的.
+                 */
+                this.src = "${ pageScope.basePath }kaptcha?d=" + new Date();
             });
 
 
@@ -181,7 +197,7 @@
                         <br/>
                         <label>验证码：</label>
                         <input class="itxt" type="text" name="code" style="width: 150px;" id="code"/>
-                        <img alt="" src="kaptcha" style="float: right; margin-right: 50px; width: 84px; height: 38px">
+                        <img id="code_img" alt="服务器开小差了哦~请稍后再试" src="kaptcha" style="float: right; margin-right: 50px; width: 84px; height: 38px">
                         <br/>
                         <br/>
                         <input type="submit" value="注册" id="sub_btn"/>

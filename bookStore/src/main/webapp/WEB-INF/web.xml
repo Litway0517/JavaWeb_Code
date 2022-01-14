@@ -44,4 +44,15 @@
         <url-pattern>/client/bookServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- 使用google提供的第三方验证码jar包 -->
+    <!-- 配置google的kaptchaServlet程序 -->
+    <servlet>
+        <servlet-name>KaptchaServlet</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>KaptchaServlet</servlet-name>
+        <url-pattern>/kaptcha</url-pattern>
+    </servlet-mapping>
+
 </web-app>

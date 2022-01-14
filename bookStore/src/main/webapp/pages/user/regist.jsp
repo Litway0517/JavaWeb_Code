@@ -181,7 +181,7 @@
                         <br/>
                         <label>验证码：</label>
                         <input class="itxt" type="text" name="code" style="width: 150px;" id="code"/>
-                        <img alt="" src="static/img/code.bmp" style="float: right; margin-right: 40px">
+                        <img alt="" src="kaptcha" style="float: right; margin-right: 50px; width: 84px; height: 38px">
                         <br/>
                         <br/>
                         <input type="submit" value="注册" id="sub_btn"/>

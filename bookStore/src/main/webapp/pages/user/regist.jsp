@@ -187,6 +187,7 @@
                         <input type="submit" value="注册" id="sub_btn"/>
                         <!--
                             点击提交, 那么会跳转到form表单上面的action指定的链接!
+                            将每一个input中的数据都携带上, 并且所有隐藏域hidden的数据也都携带上, 一并发送到请求的目标地址
                         -->
 
                     </form>

@@ -12,14 +12,8 @@ import java.util.Set;
  * @date 2022/01/14
  */public class Cart {
 
-    /**
-     * 总菌数
-     */
 //    private Integer totalCount;
-    /**
-     * 总价格
-     */
-    private BigDecimal totalPrice;
+//    private BigDecimal totalPrice;
     /**
      * 项目
      */
@@ -31,13 +25,6 @@ import java.util.Set;
     public Cart() {
     }
 
-    /**
-     * 车
-     *
-     * @param totalCount 总菌数
-     * @param totalPrice 总价格
-     * @param items      项目
-     */
     /*public Cart(Integer totalCount, BigDecimal totalPrice, Map<Integer, CartItem> items) {
         this.totalCount = totalCount;
         this.totalPrice = totalPrice;
@@ -50,7 +37,8 @@ import java.util.Set;
      * @return {@link Integer}
      */
     public Integer getTotalCount() {
-         Integer totalCount = 0;
+        // 这里面不使用成员变量的totalCount, 因为那样在初始化Cart实体类时, 就会占用内存.
+        Integer totalCount = 0;
         // 遍历商品项数组, 取出来每一件商品的具体数量, 然后求和返回
         Set<Map.Entry<Integer, CartItem>> entries = this.items.entrySet();
         for (Map.Entry<Integer, CartItem> entry : entries) {
@@ -66,9 +54,11 @@ import java.util.Set;
      * @return {@link BigDecimal}
      */
     public BigDecimal getTotalPrice() {
+        BigDecimal totalPrice = new BigDecimal("0");
         Set<Map.Entry<Integer, CartItem>> entries = this.items.entrySet();
         for (Map.Entry<Integer, CartItem> entry : entries) {
-//            totalPrice += entry.getValue().getPrice();
+            // 注意这里的累加方式
+            totalPrice = totalPrice.add(entry.getValue().getPrice());
         }
         return totalPrice;
     }
@@ -101,7 +91,7 @@ import java.util.Set;
     public String toString() {
         return "Cart{" +
                 "totalCount=" + getTotalCount() +
-                ", totalPrice=" + totalPrice +
+                ", totalPrice=" + getTotalPrice() +
                 ", items=" + items +
                 '}';
     }
@@ -126,7 +116,7 @@ import java.util.Set;
             判断, 目前的items数组中, 是否已经包含了需要待加入的这个商品项. 如, items数组中已经有了 [时间简史], 那么只需要更改其数量,
                 并且, 更新为两本书的价格即可.
          */
-        com.atguigu.pojo.CartItem findCartItem= this.items.get(cartItem.getId());
+        CartItem findCartItem= this.items.get(cartItem.getId());
         if (findCartItem != null) {
             // 更新数量
             findCartItem.setCount(findCartItem.getCount() + 1);

@@ -14,6 +14,16 @@
 		$(function () {
 			// 给 [加入购物车] 按钮绑上单击事件
 			$("button.addToCart").click(function () {
+				/**
+				 * 在事件响应的function函数中, 有一个this对象, 这个this对象就是正在响应事件的dom对象.
+				 * 因此能够取属性获得标签中的各个参数的具体值.
+				 * 这点以前也讲过, 看看jQuery的文档就行.
+				 * @type {*|jQuery} jQuery
+				 */
+				// TODO: 这里是一种新的手段, 获取到id值, 注意!
+				let bookId = $(this).attr("bookId");
+				location.href = "cartServlet?action=addItem&id=" + bookId;
+
 
 			});
 
@@ -96,7 +106,8 @@
 							<span class="sp2">${ book.bookStock }</span>
 						</div>
 						<div class="book_add">
-							<button class="addToCart">加入购物车</button>
+							<%-- 这里能够保存id, 是因为, 这里是forEach标签, 并且数据源标签item=后端返回的图书数据 --%>
+							<button bookId="${ book.id }" class="addToCart">加入购物车</button>
 						</div>
 					</div>
 				</div>

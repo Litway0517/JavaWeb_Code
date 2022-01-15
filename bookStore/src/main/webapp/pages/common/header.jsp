@@ -8,6 +8,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
+    /*
+        req.getScheme()是获取到本次请求所使用的协议, 就是http协议
+        req.getServerName()获取到服务器主机名称, 这里指的是localhost
+        req.getSServerPort()获取到服务器的端口
+        req.getContextPath()获取到工程路径的名字
+     */
     String basePath = request.getScheme()
             + "://"
             + request.getServerName()

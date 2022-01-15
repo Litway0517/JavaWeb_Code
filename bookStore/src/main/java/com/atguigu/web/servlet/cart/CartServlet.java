@@ -27,7 +27,7 @@ public class CartServlet extends BaseServlet {
         BookServiceImpl bookServiceImpl = new BookServiceImpl();
 
         // 获取请求参数
-        int bookId = WebUtils.parseInt(req.getParameter("bookId"), 0);
+        int bookId = WebUtils.parseInt(req.getParameter("id"), 0);
 
         // 根据客户端传过来的图书的id, 到数据库中查询相应的图书的具体信息
         Book book = bookServiceImpl.queryBookById(bookId);
@@ -35,7 +35,7 @@ public class CartServlet extends BaseServlet {
         // 将查询到的信息赋值给CartItem实体类
         CartItem cartItem = new CartItem(book.getId(), book.getBookName(), 1, book.getBookPrice(), book.getBookPrice());
 
-        // 调用加入购物车方法
+        // 调用加入购物车方法 -> 这里需要判断一次
         Cart cart = new Cart();
         cart.addItem(cartItem);
 

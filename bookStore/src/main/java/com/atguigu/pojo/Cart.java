@@ -3,6 +3,7 @@ package com.atguigu.pojo;
 import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 车
@@ -14,7 +15,7 @@ import java.util.Map;
     /**
      * 总菌数
      */
-    private Integer totalCount;
+//    private Integer totalCount;
     /**
      * 总价格
      */
@@ -37,11 +38,11 @@ import java.util.Map;
      * @param totalPrice 总价格
      * @param items      项目
      */
-    public Cart(Integer totalCount, BigDecimal totalPrice, Map<Integer, CartItem> items) {
+    /*public Cart(Integer totalCount, BigDecimal totalPrice, Map<Integer, CartItem> items) {
         this.totalCount = totalCount;
         this.totalPrice = totalPrice;
         this.items = items;
-    }
+    }*/
 
     /**
      * 得到总菌数
@@ -49,17 +50,15 @@ import java.util.Map;
      * @return {@link Integer}
      */
     public Integer getTotalCount() {
+         Integer totalCount = 0;
+        // 遍历商品项数组, 取出来每一件商品的具体数量, 然后求和返回
+        Set<Map.Entry<Integer, CartItem>> entries = this.items.entrySet();
+        for (Map.Entry<Integer, CartItem> entry : entries) {
+            totalCount += entry.getValue().getCount();
+        }
         return totalCount;
     }
 
-    /**
-     * 设置总菌数
-     *
-     * @param totalCount 总菌数
-     */
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
-    }
 
     /**
      * 得到总价格
@@ -67,17 +66,13 @@ import java.util.Map;
      * @return {@link BigDecimal}
      */
     public BigDecimal getTotalPrice() {
+        Set<Map.Entry<Integer, CartItem>> entries = this.items.entrySet();
+        for (Map.Entry<Integer, CartItem> entry : entries) {
+//            totalPrice += entry.getValue().getPrice();
+        }
         return totalPrice;
     }
 
-    /**
-     * 设置总价格
-     *
-     * @param totalPrice 总价格
-     */
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
 
     /**
      * 得到项目
@@ -105,7 +100,7 @@ import java.util.Map;
     @Override
     public String toString() {
         return "Cart{" +
-                "totalCount=" + totalCount +
+                "totalCount=" + getTotalCount() +
                 ", totalPrice=" + totalPrice +
                 ", items=" + items +
                 '}';

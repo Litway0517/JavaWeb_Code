@@ -23,11 +23,11 @@ public class CartItem {
      */
     private Integer count;
     /**
-     * 价格
+     * 价格, 单价. 一本书的价格.
      */
     private BigDecimal price;
     /**
-     * 总价格
+     * 总价格, 购买的数量 * 单价 = 分总价格
      */
     private BigDecimal totalPrice;
 

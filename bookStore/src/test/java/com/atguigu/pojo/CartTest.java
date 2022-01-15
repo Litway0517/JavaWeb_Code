@@ -12,6 +12,11 @@ import static org.junit.Assert.*;
  * @author DELL_
  * @date 2022/01/15
  */
+/*
+    存在bug
+        - add方法
+        - delete方法
+ */
 public class CartTest {
 
     /**
@@ -19,6 +24,9 @@ public class CartTest {
      */
     @Test
     public void addItem() {
+        /*
+            如果, 一上来的数量就超过1, 比如, 初始化的时候, '黑客帝国 矩阵'的数量为2, 但是单价和分总价格填的都是30时, 会引起bug
+         */
         Cart cart = new Cart();
         cart.addItem(new CartItem(10, "黑客帝国 矩阵", 2, new BigDecimal(30), new BigDecimal(30)));
         cart.addItem(new CartItem(10, "黑客帝国 矩阵", 1, new BigDecimal(30), new BigDecimal(30)));
@@ -31,6 +39,9 @@ public class CartTest {
      */
     @Test
     public void deleteItem() {
+        /*
+            删除的时候, 是根据id删除的, 所以说将购物车中, 属于该类的物品全部删掉, 而不是数量减一. 数量上的减少, 还需要再完善
+         */
         Cart cart = new Cart();
 
         cart.addItem(new CartItem(10, "黑客帝国 矩阵", 2, new BigDecimal(30), new BigDecimal(30)));
@@ -65,9 +76,6 @@ public class CartTest {
      */
     @Test
     public void updateCount() {
-        /*
-            如果, 一上来的数量就超过1, 比如, 初始化的时候, '黑客帝国 矩阵'的数量为2, 但是单价和分总价格填的都是30时, 会引起bug
-         */
         Cart cart = new Cart();
 
         cart.addItem(new CartItem(10, "黑客帝国 矩阵", 1, new BigDecimal(30), new BigDecimal(30)));

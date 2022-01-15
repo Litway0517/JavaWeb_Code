@@ -55,4 +55,14 @@
         <url-pattern>/kaptcha</url-pattern>
     </servlet-mapping>
 
+    <!-- 配置CartServlet程序的xml信息 -->
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>com.atguigu.web.servlet.cart.CartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cartServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -10,12 +10,17 @@ import java.util.Set;
  *
  * @author DELL_
  * @date 2022/01/14
- */public class Cart {
+ */
+public class Cart {
 
 //    private Integer totalCount;
 //    private BigDecimal totalPrice;
     /**
      * 项目
+     */
+    /*
+        Cart购物车实体类的items这个成员变量没必要使用泛型, 因为这个集合种存放的就是CartItem, 而CartItem本身就是一个可变的类了,
+        这个CartItem可以是书, 生活用品, 电子产品你等, 因为CartItem的name属性就可以分辨了.
      */
     private Map<Integer, CartItem> items = new LinkedHashMap<Integer, CartItem>();
 
@@ -40,7 +45,7 @@ import java.util.Set;
         // 这里面不使用成员变量的totalCount, 因为那样在初始化Cart实体类时, 就会占用内存.
         Integer totalCount = 0;
         // 遍历商品项数组, 取出来每一件商品的具体数量, 然后求和返回
-        Set<Map.Entry<Integer, CartItem>> entries = this.items.entrySet();
+        Set<Map.Entry<Integer, CartItem>> entries = items.entrySet();
         for (Map.Entry<Integer, CartItem> entry : entries) {
             totalCount += entry.getValue().getCount();
         }
@@ -54,11 +59,11 @@ import java.util.Set;
      * @return {@link BigDecimal}
      */
     public BigDecimal getTotalPrice() {
-        BigDecimal totalPrice = new BigDecimal("0");
-        Set<Map.Entry<Integer, CartItem>> entries = this.items.entrySet();
+        BigDecimal totalPrice = new BigDecimal(0);
+        Set<Map.Entry<Integer, CartItem>> entries = items.entrySet();
         for (Map.Entry<Integer, CartItem> entry : entries) {
-            // 注意这里的累加方式
-            totalPrice = totalPrice.add(entry.getValue().getPrice());
+            // 注意这里的累加方式. 注意累加的是每一种商品的分总价格, 即一本书30元, 若这本数量为2, 则为60元.
+            totalPrice = totalPrice.add(entry.getValue().getTotalPrice());
         }
         return totalPrice;
     }
@@ -116,14 +121,18 @@ import java.util.Set;
             判断, 目前的items数组中, 是否已经包含了需要待加入的这个商品项. 如, items数组中已经有了 [时间简史], 那么只需要更改其数量,
                 并且, 更新为两本书的价格即可.
          */
-        CartItem findCartItem= this.items.get(cartItem.getId());
-        if (findCartItem != null) {
+        CartItem findCartItem= items.get(cartItem.getId());
+        if (findCartItem == null) {
+            items.put(cartItem.getId(), cartItem);
+        } else {
             // 更新数量
             findCartItem.setCount(findCartItem.getCount() + 1);
-            // 更新价格 -> 注意这里更新的方式
+            /*
+                更新价格 -> 注意这里更新的方式
+                这里面更新的是, 仔细看, 更新的是由id值去Cart实体类对象中的items数组查询得到的一种的具体的商品(如Java图书),
+                然后设置这个商品的一个小的总价格, 因此测试那一部分也就正常了.
+             */
             findCartItem.setTotalPrice(findCartItem.getPrice().multiply(new BigDecimal(findCartItem.getCount())));
-        } else {
-            this.items.put(cartItem.getId(), cartItem);
         }
     }
 
@@ -134,14 +143,14 @@ import java.util.Set;
      */
     public void deleteItem(Integer id){
         // 这个接口会自动判断, 如果没有就该方法的话, 就不删除.
-        this.items.remove(id);
+        items.remove(id);
     }
 
     /**
      * 清晰
      */
     public void clear(){
-        this.items.clear();
+        items.clear();
     }
 
     /**
@@ -154,7 +163,7 @@ import java.util.Set;
         /*
             先查看items数组中是否有改商品, 如果有, 则更新; 如果没有, 则不进行操作
          */
-        CartItem findCartItem = this.items.get(id);
+        CartItem findCartItem = items.get(id);
         if (findCartItem != null) {
             // 更新数量
             findCartItem.setCount(count);

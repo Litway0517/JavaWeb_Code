@@ -22,7 +22,7 @@
 				 */
 				// TODO: 这里是一种新的手段, 获取到id值, 注意!
 				let bookId = $(this).attr("bookId");
-				location.href = "cartServlet?action=addItem&id=" + bookId;
+				location.href = "cartServlet?action=addItem&id=" + bookId + "&pageNo=" + ${ param.pageNo };
 
 
 			});

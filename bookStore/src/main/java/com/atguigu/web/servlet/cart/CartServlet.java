@@ -24,7 +24,7 @@ public class CartServlet extends BaseServlet {
      */
     protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, InvocationTargetException, IllegalAccessException {
 
-        /*BookServiceImpl bookServiceImpl = new BookServiceImpl();
+        BookServiceImpl bookServiceImpl = new BookServiceImpl();
 
         // 获取请求参数
         int bookId = WebUtils.parseInt(req.getParameter("id"), 0);
@@ -38,24 +38,25 @@ public class CartServlet extends BaseServlet {
         CartItem cartItem = new CartItem(book.getId(), book.getBookName(), 1, book.getBookPrice(), book.getBookPrice());
 
         // 调用加入购物车方法 -> 这里需要判断一次
-        *//*
+        /*
             这个版本是, 将数据存储在session域中的, 因此, 这里的重点是(以后遇到这种情况, 也这样处理):
                 - 什么也不做, 首先从域中尝试取出来对象, 即getAttribute("XXX")
                 - 然后判断, 取出来的东西究竟是不是空(代码只会帮你到指定的域中取数据, 但是并不会帮你判断! 不要误以为域中有你要的数据)
                     - 是空, 创建一个新的购物车对象, 将相应的商品项加入到购物车
                     - 非空, 说明已经有了购物车对象, 那么就直接加入到购物车就行了. 而不需要重新再创建购物车后将商品放入到购物车.
-         *//*
+         */
         Cart cart = (Cart) req.getSession().getAttribute("cart");
         if (cart == null) {
             cart = new Cart();
             req.getSession().setAttribute("cart", cart);
         }
-        cart.addItem(cartItem);*/
+        cart.addItem(cartItem);
 
-        // 重定向回首页
-        String referer = req.getHeader("Referer");
+        System.out.println(cart);
+        // 重定向回首页 -> 这里有问题
         System.out.println("请求地址 : " + req.getHeader("Referer"));
-//        resp.sendRedirect(referer);
+        // 重定向回原来的地址界面
+        resp.sendRedirect(req.getHeader("Referer"));
 
 
     }

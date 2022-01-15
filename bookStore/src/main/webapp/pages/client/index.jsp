@@ -9,6 +9,17 @@
 	<%--  改为静态包含 --%>
 	<%@ include file="/pages/common/header.jsp"%>
 
+	<script type="text/javascript">
+		// 界面加载完毕, 别忘了, 所有的函数都应该放在这里面哦~
+		$(function () {
+			// 给 [加入购物车] 按钮绑上单击事件
+			$("button.addToCart").click(function () {
+
+			});
+
+		});
+	</script>
+
 </head>
 <body>
 
@@ -85,7 +96,7 @@
 							<span class="sp2">${ book.bookStock }</span>
 						</div>
 						<div class="book_add">
-							<button>加入购物车</button>
+							<button class="addToCart">加入购物车</button>
 						</div>
 					</div>
 				</div>

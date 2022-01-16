@@ -27,6 +27,7 @@
 	<div id="main">
 
 		<table>
+			<%-- 表头部分 --%>
 			<tr>
 				<td>商品名称</td>
 				<td>数量</td>
@@ -34,7 +35,15 @@
 				<td>金额</td>
 				<td>操作</td>
 			</tr>
+
+			<%-- 购物车为空时, 提醒用户 --%>
+			<c:if test="${ empty sessionScope.cart.items }">
+				<td colspan="5"><a href="index.jsp">亲, 当前购物车为空! 快跟小伙伴们去浏览商品吧~ </a></td>
+			</c:if>
+
+			<%-- 购物车非空, 回显图书 --%>
 			<c:forEach items="${ sessionScope.cart.items }" var="cartItem">
+				<%-- 使用forEach遍历输出 --%>
 				<tr>
 					<%-- 这里的items是一个Map对象, 因此需要先取一次value值, value是一个数组, 再从数组中取数据 --%>
 					<td>${ cartItem.value.name }</td>
@@ -43,20 +52,19 @@
 					<td>${ cartItem.value.totalPrice }</td>
 					<td><a href="cartServlet?action=deleteItem&id=">删除</a></td>
 				</tr>
-
 			</c:forEach>
-
-
-
 
 		</table>
 
-		<div class="cart_info">
-			<span class="cart_span">购物车中共有<span class="b_count"> ${ sessionScope.cart.totalCount } </span>件商品</span>
-			<span class="cart_span">总金额<span class="b_price"> ${ sessionScope.cart.totalPrice } </span>元</span>
-			<span class="cart_span"><a href="#">清空购物车</a></span>
-			<span class="cart_span"><a href="pages/cart/checkout.jsp">去结账</a></span>
-		</div>
+		<%-- 底部的总数量和总价格 以及 结账等信息 --%>
+		<c:if test="${ not empty sessionScope.cart.items }">
+			<div class="cart_info">
+				<span class="cart_span">购物车中共有<span class="b_count"> ${ sessionScope.cart.totalCount } </span>件商品</span>
+				<span class="cart_span">总金额<span class="b_price"> ${ sessionScope.cart.totalPrice } </span>元</span>
+				<span class="cart_span"><a href="#">清空购物车</a></span>
+				<span class="cart_span"><a href="pages/cart/checkout.jsp">去结账</a></span>
+			</div>
+		</c:if>
 
 	</div>
 

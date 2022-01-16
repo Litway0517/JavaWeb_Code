@@ -18,10 +18,9 @@ public class CartServlet extends BaseServlet {
      * 增加商品项
      * @param req 请求报文
      * @param resp 响应报文
-     * @throws ServletException servlet异常
      * @throws IOException IO异常
      */
-    protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         BookServiceImpl bookServiceImpl = new BookServiceImpl();
 

@@ -27,8 +27,6 @@ public class CartServlet extends BaseServlet {
 
         // 获取请求参数
         int bookId = WebUtils.parseInt(req.getParameter("id"), 0);
-        // 获取页码数
-        int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 1);
 
         // 根据客户端传过来的图书的id, 到数据库中查询相应的图书的具体信息
         Book book = bookServiceImpl.queryBookById(bookId);

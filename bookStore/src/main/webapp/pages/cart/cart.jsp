@@ -19,6 +19,11 @@
 				return confirm("确定要删除 [" + $(this).parent().parent().find("td:first").text() + "] 图书嘛? ")
 			});
 
+            // 为 [清除购物车] 按钮增加提醒
+            $("a.clearCart").click(function () {
+                return confirm("确定要清除购物车嘛? ");
+            });
+
 		});
 	</script>
 
@@ -74,7 +79,7 @@
 			<div class="cart_info">
 				<span class="cart_span">购物车中共有<span class="b_count"> ${ sessionScope.cart.totalCount } </span>件商品</span>
 				<span class="cart_span">总金额<span class="b_price"> ${ sessionScope.cart.totalPrice } </span>元</span>
-				<span class="cart_span"><a href="#">清空购物车</a></span>
+				<span class="cart_span"><a class="clearCart" href="cartServlet?action=clear">清空购物车</a></span>
 				<span class="cart_span"><a href="pages/cart/checkout.jsp">去结账</a></span>
 			</div>
 		</c:if>

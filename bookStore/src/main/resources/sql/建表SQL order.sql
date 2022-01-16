@@ -1,4 +1,4 @@
-USE book 
+USE book;
 
 CREATE TABLE t_order(
 	`order_id` VARCHAR(50) PRIMARY KEY,
@@ -7,7 +7,7 @@ CREATE TABLE t_order(
 	`status` INT,
 	`user_id` INT,
 	FOREIGN KEY(`user_id`) REFERENCES t_user(`id`)
-)
+);
 
 
 CREATE TABLE t_order_item(
@@ -18,7 +18,7 @@ CREATE TABLE t_order_item(
 	`total_price` DECIMAL(11,2),
 	`order_id` VARCHAR(50),
 	FOREIGN KEY(`order_id`) REFERENCES t_order(`order_id`)
-)
+);
 
 
 

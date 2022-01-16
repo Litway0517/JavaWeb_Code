@@ -1,0 +1,26 @@
+package com.atguigu.dao.impl;
+
+import com.atguigu.dao.BaseDao;
+import com.atguigu.dao.OrderItemDao;
+import com.atguigu.pojo.OrderItem;
+
+/**
+ * impl订单项
+ *
+ * @author DELL_
+ * @date 2022/01/16
+ */
+public class OrderItemImpl extends BaseDao implements OrderItemDao {
+
+    /**
+     * 保存订单项
+     *
+     * @param orderItem 订单项
+     * @return int
+     */
+    @Override
+    public int saveOrderItem(OrderItem orderItem) {
+        String sql = "INSERT INTO t_order_item(`id`, `name`, `count`, `price`, `total_price`, `order_id`) VALUES(?,?,?,?,?,?)";
+        return updateForOne(sql, orderItem.getOrderId(), orderItem.getName(), orderItem.getCount(), orderItem.getPrice(), orderItem.getTotalPrice(), orderItem.getOrderId());
+    }
+}

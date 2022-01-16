@@ -105,6 +105,32 @@ public class CartServlet extends BaseServlet {
 
     }
 
+    /**
+     * 更新商品的数量
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
+    protected void updateCount(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        // 获取前端参数
+        int bookId = WebUtils.parseInt(req.getParameter("id"), 0);
+        int bookCount = WebUtils.parseInt(req.getParameter("count"), 1);
+
+        // 获取session域中的cart数据
+        Cart cart = (Cart) req.getSession().getAttribute("cart");
+        if (cart != null) {
+            //  调用更新数量方法
+            cart.updateCount(bookId, bookCount);
+            // 重定向
+            resp.sendRedirect(req.getHeader("Referer"));
+
+        }
+
+
+    }
+
 
 
 }

@@ -60,7 +60,7 @@
 </head>
 <body>
     <%-- 这里打印一下, 看看内容是什么, 再一点一点取出来回显 --%>
-	<%-- ${ sessionScope } --%>
+	 <%--${ sessionScope }--%>
 
 	<div id="header">
 			<img class="logo_img" alt="" src="static/img/logo.gif" >

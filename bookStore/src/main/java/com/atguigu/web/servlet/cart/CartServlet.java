@@ -57,6 +57,35 @@ public class CartServlet extends BaseServlet {
         // 重定向回原来的地址界面
         resp.sendRedirect(req.getHeader("Referer"));
 
+    }
+
+
+    /**
+     * 删除购物车的商品
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
+    protected void deleteItem(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        // 获取前端参数, 图书的id编号
+        int id = WebUtils.parseInt(req.getParameter("id"), 0);
+
+        // 获取session域中的cart对象
+        Cart cart = (Cart) req.getSession().getAttribute("cart");
+        // 判断是否为空
+        if (cart != null) {
+            cart.deleteItem(id);
+
+            // 重定向回到原来的购物车
+            resp.sendRedirect(req.getHeader("Referer"));
+        }
+
+        System.out.println("请求地址 : " + req.getHeader("Referer"));
+        System.out.println(cart);
+
 
     }
+
 }

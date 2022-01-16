@@ -7,12 +7,14 @@ import com.atguigu.service.impl.BookServiceImpl;
 import com.atguigu.utils.WebUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CartServlet extends BaseServlet {
+    /*
+        下面这些方法, 完成业务需求之后, 大部分是重定向到某地址, 而request域不支持重定向, 因此均是使用的session域存储数据.
+     */
 
     /**
      * 增加商品项

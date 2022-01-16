@@ -82,7 +82,29 @@ public class CartServlet extends BaseServlet {
         System.out.println("请求地址 : " + req.getHeader("Referer"));
         System.out.println(cart);
 
+    }
+
+
+    /**
+     * 清楚购物车
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws IOException IO异常
+     */
+    protected void clear(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        Cart cart = (Cart) req.getSession().getAttribute("cart");
+        if (cart != null) {
+            // 调用清除购物车的方法
+            cart.clear();
+
+            // 重定向
+            resp.sendRedirect(req.getHeader("Referer"));
+        }
 
     }
+
+
 
 }

@@ -53,6 +53,11 @@ public class CartServlet extends BaseServlet {
         System.out.println(cart);
         // 重定向回首页 -> 这里有问题
         System.out.println("请求地址 : " + req.getHeader("Referer"));
+
+        // 保存最后一个添加的图书的名称, 因为首页要使用
+        req.getSession().setAttribute("lastName", cartItem.getName());
+
+
         // 重定向回原来的地址界面
         resp.sendRedirect(req.getHeader("Referer"));
 

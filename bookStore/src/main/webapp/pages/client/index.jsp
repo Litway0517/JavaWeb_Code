@@ -68,12 +68,23 @@
                     <input type="submit" value="查询" />
 				</form>
 			</div>
+
 			<div style="text-align: center">
-				<span>您的购物车中有 ${ sessionScope.cart.totoalCount } 件商品</span>
-				<div>
-					您刚刚将 <<span style="color: red">${ sessionScope.lastName }</span>> 加入到了购物车中
-				</div>
+				<c:if test="${ empty sessionScope.cart.items }">
+					<span> </span>
+					<div>
+						<span style="color: red">当前购物车为空</span>
+					</div>
+				</c:if>
+				<%-- 购物车非空的时候 --%>
+				<c:if test="${ not empty sessionScope.cart.items }">
+					<span>您的购物车中有 ${ sessionScope.cart.totalCount } 件商品</span>
+					<div>
+						您刚刚将 <span style="color: red">${ sessionScope.lastName }</span> 加入到了购物车中
+					</div>
+				</c:if>
 			</div>
+
 
 
 			<%-- 这是首页的每一个div, 就是前端看到的每一本图书, 遍历输出 --%>

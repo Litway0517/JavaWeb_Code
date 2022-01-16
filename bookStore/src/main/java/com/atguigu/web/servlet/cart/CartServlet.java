@@ -11,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 public class CartServlet extends BaseServlet {
 
@@ -22,7 +21,7 @@ public class CartServlet extends BaseServlet {
      * @throws ServletException servlet异常
      * @throws IOException IO异常
      */
-    protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, InvocationTargetException, IllegalAccessException {
+    protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         BookServiceImpl bookServiceImpl = new BookServiceImpl();
 

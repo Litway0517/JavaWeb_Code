@@ -9,10 +9,23 @@
 	<%--  改为静态包含 --%>
 	<%@ include file="/pages/common/header.jsp"%>
 
+	<%-- js事件 --%>
+	<script type="text/javascript">
+		$(function () {
+
+			// 为 [删除] 按钮绑上单击事件
+			$("a.deleteItem").click(function () {
+				// 这个return语句, 别忘了, confirm是确认框.
+				return confirm("确定要删除 [" + $(this).parent().parent().find("td:first").text() + "] 图书嘛? ")
+			});
+
+		});
+	</script>
+
 </head>
 <body>
     <%-- 这里打印一下, 看看内容是什么, 再一点一点取出来回显 --%>
-	${ sessionScope }
+	<%-- ${ sessionScope } --%>
 
 	<div id="header">
 			<img class="logo_img" alt="" src="static/img/logo.gif" >
@@ -50,7 +63,7 @@
 					<td>${ cartItem.value.count }</td>
 					<td>${ cartItem.value.price }</td>
 					<td>${ cartItem.value.totalPrice }</td>
-					<td><a href="cartServlet?action=deleteItem&id=">删除</a></td>
+					<td><a class="deleteItem" href="cartServlet?action=deleteItem&id=${ cartItem.value.id }">删除</a></td>
 				</tr>
 			</c:forEach>
 

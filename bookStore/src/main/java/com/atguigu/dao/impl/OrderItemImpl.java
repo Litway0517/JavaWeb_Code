@@ -5,7 +5,7 @@ import com.atguigu.dao.OrderItemDao;
 import com.atguigu.pojo.OrderItem;
 
 /**
- * impl订单项
+ * 订单中的明细分类DAOImpl
  *
  * @author DELL_
  * @date 2022/01/16

@@ -69,9 +69,9 @@
 				</form>
 			</div>
 			<div style="text-align: center">
-				<span>您的购物车中有3件商品</span>
+				<span>您的购物车中有 ${ sessionScope.cart.totoalCount } 件商品</span>
 				<div>
-					您刚刚将<span style="color: red">时间简史</span>加入到了购物车中
+					您刚刚将 <<span style="color: red">${ sessionScope.lastName }</span>> 加入到了购物车中
 				</div>
 			</div>
 

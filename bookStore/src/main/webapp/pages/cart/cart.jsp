@@ -24,6 +24,36 @@
                 return confirm("确定要清除购物车嘛? ");
             });
 
+            // 为 [数量输入框] 增加事件
+            /*
+                blur事件, 是指当焦点离开时的事件, 便触发js. 不容易判断输入框的值, 因此这里换成onchange事件
+                change事件, 是指当输入框的数据发生改变时, 才会出发事件, 因此, 只要用户不更改数据是不会由响应的.
+             */
+            $("input.updateCount").change(function () {
+                // 获取图书名称
+                var bookName = $(this).parent().parent().parent().find("td:first").text();
+                // 获取图书的数量
+                var count = this.value;
+
+                // 进行判断
+                if ( confirm("你确认要将图书 [" + bookName + "] 的数量修改为 " + count + "嘛? ") ) {
+                    // 获取图书的id编号
+                    let bookId = $(this).attr("bookId");
+                    location.href = "http://localhost:8080/bookStore/cartServlet?action=updateCount&id=" + bookId + "&count=" + count;
+                } else {
+                    /*
+                        这里面有一个this.defaultValue值, 这个值就是原来的数据
+                        defaultValues属性是表单项Dom对象的值, 他表示默认的value属性值
+                     */
+                    this.value = this.defaultValue;
+                }
+
+
+
+
+
+            });
+
 		});
 	</script>
 
@@ -61,15 +91,21 @@
 
 			<%-- 购物车非空, 回显图书 --%>
 			<c:forEach items="${ sessionScope.cart.items }" var="cartItem">
-				<%-- 使用forEach遍历输出 --%>
-				<tr>
-					<%-- 这里的items是一个Map对象, 因此需要先取一次value值, value是一个数组, 再从数组中取数据 --%>
-					<td>${ cartItem.value.name }</td>
-					<td>${ cartItem.value.count }</td>
-					<td>${ cartItem.value.price }</td>
-					<td>${ cartItem.value.totalPrice }</td>
-					<td><a class="deleteItem" href="cartServlet?action=deleteItem&id=${ cartItem.value.id }">删除</a></td>
-				</tr>
+				<%-- 使用forEach遍历输出, 遍历之前先判断一下 图书数量 这个参数, 如果是0就不显示 --%>
+
+                <tr>
+                    <%-- 这里的items是一个Map对象, 因此需要先取一次value值, value是一个数组, 再从数组中取数据 --%>
+                    <td>${ cartItem.value.name }</td>
+                    <%--<td>${ cartItem.value.count }</td>--%>
+
+                    <%-- 将商品的数量改成输入框控件, 而不是使用文本显示 --%>
+                    <td><label><input class="updateCount" bookId="${ cartItem.value.id }" type="text" name="bookCount" value="${ cartItem.value.count }" style="width: 70px;"></label></td>
+                    <td>${ cartItem.value.price }</td>
+                    <td>${ cartItem.value.totalPrice }</td>
+                    <td><a class="deleteItem" href="cartServlet?action=deleteItem&id=${ cartItem.value.id }">删除</a></td>
+                </tr>
+
+
 			</c:forEach>
 
 		</table>

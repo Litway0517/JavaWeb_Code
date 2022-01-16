@@ -27,7 +27,7 @@ public class Order {
      * 订单状态
      * 0=未发货, 1=已发货, 2=已签收
      */
-    private Integer orderStatus = 0;
+    private Integer status = 0;
     /**
      * 用户id
      */
@@ -45,14 +45,14 @@ public class Order {
      * @param orderId     订单id
      * @param createTime  创建时间
      * @param price       价格
-     * @param orderStatus 订单状态
+     * @param status 订单状态
      * @param userId      用户id
      */
-    public Order(String orderId, Date createTime, BigDecimal price, Integer orderStatus, Integer userId) {
+    public Order(String orderId, Date createTime, BigDecimal price, Integer status, Integer userId) {
         this.orderId = orderId;
         this.createTime = createTime;
         this.price = price;
-        this.orderStatus = orderStatus;
+        this.status = status;
         this.userId = userId;
     }
 
@@ -116,17 +116,17 @@ public class Order {
      *
      * @return {@link Integer}
      */
-    public Integer getOrderStatus() {
-        return orderStatus;
+    public Integer getStatus() {
+        return status;
     }
 
     /**
      * 设置订单状态
      *
-     * @param orderStatus 订单状态
+     * @param status 订单状态
      */
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     /**
@@ -158,7 +158,7 @@ public class Order {
                 "orderId='" + orderId + '\'' +
                 ", createTime=" + createTime +
                 ", price=" + price +
-                ", orderStatus=" + orderStatus +
+                ", status=" + status +
                 ", userId=" + userId +
                 '}';
     }

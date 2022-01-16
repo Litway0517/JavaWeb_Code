@@ -22,8 +22,7 @@
 				 */
 				// TODO: 这里是一种新的手段, 获取到id值, 注意!
 				let bookId = $(this).attr("bookId");
-				location.href = "cartServlet?action=addItem&id=" + bookId + "&pageNo=" + ${ param.pageNo };
-
+				location.href = "http://localhost:8080/bookStore/cartServlet?action=addItem&id=" + bookId;
 
 			});
 
@@ -39,10 +38,10 @@
 
 		<div>
 			<%-- 如果已经登陆成功, 那么就显示相应的欢迎字样 --%>
-			<c:if  test="${ empty sessionScope.user }">
+<%--			<c:if  test="${ empty sessionScope.user }">--%>
 				<a href="pages/user/login.jsp">登录</a> ┃
 				<a href="pages/user/regist.jsp">注册</a> &nbsp;&nbsp;
-			</c:if>
+<%--			</c:if>--%>
 
 			<%-- 如果未登陆成功, 那么就显示登录和注册 --%>
 			<c:if test="${ not empty sessionScope.user }">

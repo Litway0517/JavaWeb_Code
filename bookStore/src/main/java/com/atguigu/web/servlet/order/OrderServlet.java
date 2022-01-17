@@ -4,6 +4,7 @@ import com.atguigu.pojo.Cart;
 import com.atguigu.pojo.Order;
 import com.atguigu.pojo.User;
 import com.atguigu.service.impl.OrderServiceImpl;
+import com.atguigu.utils.WebUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -80,6 +81,36 @@ public class OrderServlet extends BaseServlet {
 
         // 请求转发到管理员的订单管理界面
         resp.sendRedirect(req.getContextPath() + "/pages/manager/order_manager.jsp");
+
+    }
+
+
+    /**
+     * 管理员功能 -> 修改订单状态
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws ServletException servlet异常
+     * @throws IOException IO异常
+     */
+    protected  void changeOrderStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        // 获取前端的参数
+        int status = WebUtils.parseInt(req.getParameter("status"), 0);
+        // 这里直接获取就行, 转换回来的就是String类型, 刚好能够使用
+        String orderId = req.getParameter("orderId");
+
+
+        // 调用orderServiceImpl.changOrderStatus(orderId, status)
+        orderServiceImpl.changeOrderStatus(orderId, status);
+
+        // 请求转发 -> 这里如果按F5同样会产生请求重新发起的情况, 因此需要重定向
+        // req.getRequestDispatcher("/pages/manager/order_manager.jsp").forward(req, resp);
+
+        // 重定向
+        System.out.println(req.getContextPath());
+        resp.sendRedirect(req.getContextPath() + "/orderServlet?action=showAllOrders");
+
 
     }
 

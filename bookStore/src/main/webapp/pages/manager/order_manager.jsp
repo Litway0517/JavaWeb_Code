@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -30,8 +33,20 @@
 				<td>发货</td>
 			</tr>
 
-			<c:forEach items="${ sessionScope.order }" var="order">
-
+			<c:forEach items="${ sessionScope.orders }" var="order">
+				<tr>
+					<td><fmt:formatDate value="${ order.createTime }" pattern="yyyy-MM-dd" /></td>
+					<td>${ order.price }</td>
+					<td><a href="#">查看详情</a></td>
+					<td>
+						<c:choose>
+							<c:when test="${ order.status == 0 }">未发货</c:when>
+							<c:when test="${ order.status == 1 }">已发货</c:when>
+							<c:when test="${ order.status == 2 }">已签收</c:when>
+							<c:otherwise><span style="color: red">未知错误, 请联系管理员</span></c:otherwise>
+						</c:choose>
+					</td>
+				</tr>
 			</c:forEach>
 
 			<tr>

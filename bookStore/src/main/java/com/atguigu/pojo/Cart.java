@@ -123,6 +123,7 @@ public class Cart {
          */
         CartItem findCartItem= items.get(cartItem.getId());
         if (findCartItem == null) {
+            // 商品项的 键=商品的id, 值=商品的内容(包括id, name, count, price单价, totalPrice分总价格)
             items.put(cartItem.getId(), cartItem);
         } else {
             // 更新数量

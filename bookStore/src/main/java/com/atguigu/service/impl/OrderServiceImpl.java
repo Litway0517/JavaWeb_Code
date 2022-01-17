@@ -1,11 +1,9 @@
 package com.atguigu.service.impl;
 
+import com.atguigu.dao.impl.BookDaoImpl;
 import com.atguigu.dao.impl.OrderDaoImpl;
 import com.atguigu.dao.impl.OrderItemDaoImpl;
-import com.atguigu.pojo.Cart;
-import com.atguigu.pojo.CartItem;
-import com.atguigu.pojo.Order;
-import com.atguigu.pojo.OrderItem;
+import com.atguigu.pojo.*;
 import com.atguigu.service.OrderService;
 
 import java.util.Date;
@@ -19,6 +17,8 @@ public class OrderServiceImpl implements OrderService {
     // 创建一个 订单明细DAO对象
     OrderItemDaoImpl orderItemImpl = new OrderItemDaoImpl();
 
+    // 创建一个 图书DAO对象
+    private BookDaoImpl bookDaoImpl = new BookDaoImpl();
 
     /**
      * 创建订单
@@ -49,6 +49,17 @@ public class OrderServiceImpl implements OrderService {
             // 注意, 这个订单项的编号, 可以不以购物车中商品项的id为准. 订单项的id没有什么强制约束, 可以是随意的. 因此这里让数据库决定.
             orderItem = new OrderItem(null, cartItem.getName(), cartItem.getCount(), cartItem.getPrice(), cartItem.getTotalPrice(), orderId);
             orderItemImpl.saveOrderItem(orderItem);
+
+            /*
+                图书的数据, 也需要更改. 图书的销量, 图书的库存都需要改.
+                根据图书的id查询到对应图书的信息, 然后更新.
+                    - 图书A的销量为 = A原来的销量 + A在购物车中的数量
+                    - 图书A的库存为 = A原来的库存 - A在购物车中的数量
+             */
+            Book book = bookDaoImpl.queryBookById(cartItem.getId());
+            book.setBookStock(book.getBookStock() - cartItem.getCount());
+            book.setBookSales(book.getBookSales() + cartItem.getCount());
+
         }
 
         // 清空购物车

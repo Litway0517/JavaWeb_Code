@@ -28,8 +28,8 @@ public abstract class BaseDao {
     private QueryRunner queryRunner = new QueryRunner();
 
     /**
-     * QueryRunner的update对象, 能够执行 insert/update/delete 类型的sql语句.
-     * 如果不适用封装好的jar包, 那么需要单独写, 这样降低效率
+     * QueryRunner的update方法, 能够执行 insert/update/delete 类型的sql语句.
+     * 如果不使用封装好的jar包, 那么需要单独写, 这样降低效率
      * @param sql 待执行sql语句
      * @param args 需要传入的可变参数
      * @return 如果返回-1表示操作失败。 否则返回的int值表示影响的数据库中表的行数

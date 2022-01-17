@@ -59,6 +59,8 @@ public class OrderServiceImpl implements OrderService {
             Book book = bookDaoImpl.queryBookById(cartItem.getId());
             book.setBookStock(book.getBookStock() - cartItem.getCount());
             book.setBookSales(book.getBookSales() + cartItem.getCount());
+            // 保存更新
+            bookDaoImpl.updateBook(book);
 
         }
 

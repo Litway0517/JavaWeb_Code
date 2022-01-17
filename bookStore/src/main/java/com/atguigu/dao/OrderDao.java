@@ -2,6 +2,8 @@ package com.atguigu.dao;
 
 import com.atguigu.pojo.Order;
 
+import java.util.List;
+
 /**
  * 订单DAO
  *
@@ -18,6 +20,12 @@ public interface OrderDao {
      * @return int
      */
     public int saveOrder(Order order);
+
+    /**
+     * 查询所有订单
+     * @return 返回所有订单的数目
+     */
+    public List<Order> queryAllOrders();
 
 
 

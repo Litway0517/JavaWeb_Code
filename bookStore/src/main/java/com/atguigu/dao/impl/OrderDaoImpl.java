@@ -10,7 +10,7 @@ import com.atguigu.pojo.Order;
  * @author DELL_
  * @date 2022/01/16
  */
-public class OrderImpl extends BaseDao implements OrderDao {
+public class OrderDaoImpl extends BaseDao implements OrderDao {
 
 
     /**

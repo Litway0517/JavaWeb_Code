@@ -10,7 +10,7 @@ import com.atguigu.pojo.OrderItem;
  * @author DELL_
  * @date 2022/01/16
  */
-public class OrderItemImpl extends BaseDao implements OrderItemDao {
+public class OrderItemDaoImpl extends BaseDao implements OrderItemDao {
 
     /**
      * 保存订单项

@@ -27,6 +27,10 @@ public interface OrderDao {
      */
     public List<Order> queryAllOrders();
 
-
-
+    /**
+     * 更改订单的状态(管理员功能)
+     * @param orderId 订单id
+     * @param status 新的订单状态
+     */
+    public int changeOrderStatus(String orderId, Integer status);
 }

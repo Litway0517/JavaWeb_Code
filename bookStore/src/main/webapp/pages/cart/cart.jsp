@@ -116,7 +116,8 @@
 				<span class="cart_span">购物车中共有<span class="b_count"> ${ sessionScope.cart.totalCount } </span>件商品</span>
 				<span class="cart_span">总金额<span class="b_price"> ${ sessionScope.cart.totalPrice } </span>元</span>
 				<span class="cart_span"><a class="clearCart" href="cartServlet?action=clear">清空购物车</a></span>
-				<span class="cart_span"><a href="pages/cart/checkout.jsp">去结账</a></span>
+                <%-- 结账的时候, 不需要携带cart购物车中的明细内容, 因为cart本身就保存在session域中了 --%>
+				<span class="cart_span"><a href="orderServlet?action=createOrder">去结账</a></span>
 			</div>
 		</c:if>
 

@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
             保存订单项. 这样把购物车中的items这个成员变量, 转换为一个一个的orderItem对象, 然后调用保存DAO.
             遍历保存到数据库.
          */
-        OrderItem orderItem = new OrderItem();
+        OrderItem orderItem;
         for ( Map.Entry<Integer, CartItem> entry : cart.getItems().entrySet() ) {
             CartItem cartItem = entry.getValue();
             // 注意, 这个订单项的编号, 可以不以购物车中商品项的id为准. 订单项的id没有什么强制约束, 可以是随意的. 因此这里让数据库决定.

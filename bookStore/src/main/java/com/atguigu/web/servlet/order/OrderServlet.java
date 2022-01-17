@@ -1,6 +1,7 @@
 package com.atguigu.web.servlet.order;
 
 import com.atguigu.pojo.Cart;
+import com.atguigu.pojo.Order;
 import com.atguigu.pojo.User;
 import com.atguigu.service.impl.OrderServiceImpl;
 import com.atguigu.web.servlet.base.BaseServlet;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class OrderServlet extends BaseServlet {
 
@@ -58,7 +60,28 @@ public class OrderServlet extends BaseServlet {
             使用重定向解决, 但是使用重定向, request域的数据就不能够带回到checkout.jsp界面, 因此要将orderId存储在session域中
          */
         resp.sendRedirect(req.getContextPath() + "/pages/cart/checkout.jsp");
+    }
 
+    /**
+     * 管理员功能 -> 查询所有订单
+     * @param req 请求报文
+     * @param resp 响应报文
+     * @throws ServletException servlet异常
+     * @throws IOException IO异常
+     */
+    protected void showAllOrders(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        // 查询所有订单信息
+        List<Order> orders = orderServiceImpl.queryAllOrders();
+
+        // 保存到session域中
+        req.getSession().setAttribute("orders", orders);
+
+        // 请求转发到管理员的订单管理界面
+        resp.sendRedirect(req.getContextPath() + "/pages/manager/order_manager.jsp");
 
     }
+
+
 }

@@ -46,12 +46,15 @@ public class OrderServiceImpl implements OrderService {
         OrderItem orderItem = new OrderItem();
         for ( Map.Entry<Integer, CartItem> entry : cart.getItems().entrySet() ) {
             CartItem cartItem = entry.getValue();
-            orderItem = new OrderItem(cartItem.getId(), cartItem.getName(), cartItem.getCount(), cartItem.getPrice(), cartItem.getTotalPrice(), orderId);
+            // 注意, 这个订单项的编号, 可以不以购物车中商品项的id为准. 订单项的id没有什么强制约束, 可以是随意的. 因此这里让数据库决定.
+            orderItem = new OrderItem(null, cartItem.getName(), cartItem.getCount(), cartItem.getPrice(), cartItem.getTotalPrice(), orderId);
             orderItemImpl.saveOrderItem(orderItem);
         }
 
+        // 清空购物车
+        cart.clear();
 
-
-        return null;
+        // 返回的订单号
+        return orderId;
     }
 }

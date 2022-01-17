@@ -82,4 +82,19 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orders = orderDaoImpl.queryAllOrders();
         return orders;
     }
+
+
+    /**
+     * 更改订单的状态(管理员功能)
+     *
+     * @param orderId 订单id
+     * @param status  新的订单状态
+     */
+    @Override
+    public void changeOrderStatus(String orderId, Integer status) {
+        orderDaoImpl.changeOrderStatus(orderId, status);
+
+    }
+
+
 }

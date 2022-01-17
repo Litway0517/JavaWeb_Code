@@ -65,4 +65,14 @@
         <url-pattern>/cartServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- 配置OrderServlet程序的xml信息 -->
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>com.atguigu.web.servlet.order.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/orderServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

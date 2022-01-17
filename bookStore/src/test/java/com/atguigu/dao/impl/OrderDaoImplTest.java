@@ -9,19 +9,32 @@ import java.util.List;
 
 public class OrderDaoImplTest {
 
-    public OrderDaoImpl order = new OrderDaoImpl();
+    public OrderDaoImpl orderDaoImpl = new OrderDaoImpl();
 
     @Test
     public void saveOrder() {
-        order.saveOrder(new Order("test001", new Date(), new BigDecimal("23.3"), 0, 11));
+        orderDaoImpl.saveOrder(new Order("test001", new Date(), new BigDecimal("23.3"), 0, 11));
     }
 
 
     @Test
     public void queryAllOrders() {
 
-        List<Order> orders = order.queryAllOrders();
+        List<Order> orders = orderDaoImpl.queryAllOrders();
         System.out.println(orders);
+    }
+
+    @Test
+    public void changeOrderStatus() {
+        List<Order> orders = orderDaoImpl.queryAllOrders();
+
+        // 修改订单状态之前, 这里仅仅以第一个订单的状态为例子
+        System.out.println("订单状态修改之前 : " + orders.get(2));
+
+        // 修改订单状态为1
+        orderDaoImpl.changeOrderStatus(orders.get(2).getOrderId(), 1);
+
+        System.out.println("订单状态修改之后 : " + orderDaoImpl.queryAllOrders().get(2));
     }
 
 

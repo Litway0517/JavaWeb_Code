@@ -6,13 +6,11 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import static org.junit.Assert.*;
-
-public class OrderImplTest {
+public class OrderDaoImplTest {
 
     @Test
     public void saveOrder() {
-        OrderImpl order = new OrderImpl();
+        OrderDaoImpl order = new OrderDaoImpl();
         order.saveOrder(new Order("test001", new Date(), new BigDecimal("23.3"), 0, 11));
 
     }

@@ -1,6 +1,9 @@
 package com.atguigu.service;
 
 import com.atguigu.pojo.Cart;
+import com.atguigu.pojo.Order;
+
+import java.util.List;
 
 /**
  * @author DELL_
@@ -15,5 +18,12 @@ public interface OrderService {
      * @return {@link String}
      */
     public String createOrder(Cart cart, Integer userId);
+
+    /**
+     * 查询所有订单(管理员功能)
+     *
+     * @return 所有订单
+     */
+    public List<Order> queryAllOrders();
 
 }

@@ -7,6 +7,7 @@ import com.atguigu.pojo.*;
 import com.atguigu.service.OrderService;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class OrderServiceImpl implements OrderService {
@@ -19,6 +20,7 @@ public class OrderServiceImpl implements OrderService {
 
     // 创建一个 图书DAO对象
     private BookDaoImpl bookDaoImpl = new BookDaoImpl();
+
 
     /**
      * 创建订单
@@ -69,5 +71,15 @@ public class OrderServiceImpl implements OrderService {
 
         // 返回的订单号
         return orderId;
+    }
+
+    /**
+     * 管理员功能 -> 查询所有订单
+     * @return 返回所有订单
+     */
+    @Override
+    public List<Order> queryAllOrders() {
+        List<Order> orders = orderDaoImpl.queryAllOrders();
+        return orders;
     }
 }

@@ -5,7 +5,7 @@
   Time: 20:32
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <div>
 <%--    <a href="pages/manager/book_manager.jsp">图书管理</a>--%>
@@ -16,7 +16,8 @@
         bookServlet 这个是后台的servlet程序, 没啥好说的.
         ? 后面表示本次请求携带的参数
         action=list 表示到BookServlet之后会即刻调用list方法
-            action是我们在BaseServlet反射时的一个入口参数, 很重要. 不过前端传过来action的方式有很多, 比如form表单的action, 各种input的action, 还有这里的直接在href上加?加参数
+            action是我们在BaseServlet反射时的一个入口参数, 很重要. 不过前端传过来action的方式有很多, 比如form表单的action,
+            各种input的action, 还有这里的直接在href上加?加参数
 
         这里面细节有点多
     --%>
@@ -28,7 +29,7 @@
         而, 现在我们需要分页, 那么当点击 [图书管理] 按钮时, 应当先执行page分页方法, 故action动作改成page
      --%>
     <a href="manager/bookServlet?action=page">图书管理</a>
-    <a href="pages/manager/order_manager.jsp">订单管理</a>
+    <a href="orderServlet?action=showAllOrders">订单管理</a>
     <a href="index.jsp">返回商城</a>
 </div>
 

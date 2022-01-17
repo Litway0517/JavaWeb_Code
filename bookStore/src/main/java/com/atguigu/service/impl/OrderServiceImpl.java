@@ -92,8 +92,8 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public void changeOrderStatus(String orderId, Integer status) {
+        // 调用DAO层已经写好的方法
         orderDaoImpl.changeOrderStatus(orderId, status);
-
     }
 
 

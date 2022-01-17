@@ -36,7 +36,7 @@
                 var count = this.value;
 
                 // 进行判断
-                if ( confirm("你确认要将图书 [" + bookName + "] 的数量修改为 " + count + "嘛? ") ) {
+                if ( confirm("你确认要将图书 [" + bookName + "] 的数量修改为 " + count + " 嘛? ") ) {
                     // 获取图书的id编号
                     let bookId = $(this).attr("bookId");
                     location.href = "http://localhost:8080/bookStore/cartServlet?action=updateCount&id=" + bookId + "&count=" + count;

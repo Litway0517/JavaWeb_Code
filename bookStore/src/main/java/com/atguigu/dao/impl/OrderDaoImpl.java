@@ -39,4 +39,17 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
         List<Order> orders = queryForList(Order.class, sql);
         return orders;
     }
+
+
+    /**
+     * 更改订单的状态(管理员功能)
+     * @param orderId 订单id
+     * @param status 新的订单状态
+     */
+    @Override
+    public int changeOrderStatus(String orderId, Integer status) {
+        String sql = "UPDATE `t_order` SET `status` = ? WHERE `order_id` = ?";
+        int i = updateForOne(sql, status, orderId);
+        return i;
+    }
 }

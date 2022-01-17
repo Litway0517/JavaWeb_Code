@@ -50,14 +50,14 @@ public class OrderServlet extends BaseServlet {
         req.getSession().setAttribute("orderId", orderId);
 
         // 请求转发
-        req.getRequestDispatcher("/pages/cart/checkout.jsp").forward(req, resp);
+        // req.getRequestDispatcher("/pages/cart/checkout.jsp").forward(req, resp);
 
 
         /*
             上面的请求转发, 如果用户在 订单号 界面, 按住F5不断刷新的话, 那么就会一直重复提交购物车界面的表单, 这样数据库就会重复插入
             使用重定向解决, 但是使用重定向, request域的数据就不能够带回到checkout.jsp界面, 因此要将orderId存储在session域中
          */
-        resp.sendRedirect(req.getContentType() + "/pages/cart/checkout.jsp");
+        resp.sendRedirect(req.getContextPath() + "/pages/cart/checkout.jsp");
 
 
     }

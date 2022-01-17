@@ -13,7 +13,8 @@
 
 </head>
 <body>
-	${ sessionScope.orders }
+	<%-- 先打印一下测试, 然后再用forEach遍历输出 --%>
+	<%--${ sessionScope.orders }--%>
 
 	<div id="header">
 		<img class="logo_img" alt="" src="../../static/img/logo.gif" >
@@ -39,8 +40,11 @@
 					<td>${ order.price }</td>
 					<td><a href="#">查看详情</a></td>
 					<td>
+						<%-- 这个test标签的测试, 具体是否大于或小于..., 是放在括号里面的, 不是外面 --%>
 						<c:choose>
-							<c:when test="${ order.status == 0 }">未发货</c:when>
+							<c:when test="${ order.status == 0 }">
+								<a href="orderServlet?action=changeOrderStatus&orderId=${ order.orderId }&status=1">点击发货</a>
+							</c:when>
 							<c:when test="${ order.status == 1 }">已发货</c:when>
 							<c:when test="${ order.status == 2 }">已签收</c:when>
 							<c:otherwise><span style="color: red">未知错误, 请联系管理员</span></c:otherwise>
@@ -49,19 +53,6 @@
 				</tr>
 			</c:forEach>
 
-			<tr>
-				<td>2015.04.23</td>
-				<td>90.00</td>
-				<td><a href="#">查看详情</a></td>
-				<td><a href="#">点击发货</a></td>
-			</tr>
-
-			<tr>
-				<td>2015.04.20</td>
-				<td>20.00</td>
-				<td><a href="#">查看详情</a></td>
-				<td>已发货</td>
-			</tr>
 
 		</table>
 	</div>

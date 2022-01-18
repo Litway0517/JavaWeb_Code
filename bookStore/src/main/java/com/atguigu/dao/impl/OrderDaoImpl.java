@@ -52,4 +52,17 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
         int i = updateForOne(sql, status, orderId);
         return i;
     }
+
+    /**
+     * 根据用户Id, 查询该用户的所有订单信息
+     *
+     * @param userId 用户Id
+     * @return 返回该用户下的所有订单信息
+     */
+    @Override
+    public List<Order> queryOrdersByUserId(Integer userId) {
+        String sql = "SELECT `order_id`,`create_time`,`price`,`status`,`user_id` FROM `t_order` WHERE `user_id` = ?";
+        List<Order> orders = queryForList(Order.class, sql, userId);
+        return orders;
+    }
 }

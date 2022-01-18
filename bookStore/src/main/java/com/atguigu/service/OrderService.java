@@ -33,4 +33,11 @@ public interface OrderService {
      */
     public void sendOrder(String orderId, Integer status);
 
+
+    /**
+     * 根据用户Id, 查询该用户的所有订单信息
+     * @param userId 用户Id
+     * @return 返回该用户下的所有订单信息
+     */
+    public List<Order> queryOrdersByUserId(Integer userId);
 }

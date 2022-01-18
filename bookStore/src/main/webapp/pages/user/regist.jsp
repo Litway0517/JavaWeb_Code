@@ -197,7 +197,7 @@
                         <br/>
                         <label>验证码：</label>
                         <input class="itxt" type="text" name="code" style="width: 150px;" id="code"/>
-                        <img id="code_img" alt="服务器开小差了哦~请稍后再试" src="kaptcha" style="float: right; margin-right: 50px; width: 84px; height: 38px">
+                        <img id="code_img" alt="啊哦, 服务器开小差了哦~请稍后再试" src="kaptcha" style="float: right; margin-right: 50px; width: 75px; height: 38px">
                         <br/>
                         <br/>
                         <input type="submit" value="注册" id="sub_btn"/>

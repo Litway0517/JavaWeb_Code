@@ -1,8 +1,11 @@
 package com.atguigu.service.impl;
 
+import com.atguigu.dao.impl.OrderDaoImpl;
+import com.atguigu.dao.impl.OrderItemDaoImpl;
 import com.atguigu.pojo.Cart;
 import com.atguigu.pojo.CartItem;
 import com.atguigu.pojo.Order;
+import com.atguigu.pojo.OrderItem;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -59,4 +62,17 @@ public class OrderServiceImplTest {
 
 
     }
+
+
+    @Test
+    public void queryOrderItemsByOrderId() {
+        OrderDaoImpl orderDaoImpl = new OrderDaoImpl();
+        List<Order> orders = orderDaoImpl.queryAllOrders();
+
+        OrderItemDaoImpl orderItemDaoImpl = new OrderItemDaoImpl();
+        List<OrderItem> orderItems = orderItemDaoImpl.queryOrderItemsByOrderId(orders.get(orders.size() - 1).getOrderId());
+        System.out.println(orderItems);
+
+    }
+
 }

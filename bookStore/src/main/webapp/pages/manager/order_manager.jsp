@@ -43,7 +43,7 @@
 						<%-- 这个test标签的测试, 具体是否大于或小于..., 是放在括号里面的, 不是外面 --%>
 						<c:choose>
 							<c:when test="${ order.status == 0 }">
-								<a href="orderServlet?action=changeOrderStatus&orderId=${ order.orderId }&status=1">点击发货</a>
+								<a href="orderServlet?action=sendOrder&orderId=${ order.orderId }&status=1">点击发货</a>
 							</c:when>
 							<c:when test="${ order.status == 1 }">已发货</c:when>
 							<c:when test="${ order.status == 2 }">已签收</c:when>

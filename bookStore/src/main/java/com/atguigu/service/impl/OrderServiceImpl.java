@@ -93,7 +93,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void sendOrder(String orderId, Integer status) {
         // 调用DAO层已经写好的方法
-        orderDaoImpl.changeOrderStatus(orderId, status);
+        orderDaoImpl.sendOrder(orderId, status);
     }
 
 

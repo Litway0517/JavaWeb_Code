@@ -12,7 +12,7 @@
 <div>
     <span>欢迎<span class="um_span">${ sessionScope.user.username }</span>
     ┃ 光临尚硅谷书城 ┃ &nbsp;&nbsp;</span>
-    <a href="pages/order/order.jsp">我的订单</a>&nbsp;&nbsp;
+    <a href="orderServlet?action=queryOrdersByUserId">我的订单</a>&nbsp;&nbsp;
     <a href="userServlet?action=logout">注销</a>&nbsp;&nbsp;
     <a href="index.jsp">返回</a>
 </div>

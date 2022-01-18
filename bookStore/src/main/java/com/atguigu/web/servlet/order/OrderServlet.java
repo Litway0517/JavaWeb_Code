@@ -156,6 +156,30 @@ public class OrderServlet extends BaseServlet {
 
     }
 
+    /**
+     * 根据订单的编号, 查询该订单号下的详细的订单中的具体内容. 一个购物车就是一个订单, 订单详细内容实际上就是购物车中的每一件商品.
+     *
+     * @param req  请求报文
+     * @param resp 响应报文
+     * @throws ServletException servlet异常
+     * @throws IOException      IO异常
+     */
+    protected void showOrderDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+        // 获取订单的id信息
+        String orderId = req.getParameter("orderId");
+
+        // 调用orderServiceImpl.queryOrderItemsByOrderId(String orderId): List<OrderItem>
+        List<OrderItem> orderItems = orderServiceImpl.queryOrderItemsByOrderId(orderId);
+
+        // 保存数据到request域中
+        req.setAttribute("orderItems", orderItems);
+
+        // 请求转发到商品详细展示的界面 -> 这个界面没有, 需要准备一下
+        req.getRequestDispatcher("/pages/order/order_details.jsp").forward(req, resp);
+
+    }
 
 
 

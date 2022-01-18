@@ -30,7 +30,10 @@ public class OrderServlet extends BaseServlet {
         // 获取购物车cart对象
         Cart cart = (Cart) req.getSession().getAttribute("cart");
 
-        // 获取userId
+        /*
+            获取userId
+            这里当然能够获取到user对象, 因为用户信息在登陆成功的时候, 已经被保存到了session域中, 可以到userServlet程序中查看.
+         */
         User loginUser = (User) req.getSession().getAttribute("user");
         if (loginUser == null) {
             req.getRequestDispatcher("pages/user/login.jsp").forward(req, resp);
@@ -39,7 +42,7 @@ public class OrderServlet extends BaseServlet {
                     - 如果发现了用户没有登陆, 那么就直接转发到登陆界面, 让用户操作. 重点:　一定要有一个return语句.
                       这样下面的代码就不会执行了
 
-                    －　如果用户已经登陆, 那么这个if语句体不执行, 自然就会向下执行.
+                    －　如果用户已经登陆, 那么这个if语句体不执行, 自然就会向下执行. return就什么事情都不做, 直接返回.
              */
             return;
         }
@@ -117,6 +120,28 @@ public class OrderServlet extends BaseServlet {
 
 
     }
+
+
+
+    protected void queryOrdersByUserId(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+
+
+
+    }
+
+
+    protected void showOrderDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
+
+
+
+
+    }
+
+
 
 
 }

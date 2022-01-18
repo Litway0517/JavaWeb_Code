@@ -31,6 +31,6 @@ public interface OrderService {
      * @param orderId 订单id
      * @param status 新的订单状态
      */
-    public void changeOrderStatus(String orderId, Integer status);
+    public void sendOrder(String orderId, Integer status);
 
 }

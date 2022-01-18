@@ -97,7 +97,7 @@ public class OrderServlet extends BaseServlet {
      * @throws ServletException servlet异常
      * @throws IOException IO异常
      */
-    protected  void changeOrderStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected  void sendOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
         // 获取前端的参数
@@ -107,7 +107,7 @@ public class OrderServlet extends BaseServlet {
 
 
         // 调用orderServiceImpl.changOrderStatus(orderId, status)
-        orderServiceImpl.changeOrderStatus(orderId, status);
+        orderServiceImpl.sendOrder(orderId, status);
 
         // 请求转发 -> 这里如果按F5同样会产生请求重新发起的情况, 因此需要重定向
         // req.getRequestDispatcher("/pages/manager/order_manager.jsp").forward(req, resp);

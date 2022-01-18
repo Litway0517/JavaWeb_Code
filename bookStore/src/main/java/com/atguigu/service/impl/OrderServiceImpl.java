@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
      * @param status  新的订单状态
      */
     @Override
-    public void changeOrderStatus(String orderId, Integer status) {
+    public void sendOrder(String orderId, Integer status) {
         // 调用DAO层已经写好的方法
         orderDaoImpl.changeOrderStatus(orderId, status);
     }

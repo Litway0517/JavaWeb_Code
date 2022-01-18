@@ -2,6 +2,8 @@ package com.atguigu.dao;
 
 import com.atguigu.pojo.OrderItem;
 
+import java.util.List;
+
 /**
  * 订单项刀
  *
@@ -17,5 +19,12 @@ public interface OrderItemDao {
      * @return int
      */
     public int saveOrderItem(OrderItem orderItem);
+
+    /**
+     * 根据订单号查询订单的明细
+     * @param orderId 订单号
+     * @return 返回订单明细
+     */
+    public List<OrderItem> queryOrderItemsByOrderId(String orderId);
 
 }

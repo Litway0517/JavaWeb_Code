@@ -76,11 +76,16 @@ public class OrderServlet extends BaseServlet {
         // 查询所有订单信息
         List<Order> orders = orderServiceImpl.queryAllOrders();
 
-        // 保存到session域中
-        req.getSession().setAttribute("orders", orders);
+        /*
+            保存到request域中 -> 这里面不保存到session域中了, 因为request域能够满足.
+            如果保存到session域中, 需要使用重定向. 那么在 订单管理 界面, 刷新的时候就没有了作用, 不能够刷新出来新数据了.
+         */
+        // req.getSession().setAttribute("orders", orders);
+        req.setAttribute("orders", orders);
 
-        // 请求转发到管理员的订单管理界面
-        resp.sendRedirect(req.getContextPath() + "/pages/manager/order_manager.jsp");
+        // 这里需要重定向回到 订单管理界面, 否则, 当点击 点击发货 按钮时, 页面就直接空了, 需要重定向回去. 再次调用showAllOrders方法
+//        resp.sendRedirect(req.getContextPath() + "/pages/manager/order_manager.jsp");
+        req.getRequestDispatcher("/pages/manager/order_manager.jsp").forward(req, resp);
 
     }
 
@@ -107,8 +112,7 @@ public class OrderServlet extends BaseServlet {
         // 请求转发 -> 这里如果按F5同样会产生请求重新发起的情况, 因此需要重定向
         // req.getRequestDispatcher("/pages/manager/order_manager.jsp").forward(req, resp);
 
-        // 重定向
-        System.out.println(req.getContextPath());
+        // 重定向 -> 注意, 这里重定向回去的是调用showAllOrders方法
         resp.sendRedirect(req.getContextPath() + "/orderServlet?action=showAllOrders");
 
 

@@ -31,6 +31,8 @@
 
 </head>
 <body>
+	<%-- 输出测试 --%>
+	<%--${ sessionScope }--%>
 
 	<div id="header">
 		<img class="logo_img" alt="" src="static/img/logo.gif" >

@@ -47,5 +47,11 @@ public class OrderServiceTest {
         System.out.println(orders);
     }
 
+    @Test
+    public void queryOrdersByUserId() {
+
+    }
+
+
 
 }

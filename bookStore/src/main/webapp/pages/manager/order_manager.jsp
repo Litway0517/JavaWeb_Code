@@ -17,7 +17,7 @@
 	<%--${ sessionScope.orders }--%>
 
 	<div id="header">
-		<img class="logo_img" alt="" src="../../static/img/logo.gif" >
+		<img class="logo_img" alt="" src="static/img/logo.gif" >
 		<span class="wel_word">订单管理系统</span>
 
 		<%--  静态包含管理界面 --%>
@@ -34,7 +34,7 @@
 				<td>发货</td>
 			</tr>
 
-			<c:forEach items="${ sessionScope.orders }" var="order">
+			<c:forEach items="${ requestScope.orders }" var="order">
 				<tr>
 					<td><fmt:formatDate value="${ order.createTime }" pattern="yyyy-MM-dd" /></td>
 					<td>${ order.price }</td>

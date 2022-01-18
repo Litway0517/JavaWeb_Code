@@ -2,6 +2,7 @@ package com.atguigu.service;
 
 import com.atguigu.pojo.Cart;
 import com.atguigu.pojo.Order;
+import com.atguigu.pojo.OrderItem;
 
 import java.util.List;
 
@@ -40,4 +41,12 @@ public interface OrderService {
      * @return 返回该用户下的所有订单信息
      */
     public List<Order> queryOrdersByUserId(Integer userId);
+
+
+    /**
+     * 根据订单id, 查询该订单下面的详细信息
+     *
+     * @param orderId 订单的id
+     */
+    public List<OrderItem> queryOrderItemsByOrderId(String orderId);
 }

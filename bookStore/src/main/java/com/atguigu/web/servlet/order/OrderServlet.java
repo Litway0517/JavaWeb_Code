@@ -2,6 +2,7 @@ package com.atguigu.web.servlet.order;
 
 import com.atguigu.pojo.Cart;
 import com.atguigu.pojo.Order;
+import com.atguigu.pojo.OrderItem;
 import com.atguigu.pojo.User;
 import com.atguigu.service.impl.OrderServiceImpl;
 import com.atguigu.utils.WebUtils;
@@ -19,10 +20,11 @@ public class OrderServlet extends BaseServlet {
 
     /**
      * 处理前端的结账功能请求
-     * @param req 请求报文
+     *
+     * @param req  请求报文
      * @param resp 响应报文
      * @throws ServletException servlet异常
-     * @throws IOException IO异常
+     * @throws IOException      IO异常
      */
     protected void createOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
@@ -68,10 +70,11 @@ public class OrderServlet extends BaseServlet {
 
     /**
      * 管理员功能 -> 查询所有订单
-     * @param req 请求报文
+     *
+     * @param req  请求报文
      * @param resp 响应报文
      * @throws ServletException servlet异常
-     * @throws IOException IO异常
+     * @throws IOException      IO异常
      */
     protected void showAllOrders(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
@@ -95,12 +98,13 @@ public class OrderServlet extends BaseServlet {
 
     /**
      * 管理员功能 -> 修改订单状态
-     * @param req 请求报文
+     *
+     * @param req  请求报文
      * @param resp 响应报文
      * @throws ServletException servlet异常
-     * @throws IOException IO异常
+     * @throws IOException      IO异常
      */
-    protected  void sendOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void sendOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
         // 获取前端的参数
@@ -122,24 +126,36 @@ public class OrderServlet extends BaseServlet {
     }
 
 
-
-    protected void queryOrdersByUserId(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    /**
+     * 根据用户id, 查询该用户下的所有的订单
+     *
+     * @param req  请求报文
+     * @param resp 响应报文
+     * @throws ServletException servlet异常
+     * @throws IOException      IO异常
+     */
+    protected void queryOrdersByUserId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
 
+        // 获取用户的id
+        User loginUser = (User) req.getSession().getAttribute("user");
+        // 判断user是否为空, 为空就说明没有登录, 所以跳转登陆界面
+        if (loginUser == null) {
+            req.getRequestDispatcher("pages/user/login.jsp").forward(req, resp);
+            return;
+        }
+        // 否则, 已经登陆. 调用orderServiceImpl.queryOrdersByUserId(Integer userId)
+        List<Order> orders = orderServiceImpl.queryOrdersByUserId(loginUser.getId());
 
+        // 将信息保存到
+        req.setAttribute("orders", orders);
+
+        // 请求转发
+        req.getRequestDispatcher("/pages/order/order.jsp").forward(req, resp);
 
 
     }
 
-
-    protected void showOrderDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("text/html; charset=UTF-8");
-
-
-
-
-
-    }
 
 
 

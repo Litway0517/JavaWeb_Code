@@ -25,17 +25,28 @@ public class OrderDaoImplTest {
     }
 
     @Test
-    public void changeOrderStatus() {
+    public void sendOrder() {
         List<Order> orders = orderDaoImpl.queryAllOrders();
 
         // 修改订单状态之前, 这里仅仅以第一个订单的状态为例子
         System.out.println("订单状态修改之前 : " + orders.get(2));
 
         // 修改订单状态为1
-        orderDaoImpl.changeOrderStatus(orders.get(2).getOrderId(), 1);
+        orderDaoImpl.sendOrder(orders.get(2).getOrderId(), 1);
 
         System.out.println("订单状态修改之后 : " + orderDaoImpl.queryAllOrders().get(2));
     }
+
+    @Test
+    public void queryOrdersByUserId() {
+        OrderDaoImpl OrderDaoImpl = new OrderDaoImpl();
+
+        List<Order> orders = orderDaoImpl.queryOrdersByUserId(1);
+        System.out.println(orders);
+        System.out.println(orders.size());
+
+    }
+
 
 
 }

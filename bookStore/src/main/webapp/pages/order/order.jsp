@@ -53,7 +53,7 @@
 							<c:otherwise><b><span style="color: red">未知错误, 请联系管理员</span></b></c:otherwise>
 						</c:choose>
 					</td>
-					<td><a href="#">查看详情</a></td>
+					<td><a href="orderServlet?action=showOrderDetails&orderId=${ order.orderId }">查看详情</a></td>
 				</tr>
 			</c:forEach>
 

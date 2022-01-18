@@ -108,5 +108,17 @@ public class OrderServiceImpl implements OrderService {
         return orders;
     }
 
+    /**
+     * 根据订单id, 查询该订单下面的详细信息
+     *
+     * @param orderId 订单的id
+     * @return
+     */
+    @Override
+    public List<OrderItem> queryOrderItemsByOrderId(String orderId) {
+        List<OrderItem> orderItems = orderItemImpl.queryOrderItemsByOrderId(orderId);
+        return orderItems;
+    }
+
 
 }

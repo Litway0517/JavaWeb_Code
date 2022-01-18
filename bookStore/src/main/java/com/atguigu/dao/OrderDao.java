@@ -32,7 +32,7 @@ public interface OrderDao {
      * @param orderId 订单id
      * @param status 新的订单状态
      */
-    public int changeOrderStatus(String orderId, Integer status);
+    public int sendOrder(String orderId, Integer status);
 
 
     /**

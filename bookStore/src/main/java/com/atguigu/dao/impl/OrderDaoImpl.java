@@ -47,7 +47,7 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
      * @param status 新的订单状态
      */
     @Override
-    public int changeOrderStatus(String orderId, Integer status) {
+    public int sendOrder(String orderId, Integer status) {
         String sql = "UPDATE `t_order` SET `status` = ? WHERE `order_id` = ?";
         int i = updateForOne(sql, status, orderId);
         return i;
@@ -61,7 +61,7 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
      */
     @Override
     public List<Order> queryOrdersByUserId(Integer userId) {
-        String sql = "SELECT `order_id`,`create_time`,`price`,`status`,`user_id` FROM `t_order` WHERE `user_id` = ?";
+        String sql = "SELECT `order_id` `orderId`,`create_time` `createTime`,`price` `price`,`status` `status`,`user_id` `userId` FROM `t_order` WHERE `user_id` = ?";
         List<Order> orders = queryForList(Order.class, sql, userId);
         return orders;
     }

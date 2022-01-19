@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * @author litway_
+ *
+ * @date 2022/01/19
+ */
 public class CartServlet extends BaseServlet {
     /*
         下面这些方法, 完成业务需求之后, 大部分是重定向到某地址, 而request域不支持重定向, 因此均是使用的session域存储数据.

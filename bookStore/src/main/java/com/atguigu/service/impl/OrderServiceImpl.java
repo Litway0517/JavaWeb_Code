@@ -10,13 +10,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author litway_
+ * @date 2022/01/19
+ */
 public class OrderServiceImpl implements OrderService {
 
     // 创建一个 订单DAO 对象
-    OrderDaoImpl orderDaoImpl = new OrderDaoImpl();
+    private OrderDaoImpl orderDaoImpl = new OrderDaoImpl();
 
     // 创建一个 订单明细DAO对象
-    OrderItemDaoImpl orderItemImpl = new OrderItemDaoImpl();
+    private OrderItemDaoImpl orderItemDaoImpl = new OrderItemDaoImpl();
 
     // 创建一个 图书DAO对象
     private BookDaoImpl bookDaoImpl = new BookDaoImpl();
@@ -50,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
             CartItem cartItem = entry.getValue();
             // 注意, 这个订单项的编号, 可以不以购物车中商品项的id为准. 订单项的id没有什么强制约束, 可以是随意的. 因此这里让数据库决定.
             orderItem = new OrderItem(null, cartItem.getName(), cartItem.getCount(), cartItem.getPrice(), cartItem.getTotalPrice(), orderId);
-            orderItemImpl.saveOrderItem(orderItem);
+            orderItemDaoImpl.saveOrderItem(orderItem);
 
             /*
                 图书的数据, 也需要更改. 图书的销量, 图书的库存都需要改.
@@ -75,6 +79,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 管理员功能 -> 查询所有订单
+     *
      * @return 返回所有订单
      */
     @Override
@@ -99,6 +104,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 根据用户Id, 查询该用户的所有订单信息
+     *
      * @param userId 用户Id
      * @return 返回该用户下的所有订单信息
      */
@@ -112,11 +118,11 @@ public class OrderServiceImpl implements OrderService {
      * 根据订单id, 查询该订单下面的详细信息
      *
      * @param orderId 订单的id
-     * @return
+     * @return 由订单id返回该订单下的明细信息
      */
     @Override
     public List<OrderItem> queryOrderItemsByOrderId(String orderId) {
-        List<OrderItem> orderItems = orderItemImpl.queryOrderItemsByOrderId(orderId);
+        List<OrderItem> orderItems = orderItemDaoImpl.queryOrderItemsByOrderId(orderId);
         return orderItems;
     }
 

@@ -67,9 +67,10 @@ public class JDBCUtils {
 
     /**
      * 获取一个数据库中连接池的连接
+     *
      * @return 如果返回null表示过去连接失败
      */
-    public static Connection getConnection(){
+    public static Connection getConnection() {
         // 获取一个连接
         try {
             return dataSource.getConnection();

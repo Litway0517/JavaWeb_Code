@@ -19,7 +19,7 @@
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
 
-
+    <!-- 配置LoginServlet程序的xml信息 -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.atguigu.web.LoginServlet</servlet-class>

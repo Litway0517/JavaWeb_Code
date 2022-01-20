@@ -14,6 +14,8 @@
 
     <%
         System.out.println("target界面执行了");
+        System.out.println("target界面的线程名称: " + Thread.currentThread().getName());
+        System.out.println("target界面中的request域是共享的(因为这是一次请求): " + request.getParameter("username"));
     %>
 </body>
 </html>

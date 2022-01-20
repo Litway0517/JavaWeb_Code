@@ -36,11 +36,6 @@
 
 
 
-
-
-
-
-
     <!-- 配置LoginServlet程序的xml信息 -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
@@ -50,6 +45,31 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
+
+
+    <!-- 为TestFilter1配置xml信息 -->
+    <filter>
+        <filter-name>TestFilter1</filter-name>
+        <filter-class>com.atguigu.filter.TestFilter1</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TestFilter1</filter-name>
+        <url-pattern>/pages/target.jsp</url-pattern>
+        <!--
+            /       这个斜杠: 代表的地址是 映射 到webapp目录. 即: http://ip:port/工程路径
+        -->
+    </filter-mapping>
+
+
+    <!-- 为TestFilter2配置xml信息 -->
+    <filter>
+        <filter-name>TestFilter2</filter-name>
+        <filter-class>com.atguigu.filter.TestFilter2</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TestFilter2</filter-name>
+        <url-pattern>/pages/target.jsp</url-pattern>
+    </filter-mapping>
 
 
 

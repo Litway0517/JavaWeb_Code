@@ -45,7 +45,7 @@
     </servlet-mapping>
 
     <!-- 使用google提供的第三方验证码jar包 -->
-    <!-- 配置google的kaptchaServlet程序 -->
+    <!-- 配置google的KaptchaServlet程序 -->
     <servlet>
         <servlet-name>KaptchaServlet</servlet-name>
         <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
@@ -74,5 +74,20 @@
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/orderServlet</url-pattern>
     </servlet-mapping>
+
+
+    <!-- 配置ManagerFilter的xml信息 -->
+    <filter>
+        <filter-name>ManagerFilter</filter-name>
+        <filter-class>com.atguigu.filter.ManagerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ManagerFilter</filter-name>
+        <!--
+            这里面但凡有请求想要访问pages目录下面的manager目录下面的界面, 都必须先经过ManagerFilter过滤器的拦截检查, 再放行.
+         -->
+        <url-pattern>/pages/manager/*</url-pattern>
+    </filter-mapping>
+
 
 </web-app>

@@ -15,9 +15,22 @@ import java.io.IOException;
 public class AdminFilter implements Filter {
 
 
+    /**
+     * 管理过滤器
+     */
+    public AdminFilter() {
+        System.out.println("1. AdminFilter的构造器方法");
+    }
+
+    /**
+     * 初始化
+     *
+     * @param filterConfig 过滤器配置
+     * @throws ServletException servlet异常
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        System.out.println("2. AdminFilter的 init 方法");
     }
 
     /**
@@ -31,6 +44,8 @@ public class AdminFilter implements Filter {
      */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        System.out.println("3. AdminFilter的 doFilter() 方法");
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
 
@@ -46,8 +61,12 @@ public class AdminFilter implements Filter {
         }
     }
 
+    /**
+     * 摧毁
+     */
     @Override
     public void destroy() {
+        System.out.println("4. AdminFilter的 destroy() 方法");
 
     }
 

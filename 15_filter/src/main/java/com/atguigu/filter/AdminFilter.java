@@ -41,7 +41,7 @@ public class AdminFilter implements Filter {
             // return 语句别忘了
             return;
         } else {
-            // 让程序继续向下执行
+            // 让程序继续向下执行 -> 这行语句很重要, 别漏掉了, 否则程序不会继续向下执行.
             chain.doFilter(request, response);
         }
     }

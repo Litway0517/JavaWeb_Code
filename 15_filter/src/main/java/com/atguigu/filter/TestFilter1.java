@@ -37,6 +37,11 @@ public class TestFilter1 implements Filter {
 
         System.out.println("TestFilter1 前置代码");
 
+        /*
+            FilterChain.doFilter(req, resp): 这个方法的作用:
+                - 执行下一个Filter过滤器(如果有下一个过滤器)
+                - 执行目标资源(没有Filter过滤器了)
+         */
         chain.doFilter(request, response);
 
         System.out.println("TestFilter1 后置代码");

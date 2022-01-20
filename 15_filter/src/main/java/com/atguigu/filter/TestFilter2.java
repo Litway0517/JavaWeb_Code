@@ -36,9 +36,16 @@ public class TestFilter2 implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         System.out.println("TestFilter2 前置代码");
+        System.out.println("TestFilter2的线程名称: " + Thread.currentThread().getName());
+        System.out.println("TestFilter2中的request域是共享的(因为这是一次请求): " + request.getParameter("username"));
+
+        // 获取TestFilter1中的数据
+        System.out.println(request.getAttribute("user"));
 
         chain.doFilter(request, response);
 
+
+        System.out.println("TestFilter2的线程名称: " + Thread.currentThread().getName());
         System.out.println("TestFilter2 后置代码");
     }
 

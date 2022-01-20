@@ -36,6 +36,12 @@ public class TestFilter1 implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         System.out.println("TestFilter1 前置代码");
+        System.out.println("TestFilter1的线程名称: " + Thread.currentThread().getName());
+        // 前端访问的时候, 记着在地址栏手动带上参数
+        System.out.println("TestFilter1中的request域是共享的(因为这是一次请求): " + request.getParameter("username"));
+
+        // 在TestFilter1中存储数据, TestFilter2中也能获取到同样的值
+        request.setAttribute("user", "litway");
 
         /*
             FilterChain.doFilter(req, resp): 这个方法的作用:
@@ -44,7 +50,10 @@ public class TestFilter1 implements Filter {
          */
         chain.doFilter(request, response);
 
+
+        System.out.println("TestFilter1的线程名称: " + Thread.currentThread().getName());
         System.out.println("TestFilter1 后置代码");
+
     }
 
     /**

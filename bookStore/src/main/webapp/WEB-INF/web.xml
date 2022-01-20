@@ -87,6 +87,7 @@
             这里面但凡有请求想要访问pages目录下面的manager目录下面的界面, 都必须先经过ManagerFilter过滤器的拦截检查, 再放行.
          -->
         <url-pattern>/pages/manager/*</url-pattern>
+        <url-pattern>/manager/bookServlet</url-pattern>
     </filter-mapping>
 
 

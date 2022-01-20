@@ -10,6 +10,21 @@
         <filter-name>AdminFilter</filter-name>
         <!-- filter-class: 用来配置过滤器的全类名, 就是说以后工作的目录. 到这里来寻找过滤器 -->
         <filter-class>com.atguigu.filter.AdminFilter</filter-class>
+
+        <!-- 初始化参数是配置在filter标签中哦~ -->
+        <!-- 一些初始化参数 -->
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>root</param-value>
+        </init-param>
+
+        <!-- init-param可以配置多个 -->
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:mysql://localhost:3306/book</param-value>
+        </init-param>
+
+
     </filter>
     <!-- filter-mapping: 用来配置过滤器的拦截路径. 该过滤器工作的地方, 或者其作用的范围 -->
     <filter-mapping>
@@ -18,6 +33,13 @@
         <!-- url-pattern: 用来配置过滤器工作的地方. -->
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
+
+
+
+
+
+
+
 
     <!-- 配置LoginServlet程序的xml信息 -->
     <servlet>

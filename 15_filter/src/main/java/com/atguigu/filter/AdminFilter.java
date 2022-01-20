@@ -31,6 +31,18 @@ public class AdminFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         System.out.println("2. AdminFilter的 init 方法");
+
+        // 打印参数
+        System.out.println("filter的名称: " + filterConfig.getFilterName());
+
+        // 获取初始化参数 -> 这个比较常用
+        System.out.println("初始化参数username的值: " + filterConfig.getInitParameter("username"));
+        System.out.println("初始化参数url的值: " + filterConfig.getInitParameter("url"));
+
+
+        // 获取servletContext对象
+        System.out.println("servletContext对象: " + filterConfig.getServletContext());
+
     }
 
     /**

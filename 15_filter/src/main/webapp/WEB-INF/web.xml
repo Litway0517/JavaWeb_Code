@@ -4,6 +4,8 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+
+    <!-- AdminFilter过滤器的配置 -->
     <!-- filter标签用于配置一个filter过滤器 -->
     <filter>
         <!-- filter-name: 该标签用来配置filter过滤器的名称 -->
@@ -23,8 +25,6 @@
             <param-name>url</param-name>
             <param-value>jdbc:mysql://localhost:3306/book</param-value>
         </init-param>
-
-
     </filter>
     <!-- filter-mapping: 用来配置过滤器的拦截路径. 该过滤器工作的地方, 或者其作用的范围 -->
     <filter-mapping>
@@ -33,6 +33,7 @@
         <!-- url-pattern: 用来配置过滤器工作的地方. -->
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
+
 
 
 
@@ -45,6 +46,13 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
+
+
+    <!--
+        当有多个Filter过滤器为了完成一个需求时:
+            这些过滤器的执行顺序是, 就是本xml文件中, 这些过滤器的配置顺序.
+            例如: TestFilter1和TestFilter2为了完成一个类型请求的过滤. 共同拦截访问 登陆界面login.jsp 的请求.
+    -->
 
 
     <!-- 为TestFilter1配置xml信息 -->

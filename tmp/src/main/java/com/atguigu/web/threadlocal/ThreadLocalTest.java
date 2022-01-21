@@ -4,6 +4,12 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * 线程本地测试
+ *
+ * @author DELL_
+ * @date 2022/01/21
+ */
 public class ThreadLocalTest {
 
 
@@ -51,6 +57,7 @@ public class ThreadLocalTest {
 
         /**
          * 这是主方法
+         *
          * @param args 传入的参数
          */
         public static void main(String[] args) {

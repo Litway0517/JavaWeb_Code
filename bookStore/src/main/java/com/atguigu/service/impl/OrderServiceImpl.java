@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
     public String createOrder(Cart cart, Integer userId) {
 
         // 观察整个 创建订单 流程的执行过程中, 线程的名称
-        System.out.println("orderServiceImpl 线程的名称: " + Thread.currentThread().getName());
+//        System.out.println("orderServiceImpl 线程的名称: " + Thread.currentThread().getName());
 
 
         // 这就是订单的id, 确保这个订单ID是唯一的 -> 通过时间戳+userId确保. 双十一零点的时候很多用户会等待秒杀, 时间戳也不能保证唯一性.

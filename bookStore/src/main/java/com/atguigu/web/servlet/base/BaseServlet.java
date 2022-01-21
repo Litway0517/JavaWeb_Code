@@ -50,7 +50,7 @@ public abstract class BaseServlet extends HttpServlet {
         String action = req.getParameter("action");
 
         try {
-            // 获取反射对象 -> 注意, 这个this就是userServlet对象 并不是现在的BaseServlet对象. 通过反射拿到方法名再掉用! 
+            // 获取反射对象 -> 注意, 这个this就是userServlet对象 并不是现在的BaseServlet对象. 通过反射拿到方法名再掉用!
             Method method = this.getClass().getDeclaredMethod(action, HttpServletRequest.class, HttpServletResponse.class);
 
             // 暴力反射 -> 避免某些方法是被 [private protected 默认] 这三种权限修饰的, 而导致访问失败
@@ -59,6 +59,8 @@ public abstract class BaseServlet extends HttpServlet {
             method.invoke(this, req, resp);
         } catch (Exception e) {
             e.printStackTrace();
+            // 把异常向外面抛, 抛给TransactionFilter过滤器
+            throw new RuntimeException(e);
         }
 
     }

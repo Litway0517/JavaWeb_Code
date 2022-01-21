@@ -40,7 +40,7 @@ public abstract class BaseDao {
         Connection conn = JDBCUtils.getConnection();
 
         // 观察整个 创建订单 流程的执行过程中, 线程的名称
-        System.out.println("BaseDao 线程的名称: " + Thread.currentThread().getName());
+//        System.out.println("BaseDao 线程的名称: " + Thread.currentThread().getName());
 
         try {
             return queryRunner.update(conn, sql, args);

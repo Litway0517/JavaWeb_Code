@@ -53,7 +53,7 @@ public class TransactionFilter implements Filter {
             这样做, 能够解决这种情况: 某个业务过程中出现了问题bug, 这是会阻止数据库数据的插入, 因为出现问题时的数据向数据库中插入
             肯定是不安全的, 会导致意想不到的错误. 比如表与表之间的关联性缺失. 导致一个完整的业务有头无尾.
             这些问题大部分出现在req.getRequestDispatcher("/")请求转发, 或者请求重定向之前, 那么错误信息就不能够回显了,
-            因此, 下面使用Tomcat的统一信息管理错误的回显. 
+            因此, 下面使用Tomcat的统一信息管理错误的回显.
          */
 
         try {
@@ -64,7 +64,11 @@ public class TransactionFilter implements Filter {
             // 回滚事务
             JDBCUtils.rollbackAndClose();
             e.printStackTrace();
+
+            // 这里面, 捕获到了异常还是要抛出, 上抛给Tomcat服务器. 否则, 如果出现了错误, Tomcat不能够处理并跳转到错误界面.
+            throw new RuntimeException(e);
         }
 
     }
 }
+

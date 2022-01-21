@@ -111,6 +111,15 @@
     </error-page>
 
 
+    <!-- 400 代码: 自动跳转的错误界面 -->
+    <error-page>
+        <!-- error-code 用来配置错误的代码 当出现了这个代码就向location地址跳转 -->
+        <error-code>400</error-code>
+        <!-- location标签用来指明跳转的路径 -->
+        <location>/pages/error/error400.jsp</location>
+    </error-page>
+
+
 
 
 

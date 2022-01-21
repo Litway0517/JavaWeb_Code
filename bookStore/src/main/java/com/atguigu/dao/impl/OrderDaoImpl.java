@@ -25,7 +25,7 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
     public int saveOrder(Order order) {
 
         // 观察整个 创建订单 流程的执行过程中, 线程的名称
-        System.out.println("orderDaoImpl 线程的名称: " + Thread.currentThread().getName());
+//        System.out.println("orderDaoImpl 线程的名称: " + Thread.currentThread().getName());
 
         String sql = "INSERT INTO t_order(`order_id`, `create_time`, `price`, `status`, `user_id`) VALUES(?,?,?,?,?)";
         return updateForOne(sql, order.getOrderId(), order.getCreateTime(), order.getPrice(), order.getStatus(), order.getUserId());

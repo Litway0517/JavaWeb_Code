@@ -31,7 +31,9 @@
 
 		<h1>
 			<c:if test="${ not empty sessionScope.orderId }">你的订单已结算，订单号为: ${ sessionScope.orderId }</c:if>
-			<b><span style="color: deeppink">喵! 系统出错~ 请联系管理员(xmw0517@gmail.com)</span></b>
+			<c:if test="${ empty sessionScope.orderId }">
+				<b><span style="color: deeppink">喵! 系统出错~ 请联系管理员(xmw0517@gmail.com)</span></b>
+			</c:if>
 
 		</h1>
 

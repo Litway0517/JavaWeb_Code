@@ -46,10 +46,18 @@ public abstract class BaseDao {
             return queryRunner.update(conn, sql, args);
         } catch (SQLException e) {
             e.printStackTrace();
+
+            /*
+                这里面是BaseDao. 当出现了错误, 可以捕捉.
+                    - 如果不进行外抛, 那么上层的JDBC就不能知道下面出现了错误, 异常. 因此JDBC中的rollbackAndClose方法就不能回滚
+                所以, 下层的方法能够进行异常捕捉, 但是必须上抛, 让上层的方法也知道出现了异常, 才能不影响上层的方法的执行.
+                否则, 上层的try ... catch ... 就无效了.
+             */
+            throw new RuntimeException(e);
 //        } finally {
 //            JDBCUtils.close(conn);
         }
-        return -1;
+//        return -1;
     }
 
 
@@ -73,10 +81,11 @@ public abstract class BaseDao {
             return queryRunner.query(conn, sql,beanHandler, args);
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
 //        } finally {
 //            JDBCUtils.close(conn);
         }
-        return null;
+//        return null;
     }
 
 
@@ -100,10 +109,11 @@ public abstract class BaseDao {
             return queryRunner.query(conn, sql,beanListHandler, args);
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
 //        } finally {
 //            JDBCUtils.close(conn);
         }
-        return null;
+//        return null;
     }
 
 
@@ -121,10 +131,11 @@ public abstract class BaseDao {
             return queryRunner.query(conn, sql, scalarHandler, args);
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
 //        } finally {
 //            JDBCUtils.close(conn);
         }
-        return null;
+//        return null;
 
     }
 

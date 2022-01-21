@@ -39,8 +39,10 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     @Override
     public int updateBook(Book book) {
 
-        String sql = "UPDATE t_book SET `book_name`=?,`book_author`=?,`book_price`=?,`book_sales`=?,`book_stock`=?,`del_flag`=?,`book_img_path`=? WHERE id=?";
+        // 观察整个 创建订单 流程的执行过程中, 线程的名称
+        System.out.println("bookDaoImpl updateBook方法 线程的名称: " + Thread.currentThread().getName());
 
+        String sql = "UPDATE t_book SET `book_name`=?,`book_author`=?,`book_price`=?,`book_sales`=?,`book_stock`=?,`del_flag`=?,`book_img_path`=? WHERE id=?";
         return updateForOne(sql, book.getBookName(), book.getBookAuthor(), book.getBookPrice(), book.getBookSales(), book.getBookStock(), book.getBookDelFlag(), book.getBookImgPath(), book.getId());
     }
 
@@ -66,6 +68,10 @@ public class BookDaoImpl extends BaseDao implements BookDao {
      */
     @Override
     public Book queryBookById(Integer id) {
+
+        // 观察整个 创建订单 流程的执行过程中, 线程的名称
+        System.out.println("bookDaoImpl queryBookById 线程的名称: " + Thread.currentThread().getName());
+
         String sql = "SELECT `id`,`book_name` `bookName`,`book_author` `bookAuthor`,`book_price` `bookPrice`,`book_sales` `bookSales`,`book_stock` `bookStock`,`del_flag` `bookDelFlag`,`book_img_path` `bookImgPath` FROM t_book WHERE `del_flag` = '0' AND `id`=?";
         return queryForOne(Book.class, sql, id);
     }

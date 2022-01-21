@@ -36,6 +36,11 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public String createOrder(Cart cart, Integer userId) {
+
+        // 观察整个 创建订单 流程的执行过程中, 线程的名称
+        System.out.println("orderServiceImpl 线程的名称: " + Thread.currentThread().getName());
+
+
         // 这就是订单的id, 确保这个订单ID是唯一的 -> 通过时间戳+userId确保. 双十一零点的时候很多用户会等待秒杀, 时间戳也不能保证唯一性.
         String orderId = System.currentTimeMillis() + "" + userId;
         Order order = new Order(orderId, new Date(), cart.getTotalPrice(), 0, userId);
@@ -48,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
 
 
         // 在这里产生一个错误: 创建订单虽然成功, 但是 订单中的详细内容(订单项)未保存, 因为下一行报错了. 另外图书的库存和销量也没有保存.
-        int i = 12 / 0;
+        // int i = 12 / 0;
 
 
         /*

@@ -53,6 +53,11 @@ public class OrderServlet extends BaseServlet {
              */
             return;
         }
+
+        // 观察整个 创建订单 流程的执行过程中, 线程的名称
+        System.out.println("orderServlet 线程的名称: " + Thread.currentThread().getName());
+
+
         Integer userId = loginUser.getId();
 
         // 调用orderService.createOrder()

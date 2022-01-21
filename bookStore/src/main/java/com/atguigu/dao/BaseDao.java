@@ -39,6 +39,9 @@ public abstract class BaseDao {
     public int updateForOne(String sql, Object ...args) {
         Connection conn = JDBCUtils.getConnection();
 
+        // 观察整个 创建订单 流程的执行过程中, 线程的名称
+        System.out.println("BaseDao 线程的名称: " + Thread.currentThread().getName());
+
         try {
             return queryRunner.update(conn, sql, args);
         } catch (SQLException e) {

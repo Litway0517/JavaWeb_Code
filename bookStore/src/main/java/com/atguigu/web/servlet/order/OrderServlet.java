@@ -62,7 +62,10 @@ public class OrderServlet extends BaseServlet {
         Integer userId = loginUser.getId();
 
         // 调用orderService.createOrder()
-        String orderId = null;
+        String orderId = orderServiceImpl.createOrder(cart, userId);
+
+        // 使用了TransactionFilter为所有的操作增加了事务管理. 因此, 这里的代码再更改回去
+        /*String orderId = null;
         try {
             orderId = orderServiceImpl.createOrder(cart, userId);
             // 提交事务
@@ -71,7 +74,8 @@ public class OrderServlet extends BaseServlet {
             // 回滚事务
             JDBCUtils.rollbackAndClose();
             e.printStackTrace();
-        }
+        }*/
+
 
         // 保存订单编号到request域中. -> 更新为session域
         // req.setAttribute("orderId", orderId);

@@ -13,7 +13,10 @@ import java.util.Random;
 public class ThreadLocalTest {
 
 
-    public static Map<String, Object> map = new Hashtable<String, Object>();
+//    public static Map<String, Object> map = new Hashtable<String, Object>();
+
+    // ThreadLocal这个类, 后面需要指出泛型. key默认就是线程名称, 这个泛型就是带存储数据的类型
+    public static ThreadLocal<Object> threadLocal = new ThreadLocal<Object>();
 
     // 产生一个随机数
     private static Random random = new Random();
@@ -36,7 +39,8 @@ public class ThreadLocalTest {
             // 获取当前线程的名称
             String name = Thread.currentThread().getName();
             System.out.println("线程 [" + name + "] 生成的随机数是: " + i);
-            map.put(name, i);
+//            map.put(name, i);
+            threadLocal.set(i);
 
             try {
                 Thread.sleep(3000);
@@ -49,7 +53,8 @@ public class ThreadLocalTest {
 
 
             // 在线程快要结束的时候, 以当前线程的名称为key, 取数据. 查看是否能够取出
-            Object o = map.get(name);
+//            Object o = map.get(name);
+            Object o = threadLocal.get();
             System.out.println("在线程" + name + "快结束时取出来的关联数据是: " + o);
 
 

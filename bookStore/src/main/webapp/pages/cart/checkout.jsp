@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@
 <body>
 
 	<div id="header">
-			<img class="logo_img" alt="" src="../../static/img/logo.gif" >
+			<img class="logo_img" alt="" src="static/img/logo.gif" >
 			<span class="wel_word">结算</span>
 
 		<%--  jsp界面静态包含  --%>
@@ -28,7 +29,11 @@
 
 	<div id="main">
 
-		<h1>你的订单已结算，订单号为: ${ sessionScope.orderId }</h1>
+		<h1>
+			<c:if test="${ not empty sessionScope.orderId }">你的订单已结算，订单号为: ${ sessionScope.orderId }</c:if>
+			<b><span style="color: deeppink">喵! 系统出错~ 请联系管理员(xmw0517@gmail.com)</span></b>
+
+		</h1>
 
 
 	</div>

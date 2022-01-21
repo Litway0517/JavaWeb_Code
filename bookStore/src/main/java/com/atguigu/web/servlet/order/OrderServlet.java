@@ -5,6 +5,7 @@ import com.atguigu.pojo.Order;
 import com.atguigu.pojo.OrderItem;
 import com.atguigu.pojo.User;
 import com.atguigu.service.impl.OrderServiceImpl;
+import com.atguigu.utils.JDBCUtils;
 import com.atguigu.utils.WebUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
 
@@ -61,7 +62,16 @@ public class OrderServlet extends BaseServlet {
         Integer userId = loginUser.getId();
 
         // 调用orderService.createOrder()
-        String orderId = orderServiceImpl.createOrder(cart, userId);
+        String orderId = null;
+        try {
+            orderId = orderServiceImpl.createOrder(cart, userId);
+            // 提交事务
+            JDBCUtils.commitAndClose();
+        } catch (Exception e) {
+            // 回滚事务
+            JDBCUtils.rollbackAndClose();
+            e.printStackTrace();
+        }
 
         // 保存订单编号到request域中. -> 更新为session域
         // req.setAttribute("orderId", orderId);

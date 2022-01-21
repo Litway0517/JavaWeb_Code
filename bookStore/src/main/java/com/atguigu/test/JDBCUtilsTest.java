@@ -21,7 +21,7 @@ public class JDBCUtilsTest {
         Connection conn = JDBCUtils.getConnection();
         System.out.println(conn);
 
-        JDBCUtils.close(conn);
+        // JDBCUtils.close(conn);
 
         for (int i = 0; i < 50; i++) {
             Connection connection = JDBCUtils.getConnection();
@@ -33,7 +33,7 @@ public class JDBCUtilsTest {
              */
 
 
-            JDBCUtils.close(connection);
+            // JDBCUtils.close(connection);
 
         }
     }

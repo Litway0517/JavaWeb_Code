@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author litway_
+ * @author DELL_
  *
  * @date 2022/01/19
  */
@@ -45,6 +45,11 @@ public class OrderServiceImpl implements OrderService {
             订单项: 就是购物车中的每一个商品的信息. 购物车中的一条一条的商品信息
          */
         orderDaoImpl.saveOrder(order);
+
+
+        // 在这里产生一个错误: 创建订单虽然成功, 但是 订单中的详细内容(订单项)未保存, 因为下一行报错了. 另外图书的库存和销量也没有保存.
+        int i = 12 / 0;
+
 
         /*
             保存订单项. 这样把购物车中的items这个成员变量, 转换为一个一个的orderItem对象, 然后调用保存DAO.

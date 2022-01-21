@@ -52,8 +52,11 @@ public class OrderServiceImpl implements OrderService {
         orderDaoImpl.saveOrder(order);
 
 
-        // 在这里产生一个错误: 创建订单虽然成功, 但是 订单中的详细内容(订单项)未保存, 因为下一行报错了. 另外图书的库存和销量也没有保存.
-//         int i = 12 / 0;
+        /*
+            在这里产生一个错误: 创建订单虽然成功, 但是 订单中的详细内容(订单项)未保存, 因为下一行报错了.
+            另外图书的库存和销量也没有保存. 如果有这一行错误, 那么Tomcat服务器会统一处理错误.
+         */
+        // int i = 12 / 0;
 
 
         /*

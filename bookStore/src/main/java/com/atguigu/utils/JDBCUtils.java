@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * jdbcutils
+ * JDBCUtils
  *
  * @author DELL
  * @date 2021/10/10
@@ -27,8 +27,11 @@ public class JDBCUtils {
         因此, dataSource需要用static修饰
 
      */
-    // 定义一个类的静态变量
+    // 定义一个类的静态变量 -> 数据池(一个大的池子, 能够从池子中拿出来连接)
     private static DataSource dataSource;
+
+    // 创建一个ThreadLocal对象 用来存储连接
+    private static ThreadLocal<Connection> conns = new ThreadLocal<Connection>();
 
     /*
         static代码块, 是当类加载完成的时候, 仅仅执行一次, 这样就只会有一个dataSource, 也就是只有一个数据池
@@ -71,18 +74,81 @@ public class JDBCUtils {
      * @return 如果返回null表示过去连接失败
      */
     public static Connection getConnection() {
-        // 获取一个连接
-        try {
-            return dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        // 尝试获取一个连接 需要判断 -> 第二次取连接的时候就会有值了
+        Connection conn = conns.get();
+
+        if (conn == null) {
+            try {
+                conn = dataSource.getConnection();
+                // 保存到ThreadLocal中, 共后面的JDBC操作使用
+                conns.set(conn);
+
+                // 设置为手动连接
+                conn.setAutoCommit(false);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return null;
+        return conn;
     }
 
+    /**
+     * 提交操作, 并释放资源
+     */
+    public static void commitAndClose() {
+        Connection connection = conns.get();
+        // 判断获取的连接是否为空 -> 非空表示之前进行过数据库操作
+        if (connection != null) {
+            try {
+                // 提交操作
+                connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // 关闭连接, 释放资源
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // 用完之后一定要remove操作, 否则会出错. 因为Tomcat底层使用了线程池技术
+        conns.remove();
+    }
+
+
+    /**
+     * 提交操作失败, 回滚事务
+     */
+    public static void rollbackAndClose() {
+        Connection connection = conns.get();
+        // 判断获取的连接是否为空 -> 非空表示之前进行过数据库操作
+        if (connection != null) {
+            try {
+                // 提交操作
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // 关闭连接, 释放资源
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // 用完之后一定要remove操作, 否则会出错. 因为Tomcat底层使用了线程池技术
+        conns.remove();
+    }
+
+
+    // 下面的代码更新, 不使用了
     /*
         因为, 每次使用完毕之后, 都需要关闭掉数据库的连接. 所以也封装成一个方法
      */
+    /*
     public static void close(Connection conn) {
         if (conn != null) {
             try {
@@ -92,6 +158,7 @@ public class JDBCUtils {
             }
         }
     }
+     */
 
 
 

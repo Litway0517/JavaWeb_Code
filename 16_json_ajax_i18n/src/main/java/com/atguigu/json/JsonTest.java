@@ -3,10 +3,14 @@ package com.atguigu.json;
 
 import com.atguigu.pojo.Person;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * json测试
@@ -78,6 +82,34 @@ public class JsonTest {
         // 重新转换
         List<Person> jsonToPersonList = gson.fromJson(personListToString, new PersonListType().getType());
         System.out.println(jsonToPersonList);
+
+    }
+
+
+    @Test
+    public void mapToJson() {
+        HashMap<Integer, Person> peopleMap = new HashMap<Integer, Person>();
+
+        peopleMap.put(1, new Person(1, "test1"));
+        peopleMap.put(2, new Person(2, "test2"));
+        System.out.println(peopleMap);
+
+
+        // 将map转换成JSON字符串格式
+        Gson gson = new Gson();
+        String personMapToString = gson.toJson(peopleMap);
+        System.out.println(personMapToString);
+        // {"1":{"id":1,"name":"test1"},"2":{"id":2,"name":"test2"}}
+
+
+        // 将一个JSON字符串转换成原来的Map集合
+        Map<Integer, Person> personMap = gson.fromJson(personMapToString, new PersonMapType().getType());
+        System.out.println(personMap);
+
+        // 使用匿名内部类格式
+        Map<Integer, Person> jsonToPersonMap = gson.fromJson(personMapToString, new TypeToken<HashMap<Integer, Person>>(){}.getType());
+        System.out.println(jsonToPersonMap);
+
 
     }
 

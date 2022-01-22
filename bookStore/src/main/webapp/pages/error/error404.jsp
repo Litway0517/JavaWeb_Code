@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>错误提示500</title>
+<title>错误提示404</title>
 	<style type="text/css">
 		h1 {
 			text-align: center;
@@ -36,7 +36,7 @@
 
 		<h1>很抱歉, 您访问的后台程序出现了错误, 程序猿小哥正在为您抢修!</h1>
 		<h2>喵! 系统出错~ 请联系管理员(xmw0517@gmail.com)</h2>
-		<h1><a href="index.jsp">返回首页</a></h1>
+		<a href="index.jsp">返回首页</a>
 
 
 	</div>

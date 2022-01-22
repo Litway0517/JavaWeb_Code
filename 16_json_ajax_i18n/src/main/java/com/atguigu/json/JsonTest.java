@@ -106,7 +106,7 @@ public class JsonTest {
         Map<Integer, Person> personMap = gson.fromJson(personMapToString, new PersonMapType().getType());
         System.out.println(personMap);
 
-        // 使用匿名内部类格式
+        // 使用匿名类的匿名对象来完成参数填充
         Map<Integer, Person> jsonToPersonMap = gson.fromJson(personMapToString, new TypeToken<HashMap<Integer, Person>>(){}.getType());
         System.out.println(jsonToPersonMap);
 

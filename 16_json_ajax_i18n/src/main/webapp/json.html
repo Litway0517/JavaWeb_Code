@@ -52,9 +52,16 @@
 			console.log(jsonItem.key6_1_2);
 
 
-
-
 			// json对象转字符串
+			console.log("==============分隔符==============");
+			var s = JSON.stringify(jsonObj);
+			console.log("将JSON对象转换为 字符串格式 -> ", s);
+
+			console.log("==============分隔符==============");
+			var parse = JSON.parse(s);
+			console.log("将字符串形式的JSON转换成JSON对象 -> ", parse);
+
+
 			// json字符串转json对象
 		</script>
 	</head>

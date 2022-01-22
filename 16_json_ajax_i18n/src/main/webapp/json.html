@@ -8,12 +8,57 @@
 		<title>Insert title here</title>
 		<script type="text/javascript">
 			// json的定义
+			var jsonObj = {
+				"key1": 12,
+				"key2": "abc",
+				"key3": true,
+				"key4": [11, "arr", false],
+				"key5": {
+					"key5_1": 551,
+					"key5_2": "key5_2_value"
+				},
+				"key6": [
+					{
+						"key6_1_1": "key6_1_1_value",
+						"key6_1_2": "key6_1_2_value",
+					},
+					{
+						"key6_2_1": "key6_2_1_value",
+						"key6_2_2": "key6_2_2_value",
+					}
+				]
+
+			};
+
+			// json的类型是 Object 类型.
+			// alert(typeof(jsonObj));
+			console.log(typeof(jsonObj));
+
+
 			// json的访问
+			console.log(jsonObj.key1, "\n", jsonObj.key2, "\n", jsonObj.key3);
+			var key4 = jsonObj.key4;
+			for (let i = 0; i < key4.length; i++) {
+				console.log(key4[i]);
+			}
+
+			console.log("===============================");
+			console.log(jsonObj.key5.key5_1);
+			console.log(jsonObj.key5.key5_2);
+
+			console.log("===============================");
+			var jsonItem = jsonObj.key6[0];
+			console.log(jsonItem.key6_1_1);
+			console.log(jsonItem.key6_1_2);
+
+
+
+
 			// json对象转字符串
 			// json字符串转json对象
 		</script>
 	</head>
 	<body>
-		
+
 	</body>
 </html>

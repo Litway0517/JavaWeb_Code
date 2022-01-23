@@ -8,8 +8,8 @@
     <%--  改为静态包含 --%>
     <%@ include file="/pages/common/header.jsp"%>
 
-    <script type="text/javascript">
 
+    <script type="text/javascript">
         // 页面加载完成之后
         $(function () {
 
@@ -151,17 +151,9 @@
 
                     }
                 );
-
-
-
-                console.log(username);
-
             });
 
-
         });
-
-
     </script>
 
 
@@ -170,12 +162,12 @@
             height: 420px;
             margin-top: 25px;
         }
-
     </style>
+
 </head>
 
 <body>
-    ${ pageScope.basePath }userServlet
+    <%--${ pageScope.basePath }userServlet--%>
 
     <div id="login_header">
         <img class="logo_img" alt="哇哦, 图片加载失败~程序猿小哥正在抢修! " src="static/img/logo.gif">

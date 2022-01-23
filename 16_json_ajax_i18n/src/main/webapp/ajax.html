@@ -14,7 +14,7 @@
 				var xmlHttpRequest = new XMLHttpRequest();
 
 				// 2、调用open方法设置请求参数
-				xmlHttpRequest.open("GET", "http://localhost:8080/16_json_ajax_i18n/ajaxServlet?action=javaScriptAjax", true);
+				xmlHttpRequest.open("GET", "http://localhost:8080/16_json_ajax_i18n/ajaxServlet?action=javaScriptAjax",true);
 				// xmlHttpRequest.open("GET", "http://localhost:8080/16_json_ajax_i18n/ajaxServlet?action=javaScriptAjax", false);
 
 				/*
@@ -45,7 +45,22 @@
 	</head>
 	<body>
 		<button onclick="ajaxRequest()">ajax request</button>
+		<button onclick="ajaxRequest()">ajax request</button>
+		<button onclick="ajaxRequest()">ajax request</button>
+		<button onclick="ajaxRequest()">ajax request</button>
 		<div id="div01">
 		</div>
+
+		<table border="1">
+			<tr>
+				<td>1.1</td>
+				<td>1.2</td>
+			</tr>
+			<tr>
+				<td>2.1</td>
+				<td>2.2</td>
+			</tr>
+		</table>
+
 	</body>
 </html>

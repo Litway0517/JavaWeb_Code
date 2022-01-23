@@ -9,7 +9,6 @@ import java.io.IOException;
 
 /**
  * ajax servlet
- * ajax servlet
  *
  * @author DELL_
  * @date 2022/01/22
@@ -47,6 +46,7 @@ public class AjaxServlet extends BaseServlet {
 
     /**
      * j ajax查询
+     * j ajax查询
      * jQuery库封装的Ajax请求
      *
      * @param req  要求事情
@@ -56,7 +56,7 @@ public class AjaxServlet extends BaseServlet {
     protected void jQueryAjax(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         System.out.println("jQueryAjax   被调用了");
 
-        Person person = new Person(1, "test");
+        Person person = new Person(1, "javaScript原生Ajax请求");
 
         // 将person对象转换成JSON字符串格式
         Gson gson = new Gson();
@@ -66,6 +66,7 @@ public class AjaxServlet extends BaseServlet {
 
 
     /**
+     * j查询得到
      * jQueryGet
      *
      * @param req  要求事情
@@ -85,6 +86,7 @@ public class AjaxServlet extends BaseServlet {
     }
 
     /**
+     * 我查询后
      * jQueryPost
      *
      * @param req  要求事情
@@ -102,6 +104,23 @@ public class AjaxServlet extends BaseServlet {
         resp.getWriter().write(personToJsonString);
     }
 
+    /**
+     * j查询得到json
+     *
+     * @param req  要求事情
+     * @param resp 分别地
+     * @throws IOException IO异常
+     */
+    protected void jQueryGetJSON(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println("jQueryPost   被调用了");
 
+        Person person = new Person(4, "jQueryGetJSON 固定为GET请求返回的数据固定为JSON");
+
+        // 将person对象转换成JSON字符串格式
+        Gson gson = new Gson();
+        String personToJsonString = gson.toJson(person);
+        resp.getWriter().write(personToJsonString);
+
+    }
 
 }

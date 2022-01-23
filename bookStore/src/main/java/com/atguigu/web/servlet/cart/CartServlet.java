@@ -6,30 +6,37 @@ import com.atguigu.pojo.CartItem;
 import com.atguigu.service.impl.BookServiceImpl;
 import com.atguigu.utils.WebUtils;
 import com.atguigu.web.servlet.base.BaseServlet;
+import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
- * @author litway_
+ * 购物车servlet
  *
+ * @author litway_
  * @date 2022/01/19
  */
 public class CartServlet extends BaseServlet {
+
+    /**
+     * 书服务impl
+     */
+    private BookServiceImpl bookServiceImpl = new BookServiceImpl();
     /*
         下面这些方法, 完成业务需求之后, 大部分是重定向到某地址, 而request域不支持重定向, 因此均是使用的session域存储数据.
      */
 
     /**
      * 增加商品项
-     * @param req 请求报文
+     *
+     * @param req  请求报文
      * @param resp 响应报文
      * @throws IOException IO异常
      */
     protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-        BookServiceImpl bookServiceImpl = new BookServiceImpl();
 
         // 获取请求参数
         int bookId = WebUtils.parseInt(req.getParameter("id"), 0);
@@ -70,8 +77,55 @@ public class CartServlet extends BaseServlet {
 
 
     /**
+     * ajax添加物品
+     *
+     * @param req  要求事情
+     * @param resp 分别地
+     * @throws IOException IO异常
+     */
+    protected void ajaxAddItem(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+        // 获取请求参数
+        int bookId = WebUtils.parseInt(req.getParameter("id"), 0);
+
+        // 根据客户端传过来的图书的id, 到数据库中查询相应的图书的具体信息
+        Book book = bookServiceImpl.queryBookById(bookId);
+
+        // 将查询到的信息赋值给CartItem实体类
+        CartItem cartItem = new CartItem(book.getId(), book.getBookName(), 1, book.getBookPrice(), book.getBookPrice());
+
+        // 调用加入购物车方法 -> 这里需要判断一次
+        Cart cart = (Cart) req.getSession().getAttribute("cart");
+        if (cart == null) {
+            cart = new Cart();
+            req.getSession().setAttribute("cart", cart);
+        }
+        cart.addItem(cartItem);
+
+        System.out.println(cart);
+        // 重定向回首页 -> 这里有问题
+        System.out.println("请求地址 : " + req.getHeader("Referer"));
+
+        // 保存最后一个添加的图书的名称, 因为首页要使用
+        req.getSession().setAttribute("lastName", cartItem.getName());
+
+        // 返回购物车的总数量, 和最后一个添加的商品名称
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("totalCount", cart.getTotalCount());
+        resultMap.put("lastName", cartItem.getName());
+        resultMap.put("cartEmpty", false);
+
+        Gson gson = new Gson();
+        String resultMapToJson = gson.toJson(resultMap);
+        resp.getWriter().write(resultMapToJson);
+
+    }
+
+
+    /**
      * 删除购物车的商品
-     * @param req 请求报文
+     *
+     * @param req  请求报文
      * @param resp 响应报文
      * @throws IOException IO异常
      */
@@ -99,7 +153,8 @@ public class CartServlet extends BaseServlet {
 
     /**
      * 清楚购物车
-     * @param req 请求报文
+     *
+     * @param req  请求报文
      * @param resp 响应报文
      * @throws IOException IO异常
      */
@@ -119,7 +174,8 @@ public class CartServlet extends BaseServlet {
 
     /**
      * 更新商品的数量
-     * @param req 请求报文
+     *
+     * @param req  请求报文
      * @param resp 响应报文
      * @throws IOException IO异常
      */

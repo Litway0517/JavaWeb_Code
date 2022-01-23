@@ -11,8 +11,20 @@
 			$(function(){
 				// ajax请求
 				$("#ajaxBtn").click(function(){
-					
-					alert("ajax btn");
+
+					$.ajax({
+						url: "http://localhost:8080/16_json_ajax_i18n/ajaxServlet",
+						// data: "action=jQueryAjax",
+						data: {"action": "jQueryAjax"},
+						type: "GET",
+						success:function (data) {
+							alert("服务器返回的数据是: " + data);
+							// 解析字符串为JSON数据
+							var jsonObj = JSON.parse(data);
+							$("#msg").html("编号: " + jsonObj.id + ", 姓名: " + jsonObj.name);
+						},
+						dataType: "text"
+					});
 
 				});
 
@@ -20,14 +32,14 @@
 				$("#getBtn").click(function(){
 
 					alert(" get btn ");
-					
+
 				});
-				
+
 				// ajax--post请求
 				$("#postBtn").click(function(){
 					// post请求
 					alert("post btn");
-					
+
 				});
 
 				// ajax--getJson请求
@@ -42,13 +54,15 @@
 					// 把参数序列化
 					alert("serialize()");
 				});
-				
+
 			});
 		</script>
 	</head>
 	<body>
 		<div>
 			<button id="ajaxBtn">$.ajax请求</button>
+			<div id="msg"></div>
+
 			<button id="getBtn">$.get请求</button>
 			<button id="postBtn">$.post请求</button>
 			<button id="getJSONBtn">$.getJSON请求</button>
@@ -56,7 +70,7 @@
 		<br/><br/>
 		<form id="form01" >
 			用户名：<input name="username" type="text" /><br/>
-			密码：<input name="password" type="password" /><br/>
+			密 &nbsp;&nbsp;码：<input name="password" type="password" /><br/>
 			下拉单选：<select name="single">
 			  	<option value="Single">Single</option>
 			  	<option value="Single2">Single2</option>
@@ -73,7 +87,7 @@
 		 	单选：
 		 	<input type="radio" name="radio" value="radio1" checked="checked"/> radio1
 		 	<input type="radio" name="radio" value="radio2"/> radio2<br/>
-		</form>			
+		</form>
 		<button id="submit">提交--serialize()</button>
 	</body>
 </html>

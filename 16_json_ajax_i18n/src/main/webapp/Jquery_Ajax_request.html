@@ -57,9 +57,22 @@
 				});
 
 				// ajax请求
-				$("#submit").click(function(){
+				$("#submit").click(function () {
+
+					/*
+						serialize()这个方法, 是将所有的表单参数内容拼接为name=value&name=value...这样的字符串
+					 */
+					var serialize = $("#form01").serialize();
+
+					alert( typeof(serialize)); // serialize是字符串String类型
+					alert( serialize );
+
 					// 把参数序列化
-					alert("serialize()");
+					$.getJSON("http://localhost:8080/16_json_ajax_i18n/ajaxServlet",
+							"action=jQuerySerialize&" + $("#form01").serialize(),
+							function() {
+								$("#jQuerySerialize").html("编号: " + data.id + ", 姓名: " + data.name);
+							});
 				});
 
 			});
@@ -80,27 +93,36 @@
 			<div id="jQueryGetJSON"></div>
 
 		</div>
+
 		<br/><br/>
+
+		<div id="jQuerySerialize"></div>
+
 		<form id="form01" >
 			用户名：<input name="username" type="text" /><br/>
 			密 &nbsp;&nbsp;码：<input name="password" type="password" /><br/>
+
 			下拉单选：<select name="single">
 			  	<option value="Single">Single</option>
 			  	<option value="Single2">Single2</option>
 			</select><br/>
+
 		  	下拉多选：
 		  	<select name="multiple" multiple="multiple">
 		    	<option selected="selected" value="Multiple">Multiple</option>
 		    	<option value="Multiple2">Multiple2</option>
 		    	<option selected="selected" value="Multiple3">Multiple3</option>
 		  	</select><br/>
+
 		  	复选：
 		 	<input type="checkbox" name="check" value="check1"/> check1
 		 	<input type="checkbox" name="check" value="check2" checked="checked"/> check2<br/>
+
 		 	单选：
 		 	<input type="radio" name="radio" value="radio1" checked="checked"/> radio1
 		 	<input type="radio" name="radio" value="radio2"/> radio2<br/>
 		</form>
+
 		<button id="submit">提交--serialize()</button>
 	</body>
 </html>

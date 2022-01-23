@@ -22,17 +22,28 @@
 				 */
 				// TODO: 这里是一种新的手段, 获取到id值, 注意!
 				let bookId = $(this).attr("bookId");
-				location.href = "http://localhost:8080/bookStore/cartServlet?action=addItem&id=" + bookId;
 
+				// 这里是通过location.href方式直接更改掉地址栏的地址更新整个界面.
+				// location.href = "http://localhost:8080/bookStore/cartServlet?action=addItem&id=" + bookId;
+
+				// 通过发送ajax请求, 添加商品到购物车
+				$.getJSON("http://localhost:8080/bookStore/cartServlet", "action=ajaxAddItem&id=" + bookId,
+						function (data) {
+							$("#totalCount").text("您的购物车中有" + data.totalCount + "件商品");
+							$("#lastName").text(data.lastName);
+
+							console.log(data);
+						});
 			});
 
 		});
 	</script>
 
 </head>
-<body>
+<body>s
 	<%-- 输出测试 --%>
 	<%--${ sessionScope }--%>
+
 
 	<div id="header">
 		<img class="logo_img" alt="" src="static/img/logo.gif" >
@@ -72,17 +83,18 @@
 			</div>
 
 			<div style="text-align: center">
-				<c:if test="${ empty sessionScope.cart.items }">
-					<span> </span>
+				<%-- 购物车为空的情况下 --%>
+				<c:if  test="${ empty sessionScope.cart.items }">
+					<span id="totalCount"> </span>
 					<div>
-						<span style="color: red">当前购物车为空</span>
+						<span id="lastName" style="color: red">当前购物车为空</span>
 					</div>
 				</c:if>
 				<%-- 购物车非空的时候 --%>
 				<c:if test="${ not empty sessionScope.cart.items }">
-					<span>您的购物车中有 ${ sessionScope.cart.totalCount } 件商品</span>
+					<span id="totalCount">您的购物车中有 ${ sessionScope.cart.totalCount } 件商品</span>
 					<div>
-						您刚刚将 <span style="color: red">${ sessionScope.lastName }</span> 加入到了购物车中
+						您刚刚将 <span id="lastName" style="color: red">${ sessionScope.lastName }</span> 加入到了购物车中
 					</div>
 				</c:if>
 			</div>

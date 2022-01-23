@@ -47,6 +47,7 @@ public class AjaxServlet extends BaseServlet {
     /**
      * j ajax查询
      * j ajax查询
+     * j ajax查询
      * jQuery库封装的Ajax请求
      *
      * @param req  要求事情
@@ -120,7 +121,27 @@ public class AjaxServlet extends BaseServlet {
         Gson gson = new Gson();
         String personToJsonString = gson.toJson(person);
         resp.getWriter().write(personToJsonString);
-
     }
+
+
+    /**
+     * jQuerySerialize
+     *
+     * @param req  要求事情
+     * @param resp 分别地
+     * @throws IOException IO异常
+     */
+    protected void jQuerySerialize(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println("jQuerySerialize   被调用了");
+
+        Person person = new Person(5, "jQuerySerialize 将表单项的数据全部拼接为name=value&name=value发送");
+
+        // 将person对象转换成JSON字符串格式
+        Gson gson = new Gson();
+        String personToJsonString = gson.toJson(person);
+        resp.getWriter().write(personToJsonString);
+    }
+
+
 
 }

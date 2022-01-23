@@ -44,4 +44,25 @@ public class AjaxServlet extends BaseServlet {
     }
 
 
+    /**
+     * jQuery库封装的Ajax请求
+     *
+     * @param req  要求事情
+     * @param resp 分别地
+     * @throws IOException IO异常
+     */
+    protected void jQueryAjax(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println("jQueryAjax被调用了");
+
+        Person person = new Person(1, "test");
+
+        // 将person对象转换成JSON字符串格式
+        Gson gson = new Gson();
+        String personToJsonString = gson.toJson(person);
+        resp.getWriter().write(personToJsonString);
+
+    }
+
+
+
 }

@@ -15,6 +15,7 @@
 
 				// 2、调用open方法设置请求参数
 				xmlHttpRequest.open("GET", "http://localhost:8080/16_json_ajax_i18n/ajaxServlet?action=javaScriptAjax", true);
+				// xmlHttpRequest.open("GET", "http://localhost:8080/16_json_ajax_i18n/ajaxServlet?action=javaScriptAjax", false);
 
 				/*
 					第四步最好放在 send() 之前操作, 否则可能发生一些问题
@@ -22,6 +23,8 @@
 				 */
 				xmlHttpRequest.onreadystatechange = function () {
 					if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+
+						alert("收到服务器的数据: " + xmlHttpRequest.responseText);
 
 						// 将数据组织好再显示给客户端
 						var jsonObj = JSON.parse(xmlHttpRequest.responseText);
@@ -32,6 +35,8 @@
 
 				// 3、调用send方法发送请求
 				xmlHttpRequest.send();
+
+				alert("这是最后一行代码");
 
 			}
 		</script>

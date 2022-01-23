@@ -31,6 +31,12 @@ public class AjaxServlet extends BaseServlet {
 
         Person person = new Person(1, "test");
 
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // 将person对象转换成JSON字符串格式
         Gson gson = new Gson();
         String personToJsonString = gson.toJson(person);

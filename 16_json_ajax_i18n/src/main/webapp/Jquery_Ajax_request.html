@@ -15,15 +15,15 @@
 					$.ajax({
 						url: "http://localhost:8080/16_json_ajax_i18n/ajaxServlet",
 						// data: "action=jQueryAjax",
-						data: {"action": "jQueryAjax"},
+						data: {action: "jQueryAjax"},
 						type: "GET",
 						success:function (data) {
 							alert("服务器返回的数据是: " + data);
 							// 解析字符串为JSON数据
-							var jsonObj = JSON.parse(data);
-							$("#msg").html("编号: " + jsonObj.id + ", 姓名: " + jsonObj.name);
+							// var jsonObj = JSON.parse(data);
+							$("#msg").html("编号: " + data.id + ", 姓名: " + data.name);
 						},
-						dataType: "text"
+						dataType: "json"
 					});
 
 				});

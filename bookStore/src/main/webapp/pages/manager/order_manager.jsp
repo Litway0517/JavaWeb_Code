@@ -38,7 +38,7 @@
 				<tr>
 					<td><fmt:formatDate value="${ order.createTime }" pattern="yyyy-MM-dd" /></td>
 					<td>${ order.price }</td>
-					<td><a href="#">查看详情</a></td>
+					<td><a href="orderServlet?action=showOrderDetails&orderId=${ order.orderId }">查看详情</a></td>
 					<td>
 						<%-- 这个test标签的测试, 具体是否大于或小于..., 是放在括号里面的, 不是外面 --%>
 						<c:choose>

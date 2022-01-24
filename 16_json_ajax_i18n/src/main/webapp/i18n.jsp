@@ -16,13 +16,28 @@
 	<%
 		Locale locale = request.getLocale();
 		System.out.println(locale);
+
+		if (request.getParameter("country") != null) {
+			String country = request.getParameter("country");
+			System.out.println(country);
+
+			if (country.equals("cn")) {
+				locale = Locale.CHINA;
+			} else if (country.equals("en")) {
+				locale = Locale.US;
+			} else {
+				locale = Locale.getDefault();
+			}
+		}
 		ResourceBundle i18n = ResourceBundle.getBundle("i18n", locale);
 		System.out.println(i18n.getString("regist"));
+
+
 	%>
 
 
-	<a href="">中文</a>|
-	<a href="">english</a>
+	<a href="i18n.jsp?country=cn">中文</a>|
+	<a href="i18n.jsp?country=en">english</a>
 	<center>
 		<h1><%=i18n.getString("regist")%></h1>
 		<table>

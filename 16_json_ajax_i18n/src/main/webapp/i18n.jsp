@@ -1,5 +1,7 @@
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.util.ResourceBundle" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,32 +12,41 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<%
+		Locale locale = request.getLocale();
+		System.out.println(locale);
+		ResourceBundle i18n = ResourceBundle.getBundle("i18n", locale);
+		System.out.println(i18n.getString("regist"));
+	%>
+
+
 	<a href="">中文</a>|
 	<a href="">english</a>
 	<center>
-		<h1>注册</h1>
+		<h1><%=i18n.getString("regist")%></h1>
 		<table>
 		<form>
 			<tr>
-				<td>用户名</td>
+				<td><%=i18n.getString("username")%></td>
 				<td><input name="username" type="text" /></td>
 			</tr>
 			<tr>
-				<td>密码</td>
+				<td><%=i18n.getString("password")%></td>
 				<td><input type="password" /></td>
 			</tr>
 			<tr>
-				<td>性别</td>
-				<td><input type="radio" />男<input type="radio" />女</td>
+				<td><%=i18n.getString("sex")%></td>
+				<td><input type="radio" /><%=i18n.getString("boy")%><input type="radio" /><%=i18n.getString("girl")%></td>
 			</tr>
 			<tr>
-				<td>邮箱</td>
+				<td><%=i18n.getString("email")%></td>
 				<td><input type="text" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-				<input type="reset" value="重置" />&nbsp;&nbsp;
-				<input type="submit" value="提交" /></td>
+				<input type="reset" value="<%=i18n.getString("reset")%>" />&nbsp;&nbsp;
+				<input type="submit" value="<%=i18n.getString("submit")%>" /></td>
 			</tr>
 			</form>
 		</table>
